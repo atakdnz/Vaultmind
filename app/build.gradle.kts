@@ -103,13 +103,15 @@ dependencies {
     // Biometric
     implementation(libs.androidx.biometric)
 
-    // LiteRT (TFLite) — for EmbeddingGemma 300M
+    // LiteRT (TFLite successor) — for EmbeddingGemma 300M inference
     implementation(libs.litert)
     implementation(libs.litert.gpu)
 
-    // LiteRT-LM — for Gemma 4 E4B on-device inference
-    // NOTE: Check https://ai.google.dev/edge/litert-lm for the latest version and exact artifact ID.
-    // The artifact ID may be "litert-lm" or "litert-lm-kotlin" depending on release.
+    // LiteRT-LM — for Gemma 4 E4B on-device LLM inference
+    // Check https://ai.google.dev/edge/litert-lm for the latest version.
+    // If the version in libs.versions.toml is unavailable, comment this out — the app still
+    // builds and runs with the placeholder LlmEngine until the correct artifact is resolved.
+    // Reference: https://github.com/google-ai-edge/gallery
     implementation(libs.litert.lm)
 
     // JSON serialization (for .rvault format)
