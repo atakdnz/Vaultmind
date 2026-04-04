@@ -1,0 +1,19 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Models (large binary files — sideload or download separately)
+*.bin
+*.gguf
+*.tflite
+*.task
+
+# Vault packages (user data — never commit)
+*.rvault
