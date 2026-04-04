@@ -135,7 +135,5 @@ class TextChunker(
      * the EmbeddingGemma model bundle. The tokenizer .model file ships with
      * the EmbeddingGemma .tflite package from litert-community on HuggingFace.
      */
-    private fun estimateTokenCount(text: String): Int = (text.length / CHARS_PER_TOKEN).coerceAtLeast(1)
-
-    fun estimateTokenCount(text: String, dummy: Unit = Unit): Int = estimateTokenCount(text)
+    fun estimateTokenCount(text: String): Int = (text.length / CHARS_PER_TOKEN).coerceAtLeast(1)
 }

@@ -13,7 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -209,7 +209,7 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
     Spacer(Modifier.height(12.dp))
     content()
     Spacer(Modifier.height(4.dp))
-    Divider()
+    HorizontalDivider()
 }
 
 @Composable

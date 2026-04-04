@@ -3,11 +3,13 @@ package com.vaultmind.app.rag
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaultmind.app.ingestion.EmbeddingEngine
+import com.vaultmind.app.settings.AppPreferences
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,7 +35,8 @@ class ChatViewModel @Inject constructor(
     private val embeddingEngine: EmbeddingEngine,
     private val vectorSearch: VectorSearch,
     private val promptBuilder: PromptBuilder,
-    private val vaultRepository: VaultRepository
+    private val vaultRepository: VaultRepository,
+    private val appPreferences: AppPreferences
 ) : ViewModel() {
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
@@ -62,6 +65,15 @@ class ChatViewModel @Inject constructor(
 
     fun setVault(vaultId: String) {
         activeVaultId = vaultId
+        // Auto-load models if not already loaded
+        if (!llmEngine.isLoaded() && _modelState.value == ModelLoadState.NotLoaded) {
+            viewModelScope.launch {
+                val settings = appPreferences.settings.first()
+                if (settings.llmModelPath.isNotBlank() && settings.embeddingModelPath.isNotBlank()) {
+                    loadModels(settings.llmModelPath, settings.embeddingModelPath)
+                }
+            }
+        }
     }
 
     /** Load both models (LLM + embedding). Show loading state. */
