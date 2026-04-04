@@ -65,10 +65,11 @@ class ChatViewModel @Inject constructor(
 
     fun setVault(vaultId: String) {
         activeVaultId = vaultId
-        // Auto-load models if not already loaded
         if (!llmEngine.isLoaded() && _modelState.value == ModelLoadState.NotLoaded) {
             viewModelScope.launch {
                 val settings = appPreferences.settings.first()
+                _topK.value = settings.topK
+                _thinkingMode.value = settings.thinkingMode
                 if (settings.llmModelPath.isNotBlank() && settings.embeddingModelPath.isNotBlank()) {
                     loadModels(settings.llmModelPath, settings.embeddingModelPath, settings.temperature)
                 }

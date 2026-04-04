@@ -1,6 +1,7 @@
 package com.vaultmind.app.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.fragment.app.FragmentActivity
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +29,17 @@ fun VaultMindNavGraph(
 ) {
     val navController = rememberNavController()
     val isUnlocked by authViewModel.isUnlocked.collectAsStateWithLifecycle()
+
+    LaunchedEffect(isUnlocked) {
+        if (!isUnlocked) {
+            val currentRoute = navController.currentBackStackEntry?.destination?.route
+            if (currentRoute != null && currentRoute != Screen.Auth.route) {
+                navController.navigate(Screen.Auth.route) {
+                    popUpTo(0) { inclusive = true }
+                }
+            }
+        }
+    }
 
     NavHost(
         navController = navController,

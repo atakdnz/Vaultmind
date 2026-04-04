@@ -62,6 +62,7 @@ class VaultDatabase(
     }
 
     private val db: SQLiteDatabase
+    @Volatile private var vectorCache: List<Pair<Long, FloatArray>>? = null
 
     init {
         // Load SQLCipher native libraries
@@ -122,7 +123,8 @@ class VaultDatabase(
         tokenCount: Int,
         vector: FloatArray
     ): Long {
-        db.beginTransaction()
+        val needsTransaction = !db.inTransaction()
+        if (needsTransaction) db.beginTransaction()
         return try {
             val chunkValues = ContentValues().apply {
                 put(COL_CONTENT, content)
@@ -139,18 +141,25 @@ class VaultDatabase(
             }
             db.insert(TABLE_EMBEDDINGS, null, embValues)
 
-            db.setTransactionSuccessful()
+            if (needsTransaction) db.setTransactionSuccessful()
+            invalidateVectorCache()
             chunkId
         } finally {
-            db.endTransaction()
+            if (needsTransaction) db.endTransaction()
         }
     }
+
+    /** Begin a batch insert — use with [commitBatch]/[endBatch] to wrap many inserts in one transaction. */
+    fun beginBatch() { db.beginTransaction() }
+    fun commitBatch() { db.setTransactionSuccessful() }
+    fun endBatch() { db.endTransaction() }
 
     /**
      * Load all (chunkId, vector) pairs into memory for brute-force cosine search.
      * With ~2000 vectors this completes in milliseconds.
      */
     fun loadAllVectors(): List<Pair<Long, FloatArray>> {
+        vectorCache?.let { return it }
         val result = mutableListOf<Pair<Long, FloatArray>>()
         db.rawQuery("SELECT $COL_CHUNK_ID, $COL_VECTOR FROM $TABLE_EMBEDDINGS", null).use { cursor ->
             while (cursor.moveToNext()) {
@@ -159,7 +168,13 @@ class VaultDatabase(
                 result.add(Pair(id, blobToFloats(blob)))
             }
         }
+        vectorCache = result
         return result
+    }
+
+    private fun invalidateVectorCache() {
+        vectorCache?.forEach { (_, v) -> v.fill(0f) }
+        vectorCache = null
     }
 
     /** Fetch a chunk's text content by its ID. */
@@ -216,6 +231,7 @@ class VaultDatabase(
     }
 
     fun close() {
+        invalidateVectorCache()
         if (db.isOpen) db.close()
     }
 

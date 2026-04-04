@@ -77,9 +77,9 @@ class VectorSearch @Inject constructor() {
 
     /** Dot product of two equal-length float arrays. */
     private fun dotProduct(a: FloatArray, b: FloatArray): Float {
+        if (a.size != b.size) return 0f  // dimension mismatch — scores 0, filtered by minSimilarity
         var sum = 0f
-        val len = minOf(a.size, b.size)
-        for (i in 0 until len) sum += a[i] * b[i]
+        for (i in a.indices) sum += a[i] * b[i]
         return sum
     }
 

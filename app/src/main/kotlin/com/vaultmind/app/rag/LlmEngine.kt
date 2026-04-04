@@ -1,9 +1,13 @@
 package com.vaultmind.app.rag
 
+import android.content.ContentUris
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
+import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
+import android.provider.MediaStore
 import com.google.ai.edge.litertlm.Backend
 import com.google.ai.edge.litertlm.Content
 import com.google.ai.edge.litertlm.Contents
@@ -49,7 +53,7 @@ class LlmEngine @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
     companion object {
-        const val MODEL_FILENAME = "gemma4-e4b-it-int4.task"
+        const val MODEL_FILENAME = "gemma4-e4b-it-int4.litertlm"
         private const val MAX_TOKENS = 1024
         private const val DEFAULT_TOP_K = 40
         private const val DEFAULT_TOP_P = 0.95
@@ -178,30 +182,33 @@ class LlmEngine @Inject constructor(
      *  - SAF content URIs — resolved via DocumentsContract:
      *    - "raw:/storage/..." → strips prefix
      *    - "primary:Download/..." → prepends external storage root
-     *    - "msf:<id>" or plain id → skipped (can't resolve without MediaStore query)
+     *    - "msf:<id>" or plain id → resolved via MediaStore
      *
      * Returns null if the path cannot be resolved to an accessible file.
      */
     private fun resolveModelPath(pathOrUri: String): String? {
         if (pathOrUri.isBlank()) return null
 
-        // Already a real path
         if (pathOrUri.startsWith("/")) {
             return if (java.io.File(pathOrUri).exists()) pathOrUri else null
         }
 
         if (!pathOrUri.startsWith("content://")) return null
 
-        return try {
-            val uri = Uri.parse(pathOrUri)
+        val uri = Uri.parse(pathOrUri)
+
+        // Try document ID patterns first
+        val docResolved = try {
             val docId = DocumentsContract.getDocumentId(uri)
             when {
-                // Downloads provider with raw path: "raw:/storage/emulated/0/Download/model.task"
                 docId.startsWith("raw:") -> {
                     val path = docId.removePrefix("raw:")
                     if (java.io.File(path).exists()) path else null
                 }
-                // Primary external storage: "primary:Download/model.task"
+                docId.startsWith("msf:") -> {
+                    val id = docId.removePrefix("msf:").toLongOrNull() ?: return null
+                    resolveMediaStoreId(id)
+                }
                 docId.contains(":") -> {
                     val (type, rel) = docId.split(":", limit = 2)
                     if (type.equals("primary", ignoreCase = true)) {
@@ -209,10 +216,42 @@ class LlmEngine @Inject constructor(
                         if (java.io.File(path).exists()) path else null
                     } else null
                 }
+                docId.all { it.isDigit() } -> {
+                    val id = docId.toLongOrNull() ?: return null
+                    resolveMediaStoreId(id)
+                }
                 else -> null
             }
         } catch (_: Exception) {
             null
+        }
+        if (docResolved != null) return docResolved
+
+        // Universal fallback: resolve via file descriptor symlink in /proc/self/fd
+        return try {
+            context.contentResolver.openFileDescriptor(uri, "r")?.use { pfd ->
+                val resolved = java.io.File("/proc/self/fd/${pfd.fd}").canonicalPath
+                if (resolved.startsWith("/proc")) null else resolved
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    private fun resolveMediaStoreId(id: Long): String? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return null
+        val downloadUri = ContentUris.withAppendedId(
+            MediaStore.Downloads.EXTERNAL_CONTENT_URI, id
+        )
+        return context.contentResolver.query(
+            downloadUri,
+            arrayOf(android.provider.MediaStore.MediaColumns.DATA),
+            null, null, null
+        )?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val path = cursor.getString(0)
+                if (!path.isNullOrBlank() && java.io.File(path).exists()) path else null
+            } else null
         }
     }
 }

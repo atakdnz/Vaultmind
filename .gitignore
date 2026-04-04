@@ -15,6 +15,7 @@ local.properties
 *.gguf
 *.tflite
 *.task
+*.litertlm
 
 # Vault packages (user data — never commit)
 *.rvault

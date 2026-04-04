@@ -1,9 +1,12 @@
 package com.vaultmind.app.ingestion
 
+import android.content.ContentUris
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
+import android.provider.MediaStore
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -147,15 +150,25 @@ class EmbeddingEngine @Inject constructor(
      */
     private fun resolveModelPath(pathOrUri: String): String? {
         if (pathOrUri.isBlank()) return null
-        if (pathOrUri.startsWith("/")) return if (File(pathOrUri).exists()) pathOrUri else null
+
+        if (pathOrUri.startsWith("/")) {
+            return if (File(pathOrUri).exists()) pathOrUri else null
+        }
+
         if (!pathOrUri.startsWith("content://")) return null
-        return try {
-            val uri = Uri.parse(pathOrUri)
+
+        val uri = Uri.parse(pathOrUri)
+
+        val docResolved = try {
             val docId = DocumentsContract.getDocumentId(uri)
             when {
                 docId.startsWith("raw:") -> {
                     val path = docId.removePrefix("raw:")
                     if (File(path).exists()) path else null
+                }
+                docId.startsWith("msf:") -> {
+                    val id = docId.removePrefix("msf:").toLongOrNull() ?: return null
+                    resolveMediaStoreId(id)
                 }
                 docId.contains(":") -> {
                     val (type, rel) = docId.split(":", limit = 2)
@@ -164,10 +177,41 @@ class EmbeddingEngine @Inject constructor(
                         if (File(path).exists()) path else null
                     } else null
                 }
+                docId.all { it.isDigit() } -> {
+                    val id = docId.toLongOrNull() ?: return null
+                    resolveMediaStoreId(id)
+                }
                 else -> null
             }
         } catch (_: Exception) {
             null
+        }
+        if (docResolved != null) return docResolved
+
+        return try {
+            context.contentResolver.openFileDescriptor(uri, "r")?.use { pfd ->
+                val resolved = File("/proc/self/fd/${pfd.fd}").canonicalPath
+                if (resolved.startsWith("/proc")) null else resolved
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    private fun resolveMediaStoreId(id: Long): String? {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return null
+        val downloadUri = ContentUris.withAppendedId(
+            MediaStore.Downloads.EXTERNAL_CONTENT_URI, id
+        )
+        return context.contentResolver.query(
+            downloadUri,
+            arrayOf(MediaStore.MediaColumns.DATA),
+            null, null, null
+        )?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val path = cursor.getString(0)
+                if (!path.isNullOrBlank() && File(path).exists()) path else null
+            } else null
         }
     }
 

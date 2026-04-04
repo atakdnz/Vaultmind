@@ -86,7 +86,8 @@ class OnDeviceIngestion @Inject constructor(
             return@withContext IngestionResult.Error("Could not open vault: ${e.message}")
         }
 
-        var embedded = 0
+        // Phase 1: embed all chunks, validate dimension on first chunk
+        val embeddings = mutableListOf<Pair<TextChunker.Chunk, FloatArray>>()
         for ((index, chunk) in chunks.withIndex()) {
             onProgress(IngestionProgress(index + 1, chunks.size, "Embedding chunk"))
 
@@ -95,25 +96,41 @@ class OnDeviceIngestion @Inject constructor(
                     "Embedding model not loaded. Please set up the model first."
                 )
 
-            vaultDb.insertChunkWithEmbedding(
-                content = chunk.text,
-                chunkIndex = chunk.index,
-                tokenCount = chunk.estimatedTokenCount,
-                vector = vector
-            )
-            embedded++
+            if (index == 0) {
+                val expectedDim = vaultDb.getVaultInfo("embedding_dim")?.toIntOrNull()
+                if (expectedDim != null && vector.size != expectedDim) {
+                    vector.fill(0f)
+                    return@withContext IngestionResult.Error(
+                        "Embedding dimension mismatch: vault expects ${expectedDim}D but model produces ${vector.size}D. " +
+                        "Re-create the vault with the correct embedding model."
+                    )
+                }
+            }
 
-            // Wipe vector from local scope immediately after insert
-            vector.fill(0f)
+            embeddings.add(Pair(chunk, vector))
         }
 
-        // Step 5: Update chunk count in master DB
+        // Phase 2: batch-insert all chunks in a single transaction
+        onProgress(IngestionProgress(chunks.size, chunks.size, "Saving to vault…"))
+        vaultDb.beginBatch()
+        try {
+            for ((chunk, vector) in embeddings) {
+                vaultDb.insertChunkWithEmbedding(
+                    content = chunk.text,
+                    chunkIndex = chunk.index,
+                    tokenCount = chunk.estimatedTokenCount,
+                    vector = vector
+                )
+            }
+            vaultDb.commitBatch()
+        } finally {
+            vaultDb.endBatch()
+            embeddings.forEach { (_, v) -> v.fill(0f) }
+        }
+
         val totalChunks = vaultDb.getChunkCount()
         vaultRepository.updateChunkCount(vaultId, totalChunks)
 
-        // The `text` string is now unreferenced and eligible for GC.
-        // Kotlin strings are immutable — we cannot zero them, but we can null the reference.
-
-        IngestionResult.Success(embedded)
+        IngestionResult.Success(embeddings.size)
     }
 }

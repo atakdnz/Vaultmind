@@ -130,16 +130,30 @@ class PackageImporter @Inject constructor(
             // Store chunks and vectors into the vault DB
             val vaultDb = vaultRepository.openVaultDb(vaultId)
 
-            pkg.chunks.forEachIndexed { i, chunk ->
-                onProgress(IngestionProgress(i + 1, pkg.chunks.size, "Importing chunks…"))
-                val vector = chunk.vector.toFloatArray()
-                vaultDb.insertChunkWithEmbedding(
-                    content = chunk.content,
-                    chunkIndex = chunk.index,
-                    tokenCount = chunk.token_count,
-                    vector = vector
+            // Validate embedding dimension matches vault's configured dimension
+            val vaultDim = vaultDb.getVaultInfo("embedding_dim")?.toIntOrNull()
+            if (vaultDim != null && pkg.embedding_dim != vaultDim) {
+                return@withContext IngestionResult.Error(
+                    "Package embedding dimension (${pkg.embedding_dim}D) does not match vault (${vaultDim}D). Import rejected."
                 )
-                vector.fill(0f)
+            }
+
+            vaultDb.beginBatch()
+            try {
+                pkg.chunks.forEachIndexed { i, chunk ->
+                    onProgress(IngestionProgress(i + 1, pkg.chunks.size, "Importing chunks…"))
+                    val vector = chunk.vector.toFloatArray()
+                    vaultDb.insertChunkWithEmbedding(
+                        content = chunk.content,
+                        chunkIndex = chunk.index,
+                        tokenCount = chunk.token_count,
+                        vector = vector
+                    )
+                    vector.fill(0f)
+                }
+                vaultDb.commitBatch()
+            } finally {
+                vaultDb.endBatch()
             }
 
             val totalChunks = vaultDb.getChunkCount()
