@@ -7,7 +7,7 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 navigationCompose = "2.8.5"
-hilt = "2.52"
+hilt = "2.57.2"
 hiltNavigationCompose = "1.2.0"
 coroutines = "1.10.1"
 sqlcipher = "4.5.4"
@@ -16,8 +16,8 @@ biometric = "1.2.0-alpha05"
 # LiteRT (TFLite successor) — for EmbeddingGemma inference
 litert = "1.0.1"
 # LiteRT-LM — for Gemma 4 E4B on-device LLM inference
-# Check https://ai.google.dev/edge/litert-lm for latest version
-liteRtLm = "1.0.0-alpha04"
+# Artifact: com.google.ai.edge.litertlm:litertlm-android (confirmed in google-ai-edge/gallery)
+litertlm = "0.10.0"
 kotlinSerialization = "1.7.3"
 datastore = "1.1.1"
 junit = "4.13.2"
@@ -53,7 +53,7 @@ androidx-biometric = { group = "androidx.biometric", name = "biometric", version
 litert = { group = "com.google.ai.edge.litert", name = "litert", version.ref = "litert" }
 litert-gpu = { group = "com.google.ai.edge.litert", name = "litert-gpu", version.ref = "litert" }
 # LiteRT-LM — for Gemma 4 E4B inference
-litert-lm = { group = "com.google.ai.edge.litert", name = "litert-lm", version.ref = "liteRtLm" }
+litertlm = { group = "com.google.ai.edge.litertlm", name = "litertlm-android", version.ref = "litertlm" }
 # Serialization (for .rvault import/export JSON)
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 # DataStore for encrypted app preferences

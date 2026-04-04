@@ -55,6 +55,7 @@ class SettingsViewModel @Inject constructor(
     )
 
     fun setTopK(v: Int) = viewModelScope.launch { prefs.setTopK(v) }
+    fun setTemperature(v: Float) = viewModelScope.launch { prefs.setTemperature(v) }
     fun setThinkingMode(v: Boolean) = viewModelScope.launch { prefs.setThinkingMode(v) }
     fun setAutoLock(v: AutoLockDelay) = viewModelScope.launch { prefs.setAutoLock(v) }
     fun setLlmModelPath(path: String) = viewModelScope.launch {
@@ -124,6 +125,17 @@ fun SettingsScreen(
                     steps = 13,
                     displayValue = settings.topK.toString(),
                     onValueChange = { viewModel.setTopK(it.toInt()) }
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                SettingsSliderRow(
+                    label = "Temperature",
+                    value = settings.temperature,
+                    range = 0f..1f,
+                    steps = 9,
+                    displayValue = "%.1f".format(settings.temperature),
+                    onValueChange = { viewModel.setTemperature(it) }
                 )
 
                 Spacer(Modifier.height(8.dp))

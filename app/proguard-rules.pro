@@ -1,9 +1,13 @@
 # VaultMind ProGuard rules
 
 # Keep LiteRT-LM classes (do not obfuscate the inference API)
+-keep class com.google.ai.edge.litertlm.** { *; }
+-dontwarn com.google.ai.edge.litertlm.**
+# Keep LiteRT (TFLite successor) classes
 -keep class com.google.ai.edge.litert.** { *; }
--keep class com.google.ai.edge.litert.lm.** { *; }
 -dontwarn com.google.ai.edge.litert.**
+# Keep TFLite runtime classes (used by LiteRT 1.x for EmbeddingGemma)
+-keep class org.tensorflow.lite.** { *; }
 
 # Keep SQLCipher
 -keep class net.sqlcipher.** { *; }

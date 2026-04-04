@@ -1,6 +1,9 @@
 package com.vaultmind.app.ingestion
 
 import android.content.Context
+import android.net.Uri
+import android.os.Environment
+import android.provider.DocumentsContract
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -54,12 +57,18 @@ class EmbeddingEngine @Inject constructor(
     fun load(modelPath: String) {
         interpreter?.close()
 
+        val resolvedPath = resolveModelPath(modelPath)
+            ?: throw IllegalArgumentException(
+                "Cannot access embedding model file. " +
+                "Place ${MODEL_FILENAME} in your Downloads folder and re-select in Settings."
+            )
+
         val options = Interpreter.Options().apply {
             setNumThreads(4)
             // GPU delegate: uncomment after verifying model GPU compatibility
             // addDelegate(GpuDelegate())
         }
-        interpreter = Interpreter(File(modelPath), options)
+        interpreter = Interpreter(File(resolvedPath), options)
 
         // Infer embedding dimension from output tensor shape: [1, dim]
         val outputShape = interpreter!!.getOutputTensor(0).shape()
@@ -130,6 +139,36 @@ class EmbeddingEngine @Inject constructor(
         val norm = sqrt(vector.fold(0f) { acc, v -> acc + v * v })
         if (norm > 0f) for (i in vector.indices) vector[i] /= norm
         return vector
+    }
+
+    /**
+     * Resolve a path string to a real filesystem path that File() can open.
+     * Handles SAF content URIs from the Settings file picker in addition to raw paths.
+     */
+    private fun resolveModelPath(pathOrUri: String): String? {
+        if (pathOrUri.isBlank()) return null
+        if (pathOrUri.startsWith("/")) return if (File(pathOrUri).exists()) pathOrUri else null
+        if (!pathOrUri.startsWith("content://")) return null
+        return try {
+            val uri = Uri.parse(pathOrUri)
+            val docId = DocumentsContract.getDocumentId(uri)
+            when {
+                docId.startsWith("raw:") -> {
+                    val path = docId.removePrefix("raw:")
+                    if (File(path).exists()) path else null
+                }
+                docId.contains(":") -> {
+                    val (type, rel) = docId.split(":", limit = 2)
+                    if (type.equals("primary", ignoreCase = true)) {
+                        val path = "${Environment.getExternalStorageDirectory()}/$rel"
+                        if (File(path).exists()) path else null
+                    } else null
+                }
+                else -> null
+            }
+        } catch (_: Exception) {
+            null
+        }
     }
 
     fun close() {

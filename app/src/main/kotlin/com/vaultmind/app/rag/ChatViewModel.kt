@@ -70,21 +70,21 @@ class ChatViewModel @Inject constructor(
             viewModelScope.launch {
                 val settings = appPreferences.settings.first()
                 if (settings.llmModelPath.isNotBlank() && settings.embeddingModelPath.isNotBlank()) {
-                    loadModels(settings.llmModelPath, settings.embeddingModelPath)
+                    loadModels(settings.llmModelPath, settings.embeddingModelPath, settings.temperature)
                 }
             }
         }
     }
 
     /** Load both models (LLM + embedding). Show loading state. */
-    fun loadModels(llmModelPath: String, embeddingModelPath: String) {
+    fun loadModels(llmModelPath: String, embeddingModelPath: String, temperature: Float = 0.3f) {
         if (_modelState.value == ModelLoadState.Loading) return
         _modelState.value = ModelLoadState.Loading
 
         viewModelScope.launch {
             try {
                 embeddingEngine.load(embeddingModelPath)
-                llmEngine.load(llmModelPath)
+                llmEngine.load(llmModelPath, temperature)
                 _modelState.value = ModelLoadState.Ready
             } catch (e: Exception) {
                 _modelState.value = ModelLoadState.Error("Failed to load model: ${e.message}")

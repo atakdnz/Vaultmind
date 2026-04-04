@@ -51,6 +51,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+        // litertlm-android:0.10.0 was compiled with Kotlin 2.3.x (metadata 2.3.0).
+        // Our project uses Kotlin 2.0.21. Skip the strict metadata version check so
+        // KSP can process our annotations without failing on the litertlm jar.
+        freeCompilerArgs += "-Xskip-metadata-version-check"
     }
 
     buildFeatures {
@@ -108,11 +112,8 @@ dependencies {
     implementation(libs.litert.gpu)
 
     // LiteRT-LM — for Gemma 4 E4B on-device LLM inference
-    // TODO: Uncomment once the correct artifact version is confirmed.
-    // Check https://ai.google.dev/edge/litert-lm and https://github.com/google-ai-edge/gallery
-    // for the current Maven coordinates. LlmEngine.kt compiles without this dependency
-    // because all LiteRT-LM API calls are in commented-out TODO blocks.
-    // implementation(libs.litert.lm)
+    // Artifact: com.google.ai.edge.litertlm:litertlm-android:0.10.0 (confirmed in google-ai-edge/gallery)
+    implementation(libs.litertlm)
 
     // JSON serialization (for .rvault format)
     implementation(libs.kotlinx.serialization.json)
