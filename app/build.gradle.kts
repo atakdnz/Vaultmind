@@ -108,11 +108,11 @@ dependencies {
     implementation(libs.litert.gpu)
 
     // LiteRT-LM — for Gemma 4 E4B on-device LLM inference
-    // Check https://ai.google.dev/edge/litert-lm for the latest version.
-    // If the version in libs.versions.toml is unavailable, comment this out — the app still
-    // builds and runs with the placeholder LlmEngine until the correct artifact is resolved.
-    // Reference: https://github.com/google-ai-edge/gallery
-    implementation(libs.litert.lm)
+    // TODO: Uncomment once the correct artifact version is confirmed.
+    // Check https://ai.google.dev/edge/litert-lm and https://github.com/google-ai-edge/gallery
+    // for the current Maven coordinates. LlmEngine.kt compiles without this dependency
+    // because all LiteRT-LM API calls are in commented-out TODO blocks.
+    // implementation(libs.litert.lm)
 
     // JSON serialization (for .rvault format)
     implementation(libs.kotlinx.serialization.json)

@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.vaultmind.app-mergeDebugResources-66:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/atakan/.gradle/caches/8.9/transforms/9c5dd9622e06ee312a4892696e93eab0/transformed/appcompat-1.2.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
