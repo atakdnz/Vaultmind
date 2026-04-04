@@ -35,8 +35,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
-import com.vaultmind.app.rag.LlmEngine
 import com.vaultmind.app.ingestion.EmbeddingEngine
+import com.vaultmind.app.rag.LlmEngine
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -45,9 +45,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val prefs: AppPreferences,
-    private val llmEngine: LlmEngine,
-    private val embeddingEngine: EmbeddingEngine
+    private val prefs: AppPreferences
 ) : ViewModel() {
 
     val settings = prefs.settings.stateIn(
