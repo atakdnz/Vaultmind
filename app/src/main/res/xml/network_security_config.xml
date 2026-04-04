@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    SECURITY: No network connections allowed. This app is fully offline.
+    This config blocks all cleartext and encrypted network traffic.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- No trusted anchors — no network connections should occur -->
+        </trust-anchors>
+    </base-config>
+</network-security-config>
