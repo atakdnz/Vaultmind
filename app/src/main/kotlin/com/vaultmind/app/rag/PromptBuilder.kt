@@ -81,9 +81,12 @@ class PromptBuilder @Inject constructor() {
             if (tokenBudget <= 0) return@forEachIndexed
             if (estimatedTokens > tokenBudget) {
                 // Truncate this chunk to fit remaining budget
-                val maxChars = tokenBudget * CHARS_PER_TOKEN
-                val truncated = body.take(maxOf(0, maxChars - header.length - footer.length - 10))
-                sb.append(header).append(truncated).append("…").append(footer)
+                val maxChars = maxOf(0, tokenBudget * CHARS_PER_TOKEN)
+                val available = maxOf(0, maxChars - header.length - footer.length - 10)
+                if (available > 0) {
+                    val truncated = body.take(available)
+                    sb.append(header).append(truncated).append("…").append(footer)
+                }
                 tokenBudget = 0
             } else {
                 sb.append(header).append(body).append(footer)

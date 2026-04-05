@@ -26,6 +26,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:hardwareAccelerated="true">
 
+        <!-- GPU support: declare vendor native libraries so LiteRT-LM can use OpenCL -->
+        <uses-native-library android:name="libOpenCL.so" android:required="false" />
+        <uses-native-library android:name="libvndksupport.so" android:required="false" />
+
         <!-- Security: no content providers or receivers exported -->
         <activity
             android:name=".MainActivity"

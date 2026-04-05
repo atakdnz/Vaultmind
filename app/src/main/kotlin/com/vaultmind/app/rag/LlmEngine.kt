@@ -51,7 +51,7 @@ class LlmEngine @Inject constructor(
 ) {
     companion object {
         const val MODEL_FILENAME = "gemma4-e4b-it-int4.litertlm"
-        private const val MAX_TOKENS = 1024
+        private const val MAX_TOKENS = 3072
         private const val DEFAULT_TOP_K = 40
         private const val DEFAULT_TOP_P = 0.95
     }
@@ -75,6 +75,10 @@ class LlmEngine @Inject constructor(
      *
      * Blocking (~10-15 s on S23 Ultra). Call from a background coroutine with
      * a loading screen visible. Accepts either a real file path or a SAF content URI.
+     *
+     * Tries GPU backend first — if the GPU accelerator plugin isn't bundled
+     * (libLiteRtGpuAccelerator.so) or OpenCL isn't available, falls back to CPU
+     * (XNNPACK, still fast on Snapdragon 8 Gen 2).
      *
      * @param modelPath  Real filesystem path (e.g. /storage/.../model.task) or
      *                   SAF content URI string (resolved internally).
@@ -120,14 +124,33 @@ class LlmEngine @Inject constructor(
             modelPath
         }
 
-        val engineConfig = EngineConfig(
+        // Try GPU first — falls back to CPU if GPU accelerator plugin is missing
+        // or OpenCL is unsupported on this device.
+        try {
+            val gpuConfig = EngineConfig(
+                modelPath = actualPath,
+                backend = Backend.GPU(),
+                maxNumTokens = MAX_TOKENS
+            )
+            val gpuEngine = Engine(gpuConfig)
+            gpuEngine.initialize()
+            engine = gpuEngine
+            Log.i("VaultMind", "LLM: loaded with GPU backend")
+            return@withContext
+        } catch (e: Exception) {
+            Log.w("VaultMind", "LLM: GPU backend failed (${e.message}), falling back to CPU")
+        }
+
+        // CPU fallback — XNNPACK, multi-core, reliable on all devices
+        val cpuConfig = EngineConfig(
             modelPath = actualPath,
-            backend = Backend.GPU(),
+            backend = Backend.CPU(),
             maxNumTokens = MAX_TOKENS
         )
-        val newEngine = Engine(engineConfig)
-        newEngine.initialize()
-        engine = newEngine
+        val cpuEngine = Engine(cpuConfig)
+        cpuEngine.initialize()
+        engine = cpuEngine
+        Log.i("VaultMind", "LLM: loaded with CPU backend")
     }
 
     /**
