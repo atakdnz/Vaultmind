@@ -18,7 +18,6 @@ litert = "1.0.1"
 # LiteRT-LM — for Gemma 4 E4B on-device LLM inference
 # Artifact: com.google.ai.edge.litertlm:litertlm-android (confirmed in google-ai-edge/gallery)
 litertlm = "0.10.0"
-djlAndroid = "0.33.0"
 kotlinSerialization = "1.7.3"
 datastore = "1.1.1"
 junit = "4.13.2"
@@ -55,10 +54,6 @@ litert = { group = "com.google.ai.edge.litert", name = "litert", version.ref = "
 litert-gpu = { group = "com.google.ai.edge.litert", name = "litert-gpu", version.ref = "litert" }
 # LiteRT-LM — for Gemma 4 E4B inference
 litertlm = { group = "com.google.ai.edge.litertlm", name = "litertlm-android", version.ref = "litertlm" }
-# DJL Android — HuggingFace tokenizer for EmbeddingGemma on-device tokenization
-djl-android-core = { group = "ai.djl.android", name = "core", version.ref = "djlAndroid" }
-djl-android-tokenizer-native = { group = "ai.djl.android", name = "tokenizer-native", version.ref = "djlAndroid" }
-djl-huggingface-tokenizers = { group = "ai.djl.huggingface", name = "tokenizers", version.ref = "djlAndroid" }
 # Serialization (for .rvault import/export JSON)
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 # DataStore for encrypted app preferences

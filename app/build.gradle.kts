@@ -111,17 +111,6 @@ dependencies {
     implementation(libs.litert)
     implementation(libs.litert.gpu)
 
-    // DJL Android — HuggingFace tokenizer for EmbeddingGemma tokenization
-    // tokenizer-native provides libdjl_tokenizer.so (ARM64/ARMv7)
-    // tokenizer.json must be placed in app/src/main/assets/
-    implementation(libs.djl.android.core) {
-        exclude(group = "org.apache.commons", module = "commons-compress")
-    }
-    implementation(libs.djl.android.tokenizer.native)
-    implementation(libs.djl.huggingface.tokenizers) {
-        exclude(group = "org.apache.commons", module = "commons-compress")
-    }
-
     // LiteRT-LM — for Gemma 4 E4B on-device LLM inference
     // Artifact: com.google.ai.edge.litertlm:litertlm-android:0.10.0 (confirmed in google-ai-edge/gallery)
     implementation(libs.litertlm)
