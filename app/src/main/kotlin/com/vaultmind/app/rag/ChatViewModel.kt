@@ -167,8 +167,8 @@ class ChatViewModel @Inject constructor(
                     thinkingMode = _thinkingMode.value
                 )
 
-                // Update status to Generating before streaming starts
-                updateStreamingHint("Generating…")
+                // Update status — model is now reading the prompt (prefill)
+                updateStreamingHint("Preparing response…")
 
                 // Step 4: Stream response
                 val responseBuilder = StringBuilder()
