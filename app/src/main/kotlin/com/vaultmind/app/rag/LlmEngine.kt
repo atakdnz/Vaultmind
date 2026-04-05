@@ -62,6 +62,11 @@ class LlmEngine @Inject constructor(
     private var engine: Engine? = null
     private var temperature: Double = 0.3
 
+    // Keeps the SAF file descriptor open for as long as the Engine is alive.
+    // EngineConfig needs a real path; /proc/self/fd/{fd} stays valid only while
+    // this PFD is open, so we must not close it until unload().
+    private var modelPfd: ParcelFileDescriptor? = null
+
     // The conversation active during the current generateStream() call.
     // Closed and replaced for each new query.
     private var activeConversation: Conversation? = null
@@ -81,16 +86,28 @@ class LlmEngine @Inject constructor(
     suspend fun load(modelPath: String, temperature: Float = 0.3f) = withContext(Dispatchers.IO) {
         unload()
 
-        val resolvedPath = resolveModelPath(modelPath)
-            ?: throw IllegalArgumentException(
-                "Cannot access model file. Place the model in your Downloads folder, " +
-                "then re-select it in Settings, or copy it to: ${getDefaultModelPath()}"
-            )
-
         this@LlmEngine.temperature = temperature.toDouble()
 
+        // For SAF content URIs, open a ParcelFileDescriptor and keep it alive
+        // for the lifetime of the Engine. /proc/self/fd/{fd} gives LiteRT-LM a
+        // valid path as long as the descriptor stays open.
+        val actualPath = if (modelPath.startsWith("content://")) {
+            val uri = Uri.parse(modelPath)
+            val pfd = context.contentResolver.openFileDescriptor(uri, "r")
+                ?: throw IllegalArgumentException(
+                    "Cannot open model file. Re-select it in Settings."
+                )
+            modelPfd = pfd   // kept open until unload()
+            "/proc/self/fd/${pfd.fd}"
+        } else {
+            if (!java.io.File(modelPath).exists()) throw IllegalArgumentException(
+                "Model file not found. Re-select it in Settings."
+            )
+            modelPath
+        }
+
         val engineConfig = EngineConfig(
-            modelPath = resolvedPath,
+            modelPath = actualPath,
             backend = Backend.GPU(),
             maxNumTokens = MAX_TOKENS
         )
@@ -164,6 +181,8 @@ class LlmEngine @Inject constructor(
         activeConversation = null
         try { engine?.close() } catch (_: Exception) {}
         engine = null
+        try { modelPfd?.close() } catch (_: Exception) {}
+        modelPfd = null
     }
 
     /** Default path where the model file should be placed (in app's files dir). */

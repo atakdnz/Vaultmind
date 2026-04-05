@@ -60,18 +60,34 @@ class EmbeddingEngine @Inject constructor(
     fun load(modelPath: String) {
         interpreter?.close()
 
-        val resolvedPath = resolveModelPath(modelPath)
-            ?: throw IllegalArgumentException(
-                "Cannot access embedding model file. " +
-                "Place ${MODEL_FILENAME} in your Downloads folder and re-select in Settings."
-            )
-
         val options = Interpreter.Options().apply {
             setNumThreads(4)
-            // GPU delegate: uncomment after verifying model GPU compatibility
-            // addDelegate(GpuDelegate())
         }
-        interpreter = Interpreter(File(resolvedPath), options)
+
+        // For SAF content URIs (the common case from the Settings file picker),
+        // read the file bytes into a direct ByteBuffer and pass that to the
+        // Interpreter. This avoids both path-resolution failures and the
+        // MappedByteBuffer lifetime issues that occur when the file descriptor
+        // is closed after mapping.
+        interpreter = if (modelPath.startsWith("content://")) {
+            val uri = android.net.Uri.parse(modelPath)
+            val stream = context.contentResolver.openInputStream(uri)
+                ?: throw IllegalArgumentException(
+                    "Cannot open model file. Re-select it in Settings."
+                )
+            val bytes = stream.use { it.readBytes() }
+            val buffer = ByteBuffer.allocateDirect(bytes.size)
+            buffer.put(bytes)
+            buffer.rewind()
+            Interpreter(buffer, options)
+        } else {
+            // Raw file path (e.g. from getDefaultModelPath())
+            val file = File(modelPath)
+            if (!file.exists()) throw IllegalArgumentException(
+                "Model file not found: $modelPath"
+            )
+            Interpreter(file, options)
+        }
 
         // Infer embedding dimension from output tensor shape: [1, dim]
         val outputShape = interpreter!!.getOutputTensor(0).shape()
