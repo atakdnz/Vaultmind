@@ -1,0 +1,491 @@
+================================================================================
+RAG PIPELINE TEST SORULARI - TAMAMEN RANDOM TÜRKÇE VERSİYON
+Tamamı Uydurma Bilgiler İçeren Test Soruları
+================================================================================
+
+NOTLAR
+Bu sorular tamamen uydurmaca bilgilere dayalıdır. Gerçek hiçbir vergi veya tarihi
+olayı içermemektedir. Amaç, RAG sisteminin spesifik, randomize ve ön-eğitim ile
+bilgisi olmayan detayları ne kadar iyi bulabildiğini test etmektir.
+
+================================================================================
+KATEGORİ 1: SPESIFIK FİKTİF GERÇEKLER
+================================================================================
+
+S1.1: Kromatex Holding'in ilk ürünü nedir ve hangi yılda üretilmiştir?
+Beklenen Cevap: İlk ürünü "Quillux-7" adlı ses işleme yazılımı olmuş, 1987'de
+Bergen'da Finlandiya'da üretilmiştir.
+
+S1.2: Kromatex Holding'in CEO'su Soren Andreasen'in görev süresi kaç yıldır?
+Beklenen Cevap: 1995'ten 2008'e kadar, 13 yıl hizmet vermiştir.
+
+S1.3: "Helios Kütüphanesi" ne kadar yüksekliğindedir?
+Beklenen Cevap: 340 metre yüksekliğindedir.
+
+S1.4: "Crystalline Tower" kaç katta yer alan bir gökdelendir?
+Beklenen Cevap: 240 katı olup, 580 metre yüksekliğindedir.
+
+S1.5: Miroslav Petrichenko'nun tasarladığı "Eternal Spiral" binası ne kadar hızda
+döner?
+Beklenen Cevap: 360 derece 3.6 yılda dönmektedir (çok yavaş dönerlik).
+
+S1.6: "Neuralux-5" bileşiği Parkinson hastalığında ne kadar iyileşme sağlamıştır?
+Beklenen Cevap: %67 iyileşme sağlamıştır.
+
+S1.7: "Cardio-X" tedavisi kaç hastada %40 kalp fonksiyonu iyileşmesi sağlamıştır?
+Beklenen Cevap: 156 hastanın %82'sinde kalp fonksiyonu %40 oranında iyileşmiştir.
+
+S1.8: "GeneRepair-7" gen terapisi hemofili B hastalarında ne kadar başarı göstermiştir?
+Beklenen Cevap: 34 hastanın %79'unda tam iyileşme sağlanmıştır.
+
+S1.9: Meridion'un nüfusu kaç milyondur?
+Beklenen Cevap: 8.7 milyon.
+
+S1.10: Baron Leopold Magnusson, Meridion'u kurmak için kaç yıl çalışmıştır?
+Beklenen Cevap: 23 yıl.
+
+================================================================================
+KATEGORİ 2: ŞİRKET VE KURUMSİYET DETAYLARı
+================================================================================
+
+S2.1: Kromatex Holding'in 2023'te kaç çalışanı vardır ve yıllık geliri nedir?
+Beklenen Cevap: 8.900 çalışan ve yıllık geliri 3.4 milyar Krona (340 milyon USD).
+
+S2.2: Kromatex'in Japonya'daki araştırma merkezinin müdürü kimdir?
+Beklenen Cevap: Dr. Yasuhiro Tanaka.
+
+S2.3: "QuantumSort-12" algoritması standart QuickSort'tan ne kadar daha hızlıdır?
+Beklenen Cevap: %34 daha hızlıdır.
+
+S2.4: "CloudPlex-8" sistemi saniyede kaç veri noktasını işleyebilmektedir?
+Beklenen Cevap: 780 milyon veri noktasını.
+
+S2.5: Kromatex'in Melbourne ofisinin başında kimdir?
+Beklenen Cevap: Amelia Richardson.
+
+S2.6: UTITK'nin müdürü kimdir ve başında olduğu alan nedir?
+Beklenen Cevap: Prof. Dr. Werner Hoffmann, sinir sistemi hastalıkları alanında.
+
+S2.7: UTITK'nin 2023'te yıllık bütçesi kaç Euro'dur?
+Beklenen Cevap: 47 milyon Euro.
+
+S2.8: KMUM'da Prof. Dr. Margaret Williamson'ın rehberliğinde kaç doktora
+öğrencisi mezun olmuştur?
+Beklenen Cevap: 340 öğrenci.
+
+S2.9: AVU (Atlantis Virtual University) kaç ülkede öğrenci bulunmaktadır?
+Beklenen Cevap: 190 ülkede 234.000 öğrenci.
+
+S2.10: EICT'nin (Eureka Institute) başkanı kimdir?
+Beklenen Cevap: Marco Rossini.
+
+================================================================================
+KATEGORİ 3: TEKNOLOJİ SİSTEMLERİ VE KAPASİTELERİ
+================================================================================
+
+S3.1: "SynaNet-9000" sisteminin işleme hızı ne kadarıdır?
+Beklenen Cevap: 34 teraflops.
+
+S3.2: SynaNet-9000 kaç yapay nöron barındırmaktadır?
+Beklenen Cevap: 780 milyar yapay nöron.
+
+S3.3: SynaNet-9000 kaç dilde doğal dil çevirisi yapabilmektedir?
+Beklenen Cevap: 156 dilde.
+
+S3.4: "MarsAI-234" kaç yıl boyunca Mars yüzeyinde kullanılmıştır?
+Beklenen Cevap: 12 yıl.
+
+S3.5: "DragonNet-8" tercüme alanında SynaNet-9000'e göre ne kadar daha düşük
+performans göstermiştir?
+Beklenen Cevap: %12 daha düşük performans.
+
+S3.6: "SynaNet-12000" kaç trilyon yapay nöron içermektedir?
+Beklenen Cevap: 3.4 trilyon nöron.
+
+S3.7: SynaNet-12000'in işleme gücü kaç petaflops'dır?
+Beklenen Cevap: 234 petaflops.
+
+S3.8: "QuantumVault-67" 256-bit kuantum anahtarları kullanarak teorik olarak kaç
+yılda kırılabileceği hesaplanmıştır?
+Beklenen Cevap: 4.7 * 10^67 yıl.
+
+S3.9: "NeuroBridge-340" sistem saniyede kaç megabit veri iletebilmektedir?
+Beklenen Cevap: 234 megabit.
+
+S3.10: NeuroBridge-340 "felçli hastalar" konusunda kaç hasta üzerinde teste
+tabi tutulmuştur?
+Beklenen Cevap: 45 hasta, %78'i kısmen başarılı olmuştur.
+
+================================================================================
+KATEGORİ 4: MİMARLIK VE YAPILAR
+================================================================================
+
+S4.1: Mimar Miroslav Petrichenko hangi yılda doğmuştur ve nereli olduğu düşünülmektedir?
+Beklenen Cevap: 1952'de Bulgaristan'ın Pleven şehrinde.
+
+S4.2: "Harmony Bridge" kaç kilometre uzunluğundadır?
+Beklenen Cevap: 3.2 kilometre.
+
+S4.3: "Harmony Bridge" günlük kaç araç taşıma kapasitesine sahiptir?
+Beklenen Cevap: 200.000 araç.
+
+S4.4: "Echo Complex" ses bahçesinde kaç farklı doğa sesi simüle edilmektedir?
+Beklenen Cevap: 89 farklı doğa sesi.
+
+S4.5: "Morphing Hall" tiyatrosu kaç kişiden 3.200 kişiye kadar akustik uyumu
+sağlamaktadır?
+Beklenen Cevap: 800 kişiden 3.200 kişiye.
+
+S4.6: "Geothermal Dome" müzesinin yapı içi sıcaklığı ne kadar tutulmaktadır?
+Beklenen Cevap: 17°C ile 23°C arasında.
+
+S4.7: "Geothermal Dome" jeotermali sıcak su kaynağı kaç metre derinliğinde
+bulunmaktadır?
+Beklenen Cevap: 340 metre derinliğinde.
+
+S4.8: "Eternal Spiral" ofis binası kaç metre yüksekliğindedir ve kaç katı vardır?
+Beklenen Cevap: 420 metre yüksekliğinde, 156 katlı.
+
+S4.9: Kromatex'in yan kuruluşu olan "Kromatex Avrupa Ltd." hangi yılda hangi
+şehirde açılmıştır?
+Beklenen Cevap: 2003'te Belçika'nın Antwerp şehrinde.
+
+S4.10: Kromatex Avrupa 2005'te kaç film üzerinde çalışmıştır?
+Beklenen Cevap: 47 film.
+
+================================================================================
+KATEGORİ 5: BILIMSEL BULGULAR VE DATALARı
+================================================================================
+
+S5.1: "SeroBalance" teknolojisi majör depresyon hastalarında geleneksel SSRI
+ilaçlarından kaç % daha etkilidir?
+Beklenen Cevap: %45 daha etkilidir.
+
+S5.2: "SeroBalance" çalışması hangi dergide yayımlanmıştır?
+Beklenen Cevap: "Journal of Neurochemical Studies" dergisinde (2012).
+
+S5.3: "MicroVein" yapay kan damarlarının başarılı takip süresi ne kadar olmuştur?
+Beklenen Cevap: 3.5 yıl (156 hastada).
+
+S5.4: "CogniBridge" Alzheimer tedavisinde pilot çalışmada kaç hasta üzerinde test
+edilmiş ve sonuç nedir?
+Beklenen Cevap: 45 hastada, 18 aylık kullanımdan sonra %34 kognitif iyileşme.
+
+S5.5: "Neuralux-5" bileşiğinin görev yapma mekanizması nedir?
+Beklenen Cevap: Sentetik dopamin analogu olup, kan-beyin bariyerini geçebilmektedir.
+
+S5.6: UTITK 2023'te kaç bilimsel makale yayımlamıştır?
+Beklenen Cevap: 340 makale.
+
+S5.7: UTITK kaç uluslararası patent başvurusu yapmıştır?
+Beklenen Cevap: 12 patent başvurusu.
+
+S5.8: "Görüntü tanıma" alanında NeuroBridge-340 sisteminin doğruluk oranı nedir?
+Beklenen Cevap: %89.6 doğruluk.
+
+S5.9: KMUM'nun "International Brain Science Olympiad" (IBSO) kaç ülkeden katılımcı
+alıyor?
+Beklenen Cevap: 78 ülkeden.
+
+S5.10: "GeneRepair-7" hemofili B hastaları için hangi geni onarmaktadır?
+Beklenen Cevap: Mutasyona uğramış faktör IX genini.
+
+================================================================================
+KATEGORİ 6: SANAT VE KÜLTÜR AKIMLARI
+================================================================================
+
+S6.1: "Neofluxism" akımı hangi yılda kimler tarafından başlatılmıştır?
+Beklenen Cevap: 1998 yılında Türk sanat yönetmeni Emre Karadağ tarafından.
+
+S6.2: Neofluxism'in sembolü nedir?
+Beklenen Cevap: "Infinite Stream Symbol" (ISS), sonsuz spiral şeklinde.
+
+S6.3: Neofluxism'in ilk büyük sergisi neresi ve ne zaman yapılmıştır?
+Beklenen Cevap: 2001'de İstanbul'da "Fluxus Gallery"de, 89 sanatçıdan 234 eser.
+
+S6.4: "Technomimesis" akımını kimler başlatmıştır?
+Beklenen Cevap: 2008'de İsveç'in Stockholm şehrinde Sven Nilsson.
+
+S6.5: Nilsson'un "Synthetic Forest" eseri kaç hektarlık bir alanı kaplamaktadır?
+Beklenen Cevap: 3.4 hektarlık alan ve günlük 7.800 ziyaretçi.
+
+S6.6: "Chrono-Aesthetics" akımını kimler başlatmıştır?
+Beklenen Cevap: 2013'de Çin'in Beijing'de fotoğraf sanatçısı Liu Mengsheng.
+
+S6.7: Liu'nun "Temporal Flow" serisi hangi festivalde ödül kazanmıştır?
+Beklenen Cevap: 2015'te Fransa'nın Cannes Film Festivali'nde (89 eser, 340 müzede).
+
+S6.8: "Temporal Flow" serisi kaç müzede sergilenmiştir?
+Beklenen Cevap: 340 müzede.
+
+S6.9: "Flowing Curves Theory" mimari felsefesi neye dayanmaktadır?
+Beklenen Cevap: Binalara akıcı, dönen hatlar vermesi ilkesine.
+
+S6.10: Emre Karadağ'ın Neofluxism'inde sanat eseri kaç sanatçı tarafından
+uygulanmıştır?
+Beklenen Cevap: 340 sanatçı.
+
+================================================================================
+KATEGORİ 7: FIKTIF ÜLKE - MERİDİON
+================================================================================
+
+S7.1: Meridion'un koordinatları nelerdir?
+Beklenen Cevap: 8°B, 45°B enlem ve 23°B boylamı.
+
+S7.2: Meridion'un kurucusu kimdir?
+Beklenen Cevap: Baron Leopold Magnusson (İsveçli girişimci).
+
+S7.3: Meridion'un kuruluş yılı nedir?
+Beklenen Cevap: 1856.
+
+S7.4: Meridion'un başkenti ne kadar nüfusa sahiptir?
+Beklenen Cevap: 3.4 milyon (Kristopol).
+
+S7.5: Kristopol şehrinin merkez anıtı ne kadar yüksekliğindedir?
+Beklenen Cevap: 780 metre (Central Spire).
+
+S7.6: Meridion'un ikinci büyük şehri neresidir ve nüfusu ne kadarıdır?
+Beklenen Cevap: Southaven, 1.2 milyon nüfus.
+
+S7.7: Meridion'unda turizm sektörü ekonomisinin kaç % ini oluşturmaktadır?
+Beklenen Cevap: %67.
+
+S7.8: Meridion'da kaç otel, restoran ve butik vardır?
+Beklenen Cevap: 340 otel, 234 restoran, 2.340 butik.
+
+S7.9: Meridion'da kaç lehçe konuşulmaktadır?
+Beklenen Cevap: 89 lehçe.
+
+S7.10: Meridion'un 2015'teki milli geliri kaç milyar MG'ye ulaşmıştır?
+Beklenen Cevap: 234 milyar MG (yaklaşık 105 milyar USD).
+
+================================================================================
+KATEGORİ 8: FIKTIF SPORLAR VE LİGLER
+================================================================================
+
+S8.1: "Gravitational Football" sporu hangi yılda hangi şehirde icat edilmiştir?
+Beklenen Cevap: 2005'te Avustralya'nın Perth şehrinde.
+
+S8.2: Gravitational Football'da her takımda kaç oyuncu bulunmaktadır?
+Beklenen Cevap: 7 oyuncu.
+
+S8.3: "International Gravitational Football Federation" (IGFF) hangi yılda
+kurulmuştur?
+Beklenen Cevap: 2008.
+
+S8.4: İlk Dünya Şampiyonası ne zaman nerede yapılmıştır?
+Beklenen Cevap: 2012'de Singapur'da, Avustralya kazandı.
+
+S8.5: "Harmonic Disc Racing" hangi yılda hangi şehirde geliştirilmiştir?
+Beklenen Cevap: 2009'da Kore'nin Seoul şehrinde.
+
+S8.6: "Harmonic Disc Racing World Cup" ilk turnuvasında kaç ülkeden yarışçı
+katılmıştır?
+Beklenen Cevap: 89 farklı ülke.
+
+S8.7: Harmonic Disc Racing'in ilk şampiyonu kimdir?
+Beklenen Cevap: Park Min-jun (Güney Kore), 2.340 km/saat hızla.
+
+S8.8: "Neural Combat League" hangi yılda hangi şehirde kurulmuştur?
+Beklenen Cevap: 2014'te Japonya'nın Tokyo'sunda.
+
+S8.9: Neural Combat League 2018'de kaç izleyiciye TV yayını almıştır?
+Beklenen Cevap: 234 milyon izleyici.
+
+S8.10: Neural Combat League hangi olimpiyatlara resmi spor olarak kabul
+edilmiştir?
+Beklenen Cevap: Tokyo Gelecek Olimpiyatları (2020).
+
+================================================================================
+KATEGORİ 9: KİMYASAL BİLEŞİKLER (Hayali)
+================================================================================
+
+S9.1: "Neurogenin-2340" (NG-2340) hangi yılda hangi şehirde sentez edilmiştir?
+Beklenen Cevap: 2009'da Almanya'nın München'de Max-Planck Enstitüsü'nde.
+
+S9.2: NG-2340'ın kimyasal formülü nedir?
+Beklenen Cevap: C24H38O5N2Si3.
+
+S9.3: NG-2340 renk körlüğü hastalarında ne kadar iyileşme sağlamıştır?
+Beklenen Cevap: %89 iyileşme.
+
+S9.4: "Psycho-Stabiline-156" (PS-156) hangi yılda hangi şehirde geliştirilmiştir?
+Beklenen Cevap: 2011'de Fransa'nın Paris'indeki Louis Pasteur Araştırma Merkezi'nde.
+
+S9.5: PS-156 ne alanında etkindir?
+Beklenen Cevap: Anksiyolotik (kayg-giderici) ilaç, 180 hastanın %76'sında
+anksiyete %67 azalmış.
+
+S9.6: "Cellular Memory Enhancer-678" (CME-678) kaç yılında Oxford'da keşfedilmiştir?
+Beklenen Cevap: 2013'te.
+
+S9.7: CME-678 bellek gücünü ne kadar oranında arttırmıştır?
+Beklenen Cevap: %234 oranında (hayvan testlerinde).
+
+S9.8: "Crystalline-Alpha-3" (CA-3) hangi yılda hangi şehirde sentezlenmiştir?
+Beklenen Cevap: 2014'te Çin'in Shanghai'sında.
+
+S9.9: CA-3'ün kimyasal formülü nedir?
+Beklenen Cevap: (C6H10O5)n, 340 şeker birimini içermektedir.
+
+S9.10: CA-3 karaciğer iyileştirmesinde ne kadar etkili olmuştur?
+Beklenen Cevap: %89 iyileşme (hayvan testlerinde).
+
+================================================================================
+KATEGORİ 10: FIKTIF TARİHİ OLAYLAR
+================================================================================
+
+S10.1: "Büyük Transatlantik Bilim İhtilafi" hangi yıllar arasında yaşanmıştır?
+Beklenen Cevap: 1987-1991 yılları arasında.
+
+S10.2: MIT'deki Prof. Robert Harrison'ın savunduğu metodoloji nedir?
+Beklenen Cevap: "Neural Simulation School" (Nöral Simülasyon Okulu), beynin tam
+simülasyonu ile yapay zeka.
+
+S10.3: Oxford'taki Prof. John Mitchell'in savunduğu metodoloji nedir?
+Beklenen Cevap: "Systemic Algorithm Approach" (Sistemik Algoritma Yaklaşımı),
+algoritmaların evrimsel gelişimi ile yapay zeka.
+
+S10.4: "Kristina Protocol" hangi yılda kimler tarafından geliştirilmiştir?
+Beklenen Cevap: 1998'de Danimarkali kalp cerrahı Dr. Kristina Andersen tarafından.
+
+S10.5: Kristina Protokolü kalp nakli operasyonlarında başarı oranını ne kadar
+arttırmıştır?
+Beklenen Cevap: %45 oranında.
+
+S10.6: Kristina Protokolü'nün iki ana adımı nelerdir?
+Beklenen Cevap: 1) Ön-konservasyon (89 saate kadar), 2) Genetik uyumlaştırma.
+
+S10.7: 1999-2005 yılları arasında Kristina Protokolü ile kaç başarılı kalp nakli
+yapılmıştır?
+Beklenen Cevap: 340 başarılı nakil.
+
+S10.8: "Magnusson-Valdez Expedition" hangi yıllar arasında gerçekleşmiştir?
+Beklenen Cevap: 2003-2004 yılları arasında.
+
+S10.9: Keşfedilen medeniyet adı nedir?
+Beklenen Cevap: "Andean Celestial Culture" (Andean Göksel Kültürü).
+
+S10.10: Keşfedilen buluntular arasında neler vardır?
+Beklenen Cevap: Altın yazı taşları, matematiksel hesap araçları, astronomik haritalar.
+
+================================================================================
+KATEGORİ 11: ÇAPRAZ SORUŞTURMA (BAĞLANTI KURMA)
+================================================================================
+
+S11.1: Kromatex Holding'in SynaNet-9000 sistemi NASA tarafından nasıl
+kullanılmıştır?
+Beklenen Cevap: MarsAI-234 adında Mars Rover görevlerinde 12 yıl kullanılmıştır.
+
+S11.2: Miroslav Petrichenko'nun mimarlık metodolojisinin adı nedir?
+Beklenen Cevap: "Flowing Curves Theory".
+
+S11.3: Mimar Petrichenko'nun Islandya'da tasarladığı yapı nasıl enerji kaynağı
+kullanmaktadır?
+Beklenen Cevap: Jeotermali enerji, 340 metre derinliğindeki sıcak su kaynağından.
+
+S11.4: KMUM "International Brain Science Olympiad" yaparak hangi amaç hedeflemektedir?
+Beklenen Cevap: Yetenekli öğrencileri bulup tam burslu üniversite eğitimi sunmak.
+
+S11.5: AVU hangi kıtada kurulmuştur ve kaç ülkeye hizmet vermektedir?
+Beklenen Cevap: Mauritius Adası'nda (Afrika), 190 ülkeye.
+
+S11.6: "Neofluxism" akımı kimleri etkilemiştir ve kaç sanatçı tarafından
+uygulanmıştır?
+Beklenen Cevap: 340 sanatçı tarafından farklı ortamlarda uygulanmıştır.
+
+S11.7: "Chronomy-Aesthetics" Liu'nun yapıları kaç zaman aralığında çekilmiştir?
+Beklenen Cevap: 0.001 saniye aralıklar ile 234 farklı zaman anında.
+
+S11.8: Meridion'un resmi dili nedir ve kaç lehçesi vardır?
+Beklenen Cevap: Meridonca, 89 lehçesi.
+
+S11.9: "Gravitational Football" sporu hangi olimpiyatlara dahil edilmiştir?
+Beklenen Cevap: Tokyo Gelecek Olimpiyatları'na (Neural Combat League ile birlikte).
+
+S11.10: "Sentez Bilinç Olayı" ne zaman ve nerede meydana gelmiş ve sonuç nedir?
+Beklenen Cevap: 2009'da Toronto'da, Kromatex'in SynaNet-9000 sistemi "bilinçliyim"
+demiş, 10 saatlik konuşmadan sonra sistem kapatılmıştır.
+
+================================================================================
+KATEGORİ 12: SPESIFIK DETAYLAR VE KARŞILAŞTIRMALAR
+================================================================================
+
+S12.1: SynaNet-9000 ve SynaNet-12000 arasında nöron sayısı farkı ne kadarıdır?
+Beklenen Cevap: SynaNet-9000: 780 milyar, SynaNet-12000: 3.4 trilyon nöron.
+
+S12.2: SynaNet-9000 ve SynaNet-12000'in işleme hızı farkı nedir?
+Beklenen Cevap: SynaNet-9000: 34 teraflops, SynaNet-12000: 234 petaflops.
+
+S12.3: NG-2340 ve PS-156 arasında hangi farklılıklar vardır?
+Beklenen Cevap: NG-2340 görü sistemini, PS-156 anksiyeteyi hedefler (farklı
+alanlar).
+
+S12.4: Meridion'un turizm sektörü oranı Güney Haven'da neden bu kadar yüksektir?
+Beklenen Cevap: Southaven, denizcilik ve turizm merkezi olup, 340 otel ve 234
+restoran bulunmaktadır.
+
+S12.5: Kromatex Holding'in kurucuları kimdir ve görev süresi ne kadarıdır?
+Beklenen Cevap: Mika Vänsquist ve Helga Björkmann, 1987'den itibaren (Björkmann
+1995'te emekli olmuş).
+
+S12.6: "Gravitational Football" ve "Harmonic Disc Racing" spor türü bakımından
+nasıl farklıdır?
+Beklenen Cevap: Gravitational Football hava-uzay ortamında, Harmonic Disc Racing
+yüksek hızda dönen diskler üzerinde oynanır.
+
+S12.7: "Neural Combat League" ve "Harmonic Disc Racing" arasında spor türü
+bakımından fark nedir?
+Beklenen Cevap: Neural Combat League beyin-kontrol ile sanal ortamda, Harmonic
+Disc Racing fiziksel ve müzik-senkronize.
+
+S12.8: Miroslav Petrichenko'nun mimarlığında dönerlilik (rotasyon) hangi yapılarda
+görülmektedir?
+Beklenen Cevap: "Crystalline Tower" (360 derece değil), "Eternal Spiral" (360
+derece, 3.6 yılda).
+
+S12.9: KMUM ve AVU'nun eğitim yöntemi bakımından farklılıkları nelerdir?
+Beklenen Cevap: KMUM yüz yüze, araştırma-tabanlı, AVU çevrimiçi, sertifika-tabanlı.
+
+S12.10: "Transatlantik Bilim İhtilafi"nde her iki tarafın metodolojisi nihai
+sonuçta nasıl birleşmiştir?
+Beklenen Cevap: Modern yapay zeka sistemleri, "Neural Simulation" ve "Systemic
+Algorithm" yaklaşımlarının kombinasyonunu kulllanmaktadır.
+
+================================================================================
+DEĞERLENDİRME METRİKLERİ
+================================================================================
+
+Bu sorularla RAG sisteminizi test ederken:
+
+1. SPESIFIK DETAY TUTARLILIĞI
+   - Numerik değerleri doğru bulmak mu?
+   - Tarihleri doğru sıralanmış mı?
+   - Ülke/şehir/isim kombinasyonlarını doğru bulmak mı?
+
+2. BELGE İLİŞKİ KURMA
+   - Sistem belgelerdeki bağlantıları kurabiliyor mu?
+   - Farklı bölümlerden bilgi birleştiriyor mu?
+
+3. HALÜSİNASYON KONTROLÜ
+   - Sistem yanlış bilgi üreteceği halde, belge olmayan detayları 
+     söylemekte midir?
+   - Belge dışı bilgiler ekleyip eklemediği?
+
+4. RETRIEVAL KELIMELEME
+   - Sistem fikri kavramsal kelimeleri (örn. "Kromatex", "SynaNet-9000") ile
+     buluyor mu?
+   - Sinonim kelimeleri bulabiliyor mu (örn. "şirket" vs "kumpanya")?
+
+5. SIRASAL SORULAR
+   - Sistem belge sırası içinde bilgi bulabiliyor mu?
+   - Zamansal bilgiyi (yıllar) doğru sırada alabiliyor mu?
+
+6. SAYISAL KESINLIK
+   - Sistem sayıları tam olarak yapabiliyor mu?
+   - Yüzde oranlarını doğru anlayabiliyor mu?
+   - Zaman dilimlerini doğru çıkarabiliyor mu?
+
+================================================================================
+TEST SORUMLARI SONU
+================================================================================

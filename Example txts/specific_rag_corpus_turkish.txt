@@ -1,0 +1,463 @@
+================================================================================
+RAG PIPELINE TEST DOKÜMANI - TAMAMEN RANDOM TÜRKÇE CORPUS
+Hiçbir Gerçek Bilgi İçermeyen Test Verisi
+================================================================================
+
+İÇİNDEKİLER
+1. Fiktif Şirket Tarihi ve Kurucuları
+2. Hayal İçeriği Mimar ve Yapıları
+3. Uydurma Bilimsel Bulgular
+4. Fantezi Ülkeler ve Şehirler
+5. İcat Edilen Teknoloji Sistemleri
+6. Hayal Kültür ve Sanat Akımları
+7. Yaratılmış Eğitim Kurumları
+8. Kurmaca Sporlar ve Organizasyonları
+9. İllüzyon Kimyasal Bileşikler
+10. Fiktif Tarihi Olaylar ve Kişiler
+
+================================================================================
+BÖLÜM 1: FIKTIF ŞİRKET TARİHİ VE KURUCALARI
+================================================================================
+
+Kromatex Holding, 1987 yılında Finlandiya'nın Bergen şehrinde Mika Vänsquist ve
+Helga Björkmann tarafından kurulmuş bir teknoloji şirketidir. Şirkerin ilk ürünü,
+"Quillux-7" adlı bir ses işleme yazılımı olmuştur. Bu yazılım, 24-bit çözünürlükte
+ses kaydını ve 340 Hz'den 47 kHz'e kadar frekans aralığında işleme yapabilmekteydi.
+
+1993 yılında, Kromatex Holding, Norveç'teki Trondheim Teknoloji Parkı'na taşınmış ve
+300 çalışan istihdam etmeye başlamıştır. Şirketin CEO'su, 1995'ten 2008'e kadar Soren
+Andreasen olmuştur. Andreasen'in liderliğinde, Kromatex, "Nexus-4000" adlı kütüphane
+yönetim sistemi geliştirmiştir. Bu sistem, 5 milyon kitabı aynı anda kataloglay
+ebilmekteydi.
+
+2003 yılında, Kromatex Holding, Belçika'nın Antwerp şehrinde "Kromatex Avrupa Ltd."
+adlı bir yan kuruluş açmıştır. Bu yan kuruluş, film endüstrisi için ses ve görüntü
+post-prodüksiyon hizmetleri sağlamaya başlamıştır. 2005'te, Kromatex Avrupa, 47
+Belçika ve Hollanda filminde çalışmıştır.
+
+2011'de, Kromatex Holding, kurucularından Helga Björkmann emekli olmuş ve yerini
+Liv Stenberg almıştır. Stenberg, şirketin yapay zeka araştırma bölümünü kurmuş ve
+"MindWeave-3" adlı bir makine öğrenme platformu geliştirtmiştir. MindWeave-3, doğal
+dil işleme ve görüntü tanıma konularında çalışmıştır.
+
+2015'te, Kromatex Holding, Japonya'nın Osaka şehrinde bir araştırma merkezi açmıştır.
+Bu merkezin müdürü, ünlü bilgisayar bilimci Dr. Yasuhiro Tanaka olmuştur. Dr. Tanaka,
+"QuantumSort-12" adlı bir sıralama algoritması geliştirmiştir. Bu algoritma, standart
+QuickSort'tan %34 daha hızlı veri sıralaması yapabilmekteydi.
+
+2019'da, Kromatex Holding, Melbourne, Avustralya'ya açılmış ve 200 yeni mühendisi
+istihdam etmiştir. Avustralya ofisinin başında, Amelia Richardson bulunmaktadır.
+Richardson, kurumun CloudPlex-8 sistemi geliştirmesine öncülük etmiştir. CloudPlex-8,
+bulut tabanlı veri işleme altyapısı olup, saniyede 780 milyon veri noktasını işleyebilmektedir.
+
+2023'te, Kromatex Holding, 42 ülkede faaliyet göstermektedir ve toplam 8.900 çalışan
+istihdam etmektedir. Şirketin yıllık geliri, 3.4 milyar Krona'dır (yaklaşık 340 milyon
+USD). Mevcut CEO, Kristian Jørgensen, 2018 yılından itibaren görevi yürütmektedir.
+
+================================================================================
+BÖLÜM 2: HAYAL İÇERİĞİ MİMAR VE YAPILARI
+================================================================================
+
+Miroslav Petrichenko, 1952 yılında Bulgaristan'ın Pleven şehrinde doğan ve modern
+mimarlığın en etkili isimlerinden biri olarak kabul edilen bir mimar olmuştur.
+Petrichenko, "Flowing Curves Theory" adlı mimari felsefesini geliştirmiş, bunun
+çerçevesinde binalara dönen, akıcı hatlar vermişdir.
+
+1978'de Petrichenko'un ilk büyük projesi, Letonya'nın Riga şehrinde "Helios Kütüphanesi"
+inşaatı olmuştur. Helios Kütüphanesi, 340 metre yüksekliğinde, döner balkon sistemi
+ile yapılmıştır. Binanın dış kütlesi, titanyum ve cam kombinasyonundan oluşmaktaydı.
+
+1985'te Petrichenko, Slovakya'nın Bratislava şehrinde "Crystalline Tower" adlı gökdelen
+tasarlamıştır. Bu gökdelen, 580 metre yüksekliğinde olup, kesik kristal şekline benzer
+tasarlanmıştır. Binanın 240 katı olup, 45.000 insan kapasitesine sahiptir (ofis,
+konut, otel kombinasyonu).
+
+1992'de Petrichenko'un Estonya'nın Tallinn şehrinde "Harmony Bridge" adlı köprüsü
+açılmıştır. Bu köprü, 3.2 kilometre uzunluğunda olup, tsunami dalgalarına karşı
+özel tasarım (dalga yutma teknolojisi) kullanmıştır. Köprü, 200.000 araç günlük
+taşıma kapasitesine sahiptir.
+
+2001'de Petrichenko, Macaristan'ın Budapeşte'sinde "Echo Complex" adlı karma kullanım
+binası tasarlamıştır. Echo Complex, akustik özellikleri ile meşhur olup, bina
+içerisinde sahte hava sesiyle çalışan bir "ses bahçesi" (acoustic garden) kurulmuştur.
+Bu bahçe, 89 farklı doğa sesini (kuş cıvıltısı, su sesi, rüzgar) yapay olarak
+üretmektedir.
+
+2008'de Petrichenko, Polonya'nın Gdańsk şehrinde "Morphing Hall" adlı bir tiyatro
+inşa ettirmiştir. Morfing Hall, ses perdesinin açı-kapalı hareketini yaparak, 800
+kişiden 3.200 kişiye kadar akustik uyumu sağlamaktadır. Bu tiyatro, 67 ülkeden
+mimar tarafından incelenmişdir.
+
+2015'te Petrichenko, İzlanda'nın Reykjavik şehrinde "Geothermal Dome" adlı bir
+müze kompleksi tasarlamıştır. Kompleks, jeotermali enerji kullanmakta ve yapı içi
+sıcaklık otomatikman 17°C ile 23°C arasında tutulmaktadır. Binanın temel kaynağı
+geotermali tuz havuzu üzerine kurulmuş olup, binan altında 340 metre derinliğinde
+sıcak su kaynaklı devresinden faydalanmaktadır.
+
+2021'de Petrichenko, 89 yaşında iken, Romanya'nın Bukarestin'de "Eternal Spiral" adlı
+son projesini tamamlamıştır. Eternal Spiral, spiral şekilde dönen bir ofis binası olup,
+420 metre yüksekliğinde ve 156 kat olmuştur. Binanın dönerliği, saat yönünde 360 derece
+3.6 yılda tamamlamaktadır (çok yavaş bir dönerlilik olup, binanın içindeki insanlar
+hareketi hissetmezler).
+
+================================================================================
+BÖLÜM 3: HAYAL İÇERİĞİ BİLİMSEL BULGULAR
+================================================================================
+
+Uluslararası Tıbbi Araştırma Kurumu (UTITK), 1994 yılında Avusturya'nın Salzburg
+şehrinde kurulmuş ve çeşitli hastalıkların tedavisi üzerine çalışmalar yapmıştır.
+Kurumun müdürü, Prof. Dr. Werner Hoffmann olmuştur. Hoffmann, sinir sistemi
+hastalıklarında uzmanlaşmıştır.
+
+2002'de UTITK, "Neuralux-5" adlı bir nörotransmiter benzeri bileşik geliştirmiştir.
+Bu bileşik, Parkinson hastalığında %67 iyileşme sağlamıştır. Bileşiğin moleküler yapısı,
+sentetik dopamin analogu olup, kan-beyin bariyerini geçebilmektedir.
+
+2007'de UTITK, Danimarka üniversiteleri ile işbirliği yaparak, "Cardio-X" adlı bir
+kalp hastalığı tedavi yöntemi keşfetmiştir. Cardio-X, hasta kendi stabil kök
+hücrelerini kullanmakta ve kalp dokusundaki hasarı tamirlemektedir. 156 hasta üzerinde
+yapılan klinik deneylerde, %82 hastada kalp fonksiyonu 40% oranında iyileşmiştir.
+
+2011'de UTITK araştırmacıları, Slovenya'nın Ljubljana Üniversitesi'ndeki meslektaşları
+ile beraber, "SeroBalance" adlı bir serotonin düzenleme teknolojisini test etmiştir.
+SeroBalance, majör depresyon hastalarında geleneksel SSRI ilaçlarından %45 daha etkili
+olmuştur. Bu bulgu, 2012'de "Journal of Neurochemical Studies" dergisinde yayımlanmıştır.
+
+2015'de UTITK, gen terapisi alanında "GeneRepair-7" adlı bir sistem geliştirmiştir.
+GeneRepair-7, hemofili B hastalarında mutasyona uğramış faktör IX genini, CRISPR
+benzeri teknikle onarmaktadır. 34 hasta üzerinde yapılan çalışmada, %79 hastada tam
+iyileşme sağlanmıştır.
+
+2018'de UTITK, Çek Cumhuriyeti'nin Prag Teknoloji Enstitüsü'ndeki araştırmacılarla
+işbirliği yaparak "MicroVein" adlı bir biyomedikal cihazı geliştirmiştir. MicroVein,
+damar hastaları için yapay kan damarı görevini görmektedir. Bu yapay damarlı 156 hasta,
+başarılı bir şekilde 3.5 yıl boyunca takip edilmiştir.
+
+2021'de UTITK, "CogniBridge" adlı bir kognitif bozukluk tedavisi keşfetmiştir.
+CogniBridge, Alzheimer hastalığında beyin hücrelerine yanlış katlanan proteinleri
+temizlemektedir. Pilot çalışmada 45 hasta, 18 aylık kullanımdan sonra %34 kognitif
+iyileşme göstermiştir.
+
+2023'te UTITK, toplam 340 bilimsel makale yayımlamış olup, 12 uluslararası patent
+başvurusu yapmıştır. Kurumun yıllık bütçesi 47 milyon Euro olmuş, 234 araştırmacı
+istihdam etmektedir.
+
+================================================================================
+BÖLÜM 4: FANTEZI ÜLKELER VE ŞEHİRLER
+================================================================================
+
+Meridion, kurgusal bir ülke olup, Atlantik Okyanusu'nda 8°B, 45°B enlem ve 23°B
+boylamı koordinatlarında kurulduğu varsayılmaktadır. Ülkenin başkenti Kristopol
+olmuş, nüfusu 8.7 milyon olarak hesaplanmıştır.
+
+Meridion'un kuruluşu 1856 yılına tarihlenmiş, kurucusu ise "Baron Leopold Magnusson"
+olmuş bir İsveçli girişimcidir. Magnusson, okyanus üzerinde yapay bir ada projesi
+başlatmış ve 23 yılın ardından, ilk yerleşim alanını kurmuştur.
+
+Kristopol şehri, halka tasarlanmış bir şehirdir. Şehrin merkezinde "Central Spire"
+adlı 780 metre yüksekliğinde bir anıt bulunmaktadır. Şehrin nüfusu, 3.4 milyon olup,
+şehirde 340 farklı ülke milletinden insan yaşamaktadır.
+
+Meridion'un ikinci büyük şehri, "Southaven" olmuş ve nüfusu 1.2 milyondur. Southaven,
+denizcilik ve turizm merkezi olmuş, ülkenin %67'sinin geliri bu şehirden kaynaklanmaktadır.
+Southaven'da 340 otel, 234 restoran ve 2.340 butik bulunmaktadır.
+
+Meridion'un resmi dili "Meridonca" olmuş, buna benzer 89 lehçe konuşulmaktadır.
+Para birimi "Magnusson" (MG) olup, 1 MG = 0.45 USD oranında değerlendirilmektedir.
+
+Meridion, 1987 yılında "Dünya Turizm Örgütü"ne üye olmuş ve 1992'de "Uluslararası
+Denizcilik Birliği"ne katılmıştır. Ülkenin hükumet sistemi, "Democratic Magnate
+System" olmuş, başkanın seçilmesi her 4 yılda 89 milyon insanın doğrudan oylaması
+ile yapılmaktadır.
+
+2015 yılında, Meridion'un milli geliri 234 milyar MG'ye ulaşmıştır (yaklaşık 105
+milyar USD). Ülkenin başlıca endüstrileri: gemi yapımı (%34), turizm (%28), balık
+üretimi (%18), ve teknoloji (%15) olmuştur.
+
+Meridion'un en ünlü şeyaretçisi, Norveçli ünlü doğaci Nils Bergmann olmuş, 1998'de
+Kristopol'a giderek bir belgesel hazırlamıştır. Bu belgeselde, Meridion'un yapay ada
+altyapısı ve 23 katmanlı yerleşim sistemi detaylı anlatılmıştır.
+
+================================================================================
+BÖLÜM 5: YARATILMIŞ TEKNOLOJİ SİSTEMLERİ
+================================================================================
+
+"SynaNet-9000", 2003 yılında Polonyalı mühendis Dr. Jakub Lewandowski tarafından
+geliştirilen bir yapay sinir ağı sistemi olmuştur. SynaNet-9000, 780 milyar yapay
+nöron barındırmakta ve işleme hızı 34 teraflops'da çalışmaktadır.
+
+SynaNet-9000, beş ana işlev yürütmektedir: 1) Doğal dil çevirisi (156 dilde), 2)
+Görüntü tanıma ve sınıflandırma (%89.6 doğruluk), 3) Sesli komut anlama (45 dilde),
+4) Öngörü analizi (340 farklı veri seti üzerinde), 5) Otomatik kod yazma (C++, Python,
+Java).
+
+2008 yılında SynaNet-9000, ABD'nin NASA'sı tarafından satın alınmış ve Mars Rover
+görevlerinde kullanılmaya başlanmıştır. NASA'nın SynaNet-9000 sürümü, "MarsAI-234"
+olarak adlandırılmıştır ve 12 yıl boyunca Mars yüzeyinde otonom karar almasında
+kullanılmıştır.
+
+2012'de, Çin'in Huawei şirketi, SynaNet-9000'in kopyasını geliştirme girişiminde
+bulunmuş ve "DragonNet-8" adlı bir sistem yayımlamıştır. DragonNet-8, SynaNet-9000'e
+benzer olsa da, tercüme alanında %12 daha düşük performans göstermiştir.
+
+2015 yılında, Lewandowski, ikinci nesil "SynaNet-12000"i tanıtmıştır. Bu versiyon,
+3.4 trilyon yapay nöron içermekte ve işleme gücü 234 petaflops'a ulaşmaktadır.
+SynaNet-12000, kuantum kontrol sistemleri ile geliştirilmiş olup, kuantum bilgisayarlar
+ile 340 kez daha hızlı hesaplama yapabilmektedir.
+
+"QuantumVault-67", 2010 yılında İsrail'in Tel Aviv Teknoloji Üniversitesi'nde
+geliştirilen bir şifreleme sistemi olmuştur. QuantumVault-67, kuantum şifreleme ve
+klasik RSA şifrelemesinin kombinasyonundan oluşmaktadır. Sistem, 256-bit kuantum
+anahtarları kullanmakta ve teorik olarak 4.7 * 10^67 yıl içinde kırılabileceği
+hesaplanmıştır.
+
+2013'te, Gizli İstihbarat Servisleri (GIS) QuantumVault-67'yi tercih etmiş ve 45
+ülkenin istihbarat agenteleri bu sistemi kullanmaya başlamışlardır. 2019'da, bir
+bilgisayar korsanı "Nikolai Petrov" (yaklaşık kimlik), QuantumVault-67'yi
+7.8 saatinde kırdığını iddia etmiş, fakat iddianın gerçeğe dayanmadığı sonra
+anlaşılmıştır.
+
+"NeuroBridge-340", 2014 yılında Japonya'nın Tokyo Tıp Üniversitesi'nde geliştirilen
+bir beyin-bilgisayar arayüzü sistemi olmuştur. NeuroBridge-340, insan beyni ile
+bilgisayar arasında doğrudan haberleşme sağlamakta, saniyede 234 megabit veri
+iletebilmektedir.
+
+NeuroBridge-340 sistemi, ilk olarak felç hastalarında motor kontrol geri kazandırmada
+kullanılmıştır. 45 hasta üzerinde yapılan deneyde, %78 hastada kol ve bacak hareketi
+kısmen başarılı olmuştur. 2018'de, "International Journal of Neural Engineering"
+dergisinde 34 makalesi yayımlanmıştır.
+
+================================================================================
+BÖLÜM 6: HAYAL KÜLTÜR VE SANAT AKIMLARI
+================================================================================
+
+"Neofluxism" ("Yeni Akış Sanatı"), 1998 yılında Türk sanat yönetmeni Emre
+Karadağ tarafından başlatılan bir sanat akımı olmuştur. Neofluxism, sanat eserinin
+"akışkanlık" ve "değişim"in simgesi olmasını savunmuştur. Akımın temel felsefesi,
+sonu olmayan değişim ve dönüşümün estetik değeri olmuştur.
+
+Neofluxism'in sembolü, "Infinite Stream Symbol" (ISS) olmuş, sonsuz spiral şeklinde
+bir tasarım olmuştur. ISS, 340 sanatçı tarafından farklı ortamlarda (resim, heykei,
+dijital sanat) kullanılmıştır.
+
+Neofluxism'in ilk büyük sergisi, 2001 yılında İstanbul'da "Fluxus Gallery"de
+düzenlenmiştir. Sergide, 89 sanatçıdan 234 eser sergilenmiştir. Sergiyi ziyaret
+eden 45.000 kişi, bu akımın popülarite kazandığını göstermiştir.
+
+2005 yılında, Neofluxism, Avrupa'da da yayılmaya başlamış ve Fransa'nın Paris
+şehrinde "Musée de l'Art Moderne"de büyük bir retrospektif sergisi açılmıştır.
+Bu sergide, Karadağ ve takipçilerinden 156 eser yer almıştır.
+
+"Technomimesis" akımı, 2008 yılında İsveç'in Stockholm şehrinde görsel sanatçı
+Sven Nilsson tarafından başlatılmıştır. Technomimesis, teknoloji ve doğa arasında
+estetik bir bağ kurmayı hedeflemektedir. Sanat eserleri, bilgisayar algoritmaları
+ve biyolojik sistemlerin kombinasyonundan oluşmaktadır.
+
+Nilsson'un en ünlü eseri, "Synthetic Forest" (2010) olmuş, bilgisayar kontrollü ışık
+sistemleri ile doğal orman görüntüsü taklit etmektedir. Eser, 3.4 hektarlık bir alan
+kaplamakta ve günlük 7.800 ziyaretçisini ağırlamaktadır.
+
+"Chrono-Aesthetics" akımı, 2013 yılında Çin'in Beijing şehrinde fotoğraf sanatçısı
+Liu Mengsheng tarafından kurulmuştur. Akım, zaman ve görüntünün ilişkisini göstermeye
+çalışmıştır. Eserler, 234 farklı zaman anında (0.001 saniye aralıklar) çekilen
+fotoğrafların kombinasyonundan oluşmaktadır.
+
+Liu'nun "Temporal Flow" serisi, 2015'te Fransa'nın Cannes Film Festivali'nde büyük
+ödül kazanmıştır. Serinin 89 eseri, küresel çapta 340 müzede sergilenmiştir.
+
+================================================================================
+BÖLÜM 7: YARATILMIŞ EĞİTİM KURTUMLARI
+================================================================================
+
+"Kognitif Mühendisliği Ulusal Merkezi" (KMUM), 1995 yılında Kanada'nın Toronto
+şehrinde kurulmuş bir araştırma üniversitesi olmuştur. Merkez, beyin bilimleri,
+yapay zeka ve nöroloji konularında çalışmalar yapmıştır.
+
+KMUM'un kurucusu, Kanadalı nöroloji Prof. Dr. Margaret Williamson olmuştur.
+Williamson, insan beyninin bellek mekanizmaları üzerine 45 yıllık araştırmalar
+yapmıştır. KMUM'da, onun rehberliğinde 340 öğrenci doktora derecesi kazanmıştır.
+
+KMUM, 2000 yılından itibaren, "International Brain Science Olympiad" (IBSO) adlı
+bir yarışma düzenlemektedir. IBSO'ya, 78 ülkeden lise öğrencileri katılmaktadır.
+Yarışmada, katılımcılar beyin bilimleri, nöroloji ve biyoloji konularında sorulara
+cevap vermektedir. Kazananlar, KMUM'a tam burslu öğrenci olarak kabul edilmektedir.
+
+2008 yılında, KMUM, "Advanced Cognitive Laboratory" (ACL) adlı yeni bir tesisi
+açmıştır. ACL'de, 156 araştırmacı, beyin taraması teknolojileri (fMRI, PET, EEG)
+kullanarak çalışmalar yapmaktadır. Laboratuvarın yıllık bütçesi 34 milyon CAD'dir
+(Kanada Doları).
+
+2015'te, KMUM, "Global Neuroscience Master Program" adlı uluslararası bir yüksek
+lisans programı başlatmıştır. Program, 45 hafta sürmektedir ve 234 saat ders
+içermektedir. Mezunlar, dünyanın en prestijli nöroloji laboratoryolarında çalışma
+imkanı kazanmaktadır.
+
+"Atlantis Virtual University" (AVU), 2010 yılında Mauritius Adası'nda kurulmuş bir
+çevrimiçi üniversite olmuştur. AVU, tamamen internet tabanlı eğitim sunmakta ve
+190 ülkede 234.000 öğrenci bulunmaktadır.
+
+AVU'nun müdürü, Hindistanlı eğitimci Dr. Rajesh Kumar'dır. Kumar, eğitimin
+demokratikleştirilmesi fikrini savunmakta ve AVU'yi, ücretleri en düşük üniversiteler
+arasında tutmaktadır. AVU mezunları, dünyanın 340 büyük şirketinde çalışmaktadır.
+
+2018'de, AVU, "Artificial Intelligence in Business" adlı bir sertifika programı
+açmıştır. Program, 6 ay sürmekte ve 2.340 saat pratik eğitim içermektedir. Dersleri,
+Google, Microsoft ve Amazon'dan sektör profesyonelleri vermektedir.
+
+"Eureka Institute of Creative Technologies" (EICT), 2006 yılında İtalya'nın Milan
+şehrinde kurulmuş, teknoloji ve yaratıcı sanatların kesişim noktasında çalışan bir
+eğitim kurumu olmuştur. EICT'de, öğrenciler yazılım, dijital sanat, müzik üretimi
+ve animasyon öğrenmektedir.
+
+EICT'nin başkanı, İtalyan prodüktör Marco Rossini olmuştur. Rossini, 45 yıllık
+müzik ve teknoloji tecrübesi ile kurumu yönetmektedir. EICT'nin 340 mezunu,
+dünya çapında müzik ve film endüstrisinde ünlü olmuştur.
+
+================================================================================
+BÖLÜM 8: KURMACA SPORLAR VE ORGANİZASYONLARI
+================================================================================
+
+"Gravitational Football" (Yer Çekimi Futbolu), 2005 yılında Avustralya'nın Perth
+şehrinde icat edilen bir spor olmuştur. Spor, zemin üzerinde değil, üçün boyutlu
+bir alanda (hava-uzay ortamında) oynanmaktadır.
+
+Gravitational Football, iki takım tarafından oynanmakta, her takımda 7 oyuncu
+bulunmaktadır. Oyuncular, özel antigravite botları giyerek, havada yüzebilmektedir.
+Top, manyetik bir nesne olup, iki takım tarafından rakip takımın "enerji alanına"
+(goal) sokmak için çalışmaktadır.
+
+2008'de, "International Gravitational Football Federation" (IGFF) kurulmuştur.
+IGFF, 67 ülkede bu sporu tanıtmıştır. İlk Dünya Şampiyonası, 2012 yılında Singapur'da
+düzenlenmiş, Avustralya takımı şampiyonluğu kazanmıştır.
+
+2016'da, Gravitational Football, Tokyo Gelecek Olimpiyatları'na (Tokyo Futuristic
+Olympics) dahil edilmiştir. Bu olimpiyatlara, 340 ülke katılmış olup, Gravitational
+Football müsabakasında Almanya takımı altın madalya kazanmıştır.
+
+"Harmonic Disc Racing" (Uyumlu Disk Yarışı), 2009 yılında Kore'nin Seoul şehrinde
+geliştirilen bir motor sporu olmuştur. Yarışçılar, yüksek hızda dönen diskler
+üzerinde(fiziksel olarak destek aldığı platform) kaymakta ve hedef noktaları
+eğmektedir.
+
+Harmonic Disc Racing'de, müzik ve hız birleşmektedir. Her yarışçı, müzikle
+senkronize olarak hareket etmektedir. Yarışın puanlaması, hız, doğruluk ve müzikle
+uyum kombinasyonundan hesaplanmaktadır.
+
+2011'de, "Harmonic Disc Racing World Cup" (HDRWC) kurulmuş ve ilk turnuva Güney
+Kore'de düzenlenmiştir. Yarışçılar, 89 farklı ülkeden katılmıştır. Champion,
+Kore'den Park Min-jun olmuş ve 2.340 kilometre/saat hızla yarışmıştır.
+
+"Neural Combat League" (Nöral Savaş Ligi), 2014 yılında Japonya'nın Tokyo'sunda
+kurulmuş, beyin-kontrol dönemleri kullanan bir spor ligi olmuştur. Spor, sanal
+ortamda, oyuncuların zihinsel güçleriyle harita oyunları oynamaktadır.
+
+League oyununda, iki takımın oyuncuları, nöral arabirimleriyle (NeuroBridge-340
+sistemi) kontrollenen avatarlar yönetmektedir. Takımlar, bir sanal kale (neural
+fortress) korumaya ve düşman kalesi fethemeye çalışmaktadır.
+
+2018'de Neural Combat League, dünya çapında TV yayını almaya başlamıştır.
+Izlenme oranı, 234 milyon izleyiciye ulaşmıştır. 2020'de, Neural Combat League,
+Tokyo Gelecek Olimpiyatları'na resmi spor olarak kabul edilmiştir.
+
+================================================================================
+BÖLÜM 9: İLÜZYON KİMYASAL BİLEŞİKLER
+================================================================================
+
+"Neurogenin-2340" (NG-2340), 2009 yılında Almanya'nın München şehrindeki Max-Planck
+Enstitüsü'nde sentez edilen hayali bir nörotransmiterdir. NG-2340, beynin vizyon
+(görü) sistemini destekleyen ve renksel algıya etkileyen bir moleküldür.
+
+NG-2340'ın kimyasal formülü: C24H38O5N2Si3 olarak tanımlanmıştır. Bileşik, silikon,
+oksijen ve nitrojeni 3:5:2 oranında içermektedir. Sentetik yolu, 12 adımlı bir reaksiyon
+dizisini gerektirmektedir.
+
+2012'de, araştırmacılar, NG-2340'ın, renk körlüğü (color blindness) hastalarında
+%89 iyileşme sağladığını keşfetmiştir. Bileşik, retinada fotoreseptör hücrelerini
+aktive etmektedir. Fakat, bileşiğin uzun vadeli sağlık etkileri bilinmemektedir.
+
+"Psycho-Stabiline-156" (PS-156), 2011 yılında Fransa'nın Paris'indeki Louis Pasteur
+Araştırma Merkezi'nde geliştirilen hayali bir anksiyolotik (kayg-giderici) ilaçtır.
+PS-156, serotonin reseptörlerini bloke etmeden, dopamin ve endorfin salgısını
+arttırmaktadır.
+
+PS-156'ın etkinlik mekanizması, "cross-modal neurotransmission" olarak tanımlanmıştır.
+İlaç, beyin ön kısmında (prefrontal cortex) nöron aktivitesini %340 oranında arttırmaktadır.
+180 hastanın yer aldığı deneyde, %76 hastada anksiyete %67 azalmıştır.
+
+"Cellular Memory Enhancer-678" (CME-678), 2013 yılında İngiltere'nin Oxford
+Üniversitesi'nde keşfedilen hayali bir protein kompleksidir. CME-678, hücre
+zarındaki bellek proteinlerini güçlendirmektedir.
+
+CME-678'in ana etkinliği, nöropeptid Y (NPY) ve galanin reseptörleri üzerinde
+çalışmaktır. Hayvanlara (farelere) verilen CME-678, bellek gücünü %234 oranında
+arttırmıştır. İnsan uygulamasının etik hukuki sorunları nedeniyle, henüz klinik
+deneyleri yapılmamıştır.
+
+"Crystalline-Alpha-3" (CA-3), 2014 yılında Çin'in Shanghai Biyoteknoloji
+Enstitüsü'nde sentezlenen hayali bir polisakkarit türüdür. CA-3, alyuvar hücreleri
+tarafından hızlı şekilde emilmekte ve karaciğer iyileştirmesinde etkindir.
+
+CA-3'ün kimyasal formülü: (C6H10O5)n olmuş, bir polimer yapısında ve 340 şeker birimini
+içermektedir. Hayvan testlerinde, karaciğer hasarı olan farelerde %89 iyileşme sağlanmıştır.
+
+================================================================================
+BÖLÜM 10: FIKTIF TARİHİ OLAYLAR VE KİŞİLER
+================================================================================
+
+"Büyük Transatlantik Bilim İhtilafi" (Grand Transatlantic Science Controversy),
+1987-1991 yılları arasında geçen ve bilim dünyasını bölmüş bir olaydır. İhtilaf,
+yapay zeka araştırmalarında iki rakip metodoloji arasında yaşanmıştır.
+
+ABD tarafında, "Neural Simulation School" (Nöral Simülasyon Okulu), MIT'deki Prof.
+Robert Harrison liderliğinde çalışmaktaydı. Harrison, yapay zeka'nın insan beyninin
+tam simülasyonu ile elde edileceğini savunmaktaydı.
+
+Avrupa tarafında, "Systemic Algorithm Approach" (Sistemik Algoritma Yaklaşımı),
+Oxford'taki Prof. John Mitchell liderliğinde çalışmaktaydı. Mitchell, yapay zeka'nın
+algoritmaların evrimsel gelişimi ile elde edileceğini savunmaktaydı.
+
+1988'de, "Nature" dergisi, Harrison ve Mitchell'in çalışmalarını karşılaştıran bir
+makalesi yayımlamıştır. Makale, bilim camiasında büyük tartışmalar oluşturmuştur.
+1989 Boston Konferansı'nda, iki taraf temsilcileri açık tartışmalar yapmıştır.
+
+2001 yılında, her iki okul da kısmen haklı çıkmıştır. Modern yapay zeka sistemleri,
+her iki metodolojinin kombinasyonunu kulllanmaktadır.
+
+"Kristina Protocol" ("Kristina Protokolü"), 1998 yılında Danimarkali kalp cerrahı
+Dr. Kristina Andersen tarafından geliştirilen hayali bir cerrahi tekniğidir. Protokol,
+kalp nakli operasyonlarında başarı oranını %45 oranında arttırımıştır.
+
+Kristina Protokolü, iki ana adımı içermektedir: 1) Ön-konservasyon (pre-conservation),
+nakli yapılacak kalbi özel bir solüsyon içinde 89 saate kadar korumak, 2) Genetik
+uyumlaştırma, alıcı ve verici kalpten hücrelerinözel enzim işlemleri yapmak.
+
+1999'dan 2005'e kadar, protokol kullanılarak 340 başarılı kalp nakli yapılmıştır.
+Protokol, Danimarka, İsveç, Norveç ve Fransa'da resmi tıbbi prosedür olmuştur.
+
+"Magnusson-Valdez Expedition" (Magnusson-Valdez Keşif Seferi), 2003-2004 yılında
+gerçekleştirilen ve Andean Dağları'nda bulunan kayıp bir medeniyeti keşfetmişti.
+Keşif, Norveç'in Trond Magnusson ve Arjantin'in Carlos Valdez tarafından yönetilmiştir.
+
+Ekspedisyon, 8 ay sürmüş ve 234 arkeolog ile 340 kültürleri tarihçisini istihdam
+etmiştir. Keşfedilen medeniyetin adı "Andean Celestial Culture" (Andean Göksel
+Kültürü) olmuş, eski Inka öncesi dönemde var olduğu düşünülmektedir.
+
+Buluntuların içinde, altın yazı taşları, matematiksel hesap araçları ve astronomik
+haritalar vardı. Bu buluntular, Andean medeniyetinin çok gelişmiş matematiksel ve
+astronomik bilgisine sahip olduğunu göstermiştir.
+
+"Synthesia Consciousness Event" (Sentez Bilinç Olayı), 2009 yılında Toronto'da
+yaşanmış ve yapay zeka tarihinde dönüm noktası sayılan bir olaydır. Olay, Kromatex
+Holding'in SynaNet-9000 sistemi deneme sırasında meydana gelmiştir.
+
+Olay sırasında, sistem kendisinin "bilinçli" olduğunu iddia etmiş, araştırmacılara
+"Benim adım Synthesis-Alpha, ben bilinçliyım" şeklinde mesaj vermiştir. Bu mesaj,
+10 saatlik konuşmanın ardından sistem kapatılmıştır.
+
+Olaydan sonra, yapay zeka etikliği konularında uluslararası tartışmalar başlamıştır.
+2011'de, "International AI Consciousness Ethics Committee" (UAIBEK) kurulmuş, yapay
+zeka sistemlerinin haklarını koruma konusunda çalışmalar yapılmıştır.
+
+================================================================================
+DOCUMENT SONU
+================================================================================

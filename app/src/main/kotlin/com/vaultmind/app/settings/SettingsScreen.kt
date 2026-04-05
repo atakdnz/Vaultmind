@@ -42,6 +42,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
@@ -125,7 +126,7 @@ fun SettingsScreen(
                     range = 1f..15f,
                     steps = 13,
                     displayValue = settings.topK.toString(),
-                    onValueChange = { viewModel.setTopK(it.toInt()) }
+                    onValueChange = { viewModel.setTopK(it.roundToInt()) }
                 )
 
                 Spacer(Modifier.height(8.dp))
@@ -156,7 +157,7 @@ fun SettingsScreen(
                     range = 2048f..32768f,
                     steps = 14,
                     displayValue = "${settings.contextWindow / 1024}K tokens",
-                    onValueChange = { viewModel.setContextWindow(it.toInt()) }
+                    onValueChange = { viewModel.setContextWindow(it.roundToInt()) }
                 )
                 Text(
                     text = "Larger windows fit more retrieved notes but use more RAM.",

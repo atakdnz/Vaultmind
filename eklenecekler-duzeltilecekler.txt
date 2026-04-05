@@ -1,0 +1,5 @@
+- similarity level 
+- copy response feature
+- sayıların yarısını yazmıyor model responselarda 1934 diyeceğine 34 falan diyor bunu çözmek lazım
+- vaultlara özel system prompt yazma yeri olsa güzel olur. genel konsept hakkında fikri olur ona göre chunkları değerlendirir.
+- birden fazla text ekleyip chunkarlı biriktirmek sanırım var ama yoksa ekleriz
