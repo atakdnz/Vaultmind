@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import ai.djl.huggingface.tokenizers.HuggingFaceTokenizer
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -21,18 +22,15 @@ import kotlin.math.sqrt
 /**
  * Runs EmbeddingGemma 300M via LiteRT (TFLite successor) to produce embedding vectors.
  *
- * Model: litert-community/embeddinggemma-300m on HuggingFace
- * Format: .tflite (LiteRT flat-buffer)
- * Runtime: com.google.ai.edge.litert:litert (classes still at org.tensorflow.lite.*)
- * Output: 768-dim (or 256-dim) float32 vectors, L2-normalised
+ * Model: litert-community/embeddinggemma-300m on HuggingFace (.tflite)
+ * Tokenizer: google/embeddinggemma-300m tokenizer.json (HuggingFace format)
+ *            → bundled in app/src/main/assets/tokenizer.json
+ *            → loaded via DJL HuggingFaceTokenizer (ai.djl.android:tokenizer-native)
+ * Output: 768-dim float32 vectors, L2-normalised
  *
  * Embedding prompts follow the EmbeddingGemma specification:
  *  - Document (ingestion): "task: search result | text: {chunk}"
  *  - Query (retrieval): "task: search result | query: {question}"
- *
- * NOTE: The tokeniser in [simplePlaceholderTokenize] is a placeholder.
- * Replace with the SentencePiece tokeniser shipped with EmbeddingGemma
- * (tokenizer.model file from the HuggingFace litert-community package).
  */
 @Singleton
 class EmbeddingEngine @Inject constructor(
@@ -50,6 +48,8 @@ class EmbeddingEngine @Inject constructor(
 
     private var interpreter: Interpreter? = null
     private var embeddingDim: Int = DEFAULT_EMBEDDING_DIM
+    private var seqLength: Int = MAX_SEQUENCE_LENGTH
+    private var tokenizer: HuggingFaceTokenizer? = null
 
     fun isLoaded(): Boolean = interpreter != null
 
@@ -77,6 +77,21 @@ class EmbeddingEngine @Inject constructor(
         val outputShape = interpreter!!.getOutputTensor(0).shape()
         embeddingDim = if (outputShape != null && outputShape.size >= 2) outputShape[1]
                        else DEFAULT_EMBEDDING_DIM
+
+        // Infer sequence length from input tensor shape: [1, seqLen]
+        val inputShape = interpreter!!.getInputTensor(0).shape()
+        if (inputShape != null && inputShape.size >= 2) seqLength = inputShape[1]
+
+        // Load HuggingFace tokenizer from bundled asset (tokenizer.json)
+        tokenizer?.close()
+        tokenizer = try {
+            HuggingFaceTokenizer.newInstance(
+                context.assets.open("tokenizer.json"),
+                emptyMap()
+            )
+        } catch (_: Exception) {
+            null  // tokenizer.json missing — embed() falls back to placeholder
+        }
     }
 
     fun getEmbeddingDim(): Int = embeddingDim
@@ -95,25 +110,20 @@ class EmbeddingEngine @Inject constructor(
      * Core embedding inference.
      *
      * TFLite/LiteRT Interpreter for EmbeddingGemma:
-     *  - Input:  int32[1, MAX_SEQUENCE_LENGTH] — token IDs (padded with 0)
+     *  - Input:  int32[1, seqLength] — token IDs from HuggingFace tokenizer, zero-padded
      *  - Output: float32[1, embeddingDim] — raw embedding
-     *
-     * Token IDs are produced by SentencePiece. The placeholder below uses
-     * Unicode codepoints — replace with real tokeniser before production use.
      */
     private fun embed(promptedText: String): FloatArray? {
         val interp = interpreter ?: return null
 
-        val tokenIds = simplePlaceholderTokenize(promptedText, MAX_SEQUENCE_LENGTH)
+        val tokenIds = tokenize(promptedText, seqLength)
 
-        // Input: int32[1, MAX_SEQUENCE_LENGTH]
         val inputBuffer = ByteBuffer
-            .allocateDirect(MAX_SEQUENCE_LENGTH * Integer.BYTES)
+            .allocateDirect(seqLength * Integer.BYTES)
             .order(ByteOrder.nativeOrder())
         tokenIds.forEach { inputBuffer.putInt(it) }
         inputBuffer.rewind()
 
-        // Output: float32[1, embeddingDim]
         val outputBuffer = ByteBuffer
             .allocateDirect(embeddingDim * java.lang.Float.BYTES)
             .order(ByteOrder.nativeOrder())
@@ -126,14 +136,17 @@ class EmbeddingEngine @Inject constructor(
     }
 
     /**
-     * Placeholder tokeniser — Unicode codepoints, padded/truncated to [maxLen].
+     * Tokenize [text] to an [IntArray] of length [maxLen], zero-padded.
      *
-     * REPLACE with the SentencePiece tokeniser from EmbeddingGemma's model bundle:
-     * 1. Add sentencepiece-android JNI dependency
-     * 2. Load tokenizer.model from the EmbeddingGemma HuggingFace package
-     * 3. Call `sentencePiece.encode(text)` → List<Int> of token IDs
+     * Uses the DJL HuggingFaceTokenizer loaded from assets/tokenizer.json.
+     * Falls back to Unicode codepoints if the tokenizer is unavailable.
      */
-    private fun simplePlaceholderTokenize(text: String, maxLen: Int): IntArray {
+    private fun tokenize(text: String, maxLen: Int): IntArray {
+        tokenizer?.let { tok ->
+            val ids = tok.encode(text).ids   // LongArray from DJL
+            return IntArray(maxLen) { i -> if (i < ids.size) ids[i].toInt() else 0 }
+        }
+        // Fallback: Unicode codepoints (poor quality — ensure tokenizer.json is in assets)
         val codePoints = text.codePoints().limit(maxLen.toLong()).toArray()
         return IntArray(maxLen) { i -> if (i < codePoints.size) codePoints[i] else 0 }
     }
@@ -216,6 +229,8 @@ class EmbeddingEngine @Inject constructor(
     }
 
     fun close() {
+        tokenizer?.close()
+        tokenizer = null
         interpreter?.close()
         interpreter = null
     }
