@@ -30,6 +30,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -51,13 +52,19 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -177,6 +184,9 @@ private fun EmptyStateHint(vaultName: String) {
 @Composable
 private fun MessageBubble(message: ChatMessage) {
     val isUser = message.isUser
+    val clipboardManager = LocalClipboardManager.current
+    val scope = rememberCoroutineScope()
+    var showCopied by remember { mutableStateOf(false) }
     val bubbleColor = if (isUser) {
         MaterialTheme.colorScheme.primaryContainer
     } else {
@@ -235,6 +245,41 @@ private fun MessageBubble(message: ChatMessage) {
                 }
             }
 
+            // Copy button (shown after streaming is done)
+            if (!message.isStreaming && message.text.isNotBlank()) {
+                Row(
+                    modifier = Modifier.padding(start = 4.dp, top = 2.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(
+                        onClick = {
+                            clipboardManager.setText(AnnotatedString(message.text))
+                            showCopied = true
+                            scope.launch {
+                                delay(1500)
+                                showCopied = false
+                            }
+                        },
+                        modifier = Modifier.size(24.dp)
+                    ) {
+                        Icon(
+                            Icons.Filled.ContentCopy,
+                            contentDescription = "Copy response",
+                            modifier = Modifier.size(14.dp),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    if (showCopied) {
+                        Spacer(Modifier.width(4.dp))
+                        Text(
+                            "Copied",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
+            }
+
             // Source attribution (collapsible)
             if (!isUser && message.sources.isNotEmpty() && !message.isStreaming) {
                 SourcesSection(sources = message.sources)
@@ -244,8 +289,11 @@ private fun MessageBubble(message: ChatMessage) {
 }
 
 @Composable
-private fun SourcesSection(sources: List<String>) {
+private fun SourcesSection(sources: List<RAGSource>) {
     var expanded by remember { mutableStateOf(false) }
+
+    // Compute average similarity across all sources
+    val avgSimilarity = if (sources.isNotEmpty()) sources.map { it.similarity }.average().toFloat() else 0f
 
     Spacer(modifier = Modifier.height(4.dp))
     Row(
@@ -253,8 +301,11 @@ private fun SourcesSection(sources: List<String>) {
             .padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        // Average similarity indicator
+        SimilarityDot(similarity = avgSimilarity)
+        Spacer(Modifier.width(4.dp))
         Text(
-            text = "${sources.size} source${if (sources.size > 1) "s" else ""}",
+            text = "${sources.size} source${if (sources.size > 1) "s" else ""} · ${"%d".format((avgSimilarity * 100).toInt())}% avg match",
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.primary
         )
@@ -277,21 +328,67 @@ private fun SourcesSection(sources: List<String>) {
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             sources.forEachIndexed { i, source ->
-                Card(
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    )
-                ) {
-                    Text(
-                        text = "[${i + 1}] $source",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                }
+                SourceCard(index = i, source = source)
             }
         }
     }
+}
+
+@Composable
+private fun SourceCard(index: Int, source: RAGSource) {
+    var showFull by remember { mutableStateOf(false) }
+
+    Card(
+        onClick = { showFull = !showFull },
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = "[${index + 1}] ${if (showFull) source.fullText else source.text}",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                if (source.fullText.length > 120) {
+                    Text(
+                        text = if (showFull) "Show less" else "Show full chunk",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(top = 4.dp)
+                    )
+                }
+            }
+            Spacer(Modifier.width(8.dp))
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                SimilarityDot(similarity = source.similarity)
+                Text(
+                    text = "${"%d".format((source.similarity * 100).toInt())}%",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+    }
+}
+
+/** Small colored dot: green for high similarity, yellow for medium, red for low. */
+@Composable
+private fun SimilarityDot(similarity: Float) {
+    val color = when {
+        similarity >= 0.7f -> Color(0xFF4CAF50) // green
+        similarity >= 0.4f -> Color(0xFFFFC107) // amber
+        else -> Color(0xFFEF5350)                // red
+    }
+    Box(
+        modifier = Modifier
+            .size(8.dp)
+            .background(color, CircleShape)
+    )
 }
 
 @Composable

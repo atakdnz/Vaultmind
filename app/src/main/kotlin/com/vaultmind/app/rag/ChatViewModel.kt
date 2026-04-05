@@ -15,12 +15,15 @@ import kotlinx.coroutines.flow.drop
 import android.util.Log
 import javax.inject.Inject
 
+/** A single source retrieved from the local vault. */
+data class RAGSource(val text: String, val fullText: String, val similarity: Float)
+
 /** A single message in the chat history. */
 data class ChatMessage(
     val id: Long = System.nanoTime(),
     val isUser: Boolean,
     val text: String,
-    val sources: List<String> = emptyList(),   // chunk excerpts for attribution
+    val sources: List<RAGSource> = emptyList(),   // chunk excerpts for attribution
     val isStreaming: Boolean = false
 )
 
@@ -178,7 +181,13 @@ class ChatViewModel @Inject constructor(
 
                 // Step 5: Finalise the message (stop streaming indicator)
                 val finalResponse = cleanResponse(responseBuilder.toString())
-                val sourceExcerpts = results.map { it.content.take(100) + "…" }
+                val sourceExcerpts = results.map {
+                    RAGSource(
+                        text = it.content.take(120) + if (it.content.length > 120) "…" else "",
+                        fullText = it.content,
+                        similarity = it.score
+                    )
+                }
 
                 val current = _messages.value.toMutableList()
                 val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }

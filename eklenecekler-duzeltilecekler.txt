@@ -1,5 +1,10 @@
-- similarity level 
-- copy response feature
+- similarity level TAMAM
+- copy response feature TAMAM
 - sayıların yarısını yazmıyor model responselarda 1934 diyeceğine 34 falan diyor bunu çözmek lazım
 - vaultlara özel system prompt yazma yeri olsa güzel olur. genel konsept hakkında fikri olur ona göre chunkları değerlendirir.
 - birden fazla text ekleyip chunkarlı biriktirmek sanırım var ama yoksa ekleriz
+- keeping the model in memory while the app is open. waiting every time after entering a vault is not ideal.
+- the app tries to load the llm even if the vault is new and has no sources. this makes the app laggy while trying to import a txt.
+
+bug:
+- similarity is always %37-40.
