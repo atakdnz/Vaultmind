@@ -1,10 +1,13 @@
-- similarity level TAMAM
-- copy response feature TAMAM
+- TAMAM similarity level 
+- TAMAM copy response feature 
 - sayıların yarısını yazmıyor model responselarda 1934 diyeceğine 34 falan diyor bunu çözmek lazım
 - vaultlara özel system prompt yazma yeri olsa güzel olur. genel konsept hakkında fikri olur ona göre chunkları değerlendirir.
-- birden fazla text ekleyip chunkarlı biriktirmek sanırım var ama yoksa ekleriz
+- TAMAM(varmış zaten)birden fazla text ekleyip chunkarlı biriktirmek sanırım var ama yoksa ekleriz
 - keeping the model in memory while the app is open. waiting every time after entering a vault is not ideal.
 - the app tries to load the llm even if the vault is new and has no sources. this makes the app laggy while trying to import a txt.
+- interrupt
+- need to tune chunk size and overlap, it is not good right now. 256 token is too much at least for my use case. we can add an option to change the chunk size when importing. that way we can make the top k higher without increasing the prompt processing time too much.
+- make the prompt processing and thinking have a different indicator so we can distinguish them.
 
 bug:
-- similarity is always %37-40.
+- similarity is always %30-41.

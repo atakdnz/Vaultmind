@@ -34,6 +34,7 @@ import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -156,6 +157,7 @@ fun ChatScreen(
                 enabled = modelState == ModelLoadState.Ready && !isGenerating,
                 isGenerating = isGenerating,
                 onSend = viewModel::sendMessage,
+                onStop = viewModel::stopGeneration,
                 modifier = Modifier
                     .fillMaxWidth()
                     .imePadding()
@@ -217,14 +219,18 @@ private fun MessageBubble(message: ChatMessage) {
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     if (message.isStreaming && message.text.isEmpty()) {
-                        // Typing indicator
+                        // Phase indicator
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             CircularProgressIndicator(
                                 modifier = Modifier.size(14.dp),
                                 strokeWidth = 2.dp
                             )
                             Spacer(Modifier.width(8.dp))
-                            Text("Thinking…", style = MaterialTheme.typography.bodySmall)
+                            Text(
+                                text = message.statusHint ?: "Generating…",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
                         }
                     } else {
                         Text(
@@ -396,6 +402,7 @@ private fun ChatInputBar(
     enabled: Boolean,
     isGenerating: Boolean,
     onSend: (String) -> Unit,
+    onStop: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var text by remember { mutableStateOf("") }
@@ -425,10 +432,19 @@ private fun ChatInputBar(
             )
             Spacer(modifier = Modifier.width(8.dp))
             if (isGenerating) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(40.dp),
-                    strokeWidth = 3.dp
-                )
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.size(48.dp)
+                ) {
+                    IconButton(onClick = onStop) {
+                        Icon(
+                            Icons.Filled.Stop,
+                            contentDescription = "Stop generation",
+                            tint = MaterialTheme.colorScheme.onError
+                        )
+                    }
+                }
             } else {
                 Surface(
                     shape = CircleShape,

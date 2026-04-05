@@ -6,6 +6,7 @@ import com.vaultmind.app.ingestion.EmbeddingEngine
 import com.vaultmind.app.settings.AppPreferences
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +25,8 @@ data class ChatMessage(
     val isUser: Boolean,
     val text: String,
     val sources: List<RAGSource> = emptyList(),   // chunk excerpts for attribution
-    val isStreaming: Boolean = false
+    val isStreaming: Boolean = false,
+    val statusHint: String? = null  // "Processing…", "Thinking…", or null
 )
 
 sealed class ModelLoadState {
@@ -67,6 +69,7 @@ class ChatViewModel @Inject constructor(
     private val maxHistoryTurns = 4
 
     private var activeVaultId: String? = null
+    private var generationJob: Job? = null
 
     init {
         // When the vault is locked (vaults list becomes empty after being non-empty),
@@ -132,12 +135,12 @@ class ChatViewModel @Inject constructor(
         if (userText.isBlank() || _isGenerating.value) return
 
         val userMsg = ChatMessage(isUser = true, text = userText.trim())
-        val streamingMsg = ChatMessage(isUser = false, text = "", isStreaming = true)
+        val streamingMsg = ChatMessage(isUser = false, text = "", isStreaming = true, statusHint = "Processing…")
 
         _messages.value = _messages.value + userMsg + streamingMsg
         _isGenerating.value = true
 
-        viewModelScope.launch {
+        generationJob = viewModelScope.launch {
             try {
                 // Step 1: Embed the query
                 val queryVector = embeddingEngine.embedQuery(userText)
@@ -164,6 +167,9 @@ class ChatViewModel @Inject constructor(
                     thinkingMode = _thinkingMode.value
                 )
 
+                // Update status to Generating before streaming starts
+                updateStreamingHint("Generating…")
+
                 // Step 4: Stream response
                 val responseBuilder = StringBuilder()
                 llmEngine.generateStream(prompt).collect { token ->
@@ -173,7 +179,8 @@ class ChatViewModel @Inject constructor(
                     val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
                     if (streamIdx >= 0) {
                         current[streamIdx] = current[streamIdx].copy(
-                            text = responseBuilder.toString()
+                            text = responseBuilder.toString(),
+                            statusHint = null
                         )
                         _messages.value = current
                     }
@@ -249,8 +256,41 @@ class ChatViewModel @Inject constructor(
     fun setTopK(k: Int) { _topK.value = k.coerceIn(1, 15) }
     fun setThinkingMode(enabled: Boolean) { _thinkingMode.value = enabled }
 
+    /** Stop the current generation. Cancels the coroutine which triggers conversation.cancelProcess(). */
+    fun stopGeneration() {
+        generationJob?.cancel()
+        generationJob = null
+        // Finalize the streaming message with whatever text we have so far
+        val current = _messages.value.toMutableList()
+        val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
+        if (streamIdx >= 0) {
+            val partial = current[streamIdx].text.let { cleanResponse(it) }
+            if (partial.isBlank()) {
+                current.removeAt(streamIdx)
+            } else {
+                current[streamIdx] = current[streamIdx].copy(
+                    text = partial + "\n\n[Stopped]",
+                    isStreaming = false,
+                    statusHint = null
+                )
+            }
+            _messages.value = current
+        }
+        _isGenerating.value = false
+    }
+
+    private fun updateStreamingHint(hint: String) {
+        val current = _messages.value.toMutableList()
+        val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
+        if (streamIdx >= 0) {
+            current[streamIdx] = current[streamIdx].copy(statusHint = hint)
+            _messages.value = current
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
+        generationJob?.cancel()
         llmEngine.unload()
     }
 }
