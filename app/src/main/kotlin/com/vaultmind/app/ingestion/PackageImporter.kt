@@ -2,6 +2,7 @@ package com.vaultmind.app.ingestion
 
 import android.content.Context
 import android.net.Uri
+import android.provider.DocumentsContract
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -158,6 +159,15 @@ class PackageImporter @Inject constructor(
 
             val totalChunks = vaultDb.getChunkCount()
             vaultRepository.updateChunkCount(vaultId, totalChunks)
+
+            // Best-effort: delete the .rvault file from accessible storage after a
+            // successful import so the plaintext-decryptable package doesn't persist.
+            try {
+                DocumentsContract.deleteDocument(context.contentResolver, fileUri)
+            } catch (_: Exception) {
+                // Provider may not support deletion (e.g. cloud storage, read-only share).
+                // The user should remove the file manually in that case.
+            }
 
             IngestionResult.Success(pkg.chunks.size)
         } catch (e: Exception) {

@@ -1,5 +1,6 @@
 package com.vaultmind.app.ingestion
 
+import android.content.Intent
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -62,8 +63,15 @@ fun ImportScreen(
         }
     }
 
+    // Request write permission alongside read so DocumentsContract.deleteDocument()
+    // can remove the .rvault file after a successful import.
     val rvaultPicker = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.OpenDocument()
+        contract = object : ActivityResultContracts.OpenDocument() {
+            override fun createIntent(context: android.content.Context, input: Array<String>) =
+                super.createIntent(context, input).apply {
+                    addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                }
+        }
     ) { uri ->
         pendingRvaultUri = uri
     }

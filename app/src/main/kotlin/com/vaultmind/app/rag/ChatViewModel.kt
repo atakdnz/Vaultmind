@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.drop
 import javax.inject.Inject
 
 /** A single message in the chat history. */
@@ -62,6 +63,24 @@ class ChatViewModel @Inject constructor(
     private val maxHistoryTurns = 4
 
     private var activeVaultId: String? = null
+
+    init {
+        // When the vault is locked (vaults list becomes empty after being non-empty),
+        // clear all in-memory chat state immediately — don't wait for onCleared().
+        viewModelScope.launch {
+            vaultRepository.vaults
+                .drop(1) // skip initial emission
+                .collect { vaults ->
+                    if (vaults.isEmpty() && activeVaultId != null) {
+                        _messages.value = emptyList()
+                        historyTurns.clear()
+                        activeVaultId = null
+                        _modelState.value = ModelLoadState.NotLoaded
+                        _isGenerating.value = false
+                    }
+                }
+        }
+    }
 
     fun setVault(vaultId: String) {
         activeVaultId = vaultId

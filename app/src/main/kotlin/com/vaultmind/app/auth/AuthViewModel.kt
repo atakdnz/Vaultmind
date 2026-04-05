@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaultmind.app.crypto.SecureWipe
+import com.vaultmind.app.ingestion.EmbeddingEngine
+import com.vaultmind.app.rag.LlmEngine
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +26,9 @@ sealed class AuthUiState {
 class AuthViewModel @Inject constructor(
     private val authManager: AuthManager,
     private val keystoreManager: KeystoreManager,
-    private val vaultRepository: VaultRepository
+    private val vaultRepository: VaultRepository,
+    private val llmEngine: LlmEngine,
+    private val embeddingEngine: EmbeddingEngine
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<AuthUiState>(AuthUiState.Idle)
@@ -104,8 +108,14 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    /** Lock the app — wipes all in-memory keys. Called on background/stop. */
+    /**
+     * Lock the app — wipes all in-memory keys and unloads models.
+     * Called on background/stop. Order matters: unload models before
+     * wiping vault keys so any in-flight inference completes cleanly.
+     */
     fun lock() {
+        llmEngine.unload()
+        embeddingEngine.close()
         vaultRepository.lock()
         _isUnlocked.value = false
         _state.value = AuthUiState.Idle
