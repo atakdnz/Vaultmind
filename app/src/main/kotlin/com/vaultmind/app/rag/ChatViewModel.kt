@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.drop
+import android.util.Log
 import javax.inject.Inject
 
 /** A single message in the chat history. */
@@ -102,12 +103,22 @@ class ChatViewModel @Inject constructor(
         _modelState.value = ModelLoadState.Loading
 
         viewModelScope.launch {
+            // Load embedding first — it works independently of the LLM
             try {
                 embeddingEngine.load(embeddingModelPath)
+            } catch (e: Throwable) {
+                Log.e("VaultMind", "Embedding load failed", e)
+                _modelState.value = ModelLoadState.Error("Embedding model error: ${e.message}")
+                return@launch
+            }
+
+            // Load LLM — log the full stack trace on failure
+            try {
                 llmEngine.load(llmModelPath, temperature)
                 _modelState.value = ModelLoadState.Ready
-            } catch (e: Exception) {
-                _modelState.value = ModelLoadState.Error("Failed to load model: ${e.message}")
+            } catch (e: Throwable) {
+                Log.e("VaultMind", "LLM load failed", e)
+                _modelState.value = ModelLoadState.Error("LLM error: ${e.message}")
             }
         }
     }

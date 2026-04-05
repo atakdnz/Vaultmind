@@ -3,6 +3,8 @@ package com.vaultmind.app.rag
 import android.content.Context
 import android.net.Uri
 import android.os.ParcelFileDescriptor
+import android.system.Os
+import android.util.Log
 import com.google.ai.edge.litertlm.Backend
 import com.google.ai.edge.litertlm.Content
 import com.google.ai.edge.litertlm.Contents
@@ -93,7 +95,24 @@ class LlmEngine @Inject constructor(
                     "Cannot open model file. Re-select it in Settings."
                 )
             modelPfd = pfd   // kept open until unload()
-            "/proc/self/fd/${pfd.fd}"
+            // Resolve the proc fd symlink to the real path so LiteRT-LM
+            // can detect the .litertlm extension for format detection.
+            // LiteRT-LM's native code can't access SAF files via /proc/self/fd
+            // (scoped storage blocks path resolution). Copy to internal storage
+            // on first use; subsequent loads use the cached copy instantly.
+            val cached = java.io.File(context.filesDir, MODEL_FILENAME)
+            if (!cached.exists() || cached.length() == 0L) {
+                Log.d("VaultMind", "LLM: copying model to internal storage…")
+                java.io.FileInputStream(pfd.fileDescriptor).use { input ->
+                    cached.outputStream().use { output ->
+                        input.copyTo(output, bufferSize = 8 * 1024 * 1024)
+                    }
+                }
+                Log.d("VaultMind", "LLM: copy done, size=${cached.length()}")
+            }
+            pfd.close()
+            modelPfd = null  // no longer needed after copy
+            cached.absolutePath
         } else {
             if (!java.io.File(modelPath).exists()) throw IllegalArgumentException(
                 "Model file not found. Re-select it in Settings."
