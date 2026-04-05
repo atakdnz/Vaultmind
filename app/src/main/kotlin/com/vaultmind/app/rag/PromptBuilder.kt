@@ -40,20 +40,29 @@ class PromptBuilder @Inject constructor() {
     /**
      * Build a complete prompt for Gemma 4 E4B.
      *
-     * @param question       Current user question.
-     * @param retrievedChunks Chunks from vector search (ordered by relevance).
-     * @param history        Previous conversation turns (up to N, newest last).
-     * @param thinkingMode   Whether to append the `<|think|>` tag for CoT reasoning.
+     * @param question         Current user question.
+     * @param retrievedChunks  Chunks from vector search (ordered by relevance).
+     * @param history          Previous conversation turns (up to N, newest last).
+     * @param thinkingMode     Whether to append the `<|think|>` tag for CoT reasoning.
+     * @param userInstructions Optional per-vault instructions from the user.
      */
     fun buildRagPrompt(
         question: String,
         retrievedChunks: List<VectorSearch.SearchResult>,
         history: List<Turn> = emptyList(),
-        thinkingMode: Boolean = true
+        thinkingMode: Boolean = true,
+        userInstructions: String? = null
     ): String {
         val contextBlock = buildContextBlock(retrievedChunks)
+
+        val systemPrompt = if (!userInstructions.isNullOrBlank()) {
+            SYSTEM_PROMPT + "\n\nUser instructions for this vault:\n" + userInstructions.trim()
+        } else {
+            SYSTEM_PROMPT
+        }
+
         return buildGemmaPrompt(
-            systemPrompt = SYSTEM_PROMPT,
+            systemPrompt = systemPrompt,
             contextBlock = contextBlock,
             history = history,
             question = question,

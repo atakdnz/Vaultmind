@@ -32,9 +32,11 @@ import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DeleteSweep
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Stop
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -47,6 +49,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -83,6 +86,8 @@ fun ChatScreen(
     val messages by viewModel.messages.collectAsStateWithLifecycle()
     val modelState by viewModel.modelState.collectAsStateWithLifecycle()
     val isGenerating by viewModel.isGenerating.collectAsStateWithLifecycle()
+    val userInstructions by viewModel.userInstructions.collectAsStateWithLifecycle()
+    var showInstructionsDialog by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     // Auto-scroll to bottom on new messages
@@ -116,6 +121,9 @@ fun ChatScreen(
                     }
                 },
                 actions = {
+                    IconButton(onClick = { showInstructionsDialog = true }) {
+                        Icon(Icons.Filled.Edit, contentDescription = "Vault instructions")
+                    }
                     IconButton(onClick = onImport) {
                         Icon(Icons.Filled.Add, contentDescription = "Import data")
                     }
@@ -164,6 +172,48 @@ fun ChatScreen(
                     .navigationBarsPadding()
             )
         }
+    }
+
+    // User Instructions Dialog
+    if (showInstructionsDialog) {
+        var draftInstructions by remember { mutableStateOf(userInstructions) }
+
+        AlertDialog(
+            onDismissRequest = { showInstructionsDialog = false },
+            title = { Text("Vault Instructions") },
+            text = {
+                Column {
+                    Text(
+                        text = "Tell the AI about this vault's content and how to respond. These instructions are included in every prompt.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(Modifier.height(12.dp))
+                    OutlinedTextField(
+                        value = draftInstructions,
+                        onValueChange = { draftInstructions = it },
+                        placeholder = { Text("e.g. These are history notes about…\nAlways write full 4-digit years.\nRespond in Turkish.") },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(160.dp),
+                        maxLines = 8
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.saveUserInstructions(draftInstructions)
+                    showInstructionsDialog = false
+                }) {
+                    Text("Save")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showInstructionsDialog = false }) {
+                    Text("Cancel")
+                }
+            }
+        )
     }
 }
 

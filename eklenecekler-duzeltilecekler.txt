@@ -8,6 +8,7 @@
 - TAMAM interrupt
 - TAMAM need to tune chunk size and overlap, it is not good right now. 256 token is too much at least for my use case. we can add an option to change the chunk size when importing. that way we can make the top k higher without increasing the prompt processing time too much.
 - TAMAM make the prompt processing and thinking have a different indicator so we can distinguish them.
+- retrieval after an interrupt does not work obviously. we can concat with the latest message before embedding and soing similarity search. i dont know if its a good approach. it would work for continue messages but it can be abd for real questions after an interrupt.
 
 bug:
 - similarity is always %30-41.

@@ -64,6 +64,9 @@ class ChatViewModel @Inject constructor(
     private val _thinkingMode = MutableStateFlow(true)
     val thinkingMode: StateFlow<Boolean> = _thinkingMode.asStateFlow()
 
+    private val _userInstructions = MutableStateFlow<String>("")
+    val userInstructions: StateFlow<String> = _userInstructions.asStateFlow()
+
     // Keep last N turns for prompt context (conversation memory)
     private val historyTurns = mutableListOf<PromptBuilder.Turn>()
     private val maxHistoryTurns = 4
@@ -91,6 +94,13 @@ class ChatViewModel @Inject constructor(
 
     fun setVault(vaultId: String) {
         activeVaultId = vaultId
+        // Load user instructions from vault DB
+        viewModelScope.launch {
+            try {
+                val vaultDb = vaultRepository.openVaultDb(vaultId)
+                _userInstructions.value = vaultDb.getVaultInfo("user_instructions") ?: ""
+            } catch (_: Exception) { /* vault not ready yet */ }
+        }
         if (!llmEngine.isLoaded() && _modelState.value == ModelLoadState.NotLoaded) {
             viewModelScope.launch {
                 val settings = appPreferences.settings.first()
@@ -164,7 +174,8 @@ class ChatViewModel @Inject constructor(
                     question = userText,
                     retrievedChunks = results,
                     history = historyTurns.takeLast(maxHistoryTurns),
-                    thinkingMode = _thinkingMode.value
+                    thinkingMode = _thinkingMode.value,
+                    userInstructions = _userInstructions.value.ifBlank { null }
                 )
 
                 // Update status — model is now reading the prompt (prefill)
@@ -245,6 +256,20 @@ class ChatViewModel @Inject constructor(
         }
         _messages.value = current
         _isGenerating.value = false
+    }
+
+    /** Save user instructions for this vault. */
+    fun saveUserInstructions(instructions: String) {
+        val vaultId = activeVaultId ?: return
+        _userInstructions.value = instructions
+        viewModelScope.launch {
+            try {
+                val vaultDb = vaultRepository.openVaultDb(vaultId)
+                vaultDb.setVaultInfo("user_instructions", instructions)
+            } catch (e: Exception) {
+                Log.e("ChatViewModel", "Failed to save user instructions", e)
+            }
+        }
     }
 
     /** Clear conversation history. Vault data is NOT affected. */
