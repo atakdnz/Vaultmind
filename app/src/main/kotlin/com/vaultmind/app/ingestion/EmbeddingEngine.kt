@@ -1,13 +1,17 @@
 package com.vaultmind.app.ingestion
 
 import android.content.Context
+import android.net.Uri
+import android.os.ParcelFileDescriptor
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.tensorflow.lite.Interpreter
 import java.io.File
+import java.io.FileInputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.channels.FileChannel
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.math.sqrt
@@ -42,6 +46,10 @@ class EmbeddingEngine @Inject constructor(
     private var seqLength: Int = MAX_SEQUENCE_LENGTH
     private var tokenizer: SentencePieceTokenizer? = null
 
+    // Keeps the SAF file descriptor open for as long as the Interpreter is alive.
+    // MappedByteBuffer stays valid only while this PFD is open.
+    private var modelPfd: ParcelFileDescriptor? = null
+
     fun isLoaded(): Boolean = interpreter != null
 
     /**
@@ -53,26 +61,27 @@ class EmbeddingEngine @Inject constructor(
      */
     suspend fun load(modelPath: String) = withContext(Dispatchers.IO) {
         interpreter?.close()
+        modelPfd?.close()
+        modelPfd = null
 
         val options = Interpreter.Options().apply {
             setNumThreads(4)
         }
 
-        // For SAF content URIs (the common case from the Settings file picker),
-        // read the file bytes into a direct ByteBuffer and pass that to the
-        // Interpreter. This avoids path-resolution failures and MappedByteBuffer
-        // lifetime issues when the file descriptor is closed after mapping.
+        // For SAF content URIs, memory-map the file via PFD instead of reading
+        // into a byte array (which would OOM on 183 MB with a 256 MB heap).
+        // The PFD is kept alive for the lifetime of the Interpreter.
         interpreter = if (modelPath.startsWith("content://")) {
-            val uri = android.net.Uri.parse(modelPath)
-            val stream = context.contentResolver.openInputStream(uri)
+            val uri = Uri.parse(modelPath)
+            val pfd = context.contentResolver.openFileDescriptor(uri, "r")
                 ?: throw IllegalArgumentException(
                     "Cannot open model file. Re-select it in Settings."
                 )
-            val bytes = stream.use { it.readBytes() }
-            val buffer = ByteBuffer.allocateDirect(bytes.size)
-            buffer.put(bytes)
-            buffer.rewind()
-            Interpreter(buffer, options)
+            modelPfd = pfd   // kept open until close()
+            val channel = FileInputStream(pfd.fileDescriptor).channel
+            val mappedBuffer = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size())
+            channel.close()
+            Interpreter(mappedBuffer, options)
         } else {
             val file = File(modelPath)
             if (!file.exists()) throw IllegalArgumentException(
@@ -163,5 +172,7 @@ class EmbeddingEngine @Inject constructor(
         tokenizer = null
         interpreter?.close()
         interpreter = null
+        modelPfd?.close()
+        modelPfd = null
     }
 }
