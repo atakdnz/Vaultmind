@@ -1,0 +1,434 @@
+================================================================================
+RAG PIPELINE TEST DOKÜMANI - TÜRKÇE VERSİYON
+Türkiye ve Genel Bilim Konuları İçin Kapsamlı RAG Sistemi Test Dökümanı
+================================================================================
+
+İÇİNDEKİLER
+1. Türk Tarihi ve Osmanlı İmparatorluğu
+2. Modern Türkiye: Coğrafya ve Ekonomi
+3. Biyoteknoloji ve Genetik Mühendisliği
+4. Sanat ve Mimarlık Tarihi
+5. Şehir Planlama ve İnsan Yerleşimi
+6. Demiryolu Tarihi ve Ulaştırma Sistemleri
+7. Gıda Bilimi ve Beslenme
+8. Jeoloji ve Deprem Sismolojisi
+9. Organik Tarım ve Toprak Sağlığı
+10. Dijital Ekonomi ve Finans Teknolojisi
+
+================================================================================
+BÖLÜM 1: TÜRK TARİHİ VE OSMANLI İMPARATORLUĞU
+================================================================================
+
+Osmanlı İmparatorluğu 1299 yılında Osman Bey tarafından kurulmuş ve yaklaşık 600 yıl
+sürmüştür. Kuruluş aşamasında Anadolu'nun kuzeybatısında küçük bir beylik olarak başlayan
+Osmanlı devleti, zamanla Balkanlar, Kuzey Afrika ve Ortadoğu'yu kapsayan geniş bir
+imparatorluğa dönüşmüştür.
+
+1453'te İstanbul'un fethiyle Osmanlı İmparatorluğu, Doğu Roma İmparatorluğu'nu sona
+erdirmiş ve Bizans dönemini kapanmıştır. İstanbul'un fethi, Osmanlı gücünün zirvesini
+temsil eden stratejik ve sembolik bir zaferdir. II. Mehmed tarafından gerçekleştirilen
+bu fetih, Osmanlı mimarisinin ve askeri teknolojisinin ilerlemiş olduğunu göstermektedir.
+
+Osmanlı İmparatorluğu'nun yönetim sistemi devshirme sistemi olarak bilinen, gayrimüslim
+halktan seçilen gençlerin asker ve yöneticiye dönüştürüldüğü bir mekanizma kullanmıştır.
+Bu sistem, imparatorluğun idari ve asker kadrolarını sağlamıştır. Yeniçeriler, devshirme
+sistemi aracılığıyla eğitilen ve Osmanlı ordusunun en seçkin birliği olmuştur.
+
+Kanuni Sultan Süleyman (1520-1566) döneminde Osmanlı İmparatorluğu siyasi, askeri ve
+kültürel anlamda zirvesine ulaşmıştır. Kanuni, 13 büyük askeri kampanyanı yönetmiş ve
+Osmanlı devletinin en geniş sınırlarını belirlemiştir. Onun döneminde sanat, mimar,
+edebiyat ve ilim çok gelişmiş ve Topkapı Sarayı'nda zengin bir saray kültürü oluşturulmuştur.
+
+Osmanlı kültürü, İslam, Bizans ve Türk geleneklerinin sentezinden oluşmuştur. Bu üç
+kültür aracı, Osmanlı sanatı, mimarisi, müzik ve edebiyatında kendini göstermektedir.
+Mimar Sinan, klasik Osmanlı mimarisinin en büyük temsilcisi olup, Süleymaniye Camii ve
+Selimiye Camii gibi başyapıtlar oluşturmuştur.
+
+Osmanlı kaligrafi sanatı, İslami geleneğin temel unsurlarından biridir ve Osmanlı döneminde
+çok yüksek bir seviyeye ulaşmıştır. Hattat San'at olarak bilinen bu alan, yazıların estetik
+ve anlamsal değerini vurgulayan bir gelenek kurmuştur. Osmanlı yazısının farklı stilleri
+(Çeşme, Talık, Divan vb.) her biri farklı amaçlar için kullanılmıştır.
+
+Osmanlı İmparatorluğu 19. yüzyılda, teknolojik ve askeri gerilemeden dolayı istikrarsızlık
+dönemine girmiştir. Tanzimat Reformları (1839-1876), imparatorluğu modernize etme çabasıdır.
+Bu reformlar eğitim, hukuk ve idari sistemlerde batılı tarzda değişiklikler getirmiştir.
+Fakat bu reformlara rağmen, imparatorluk gücünü kaybetmeye devam etmiş ve nihayetinde
+Birinci Dünya Savaşı sonrasında parçalanmıştır.
+
+Osmanlı İmparatorluğu'nun yıkılışı, Sevr Anlaşması (1920) ve sonraki Lozan Anlaşması (1923)
+ile resmen sonlandırılmıştır. Mustafa Kemal Atatürk liderliğindeki Türk İstiklal Savaşı,
+Anadolu'da ulusal bir mücadele başlatmıştır. Lozan Anlaşması, Türkiye'nin bağımsız bir
+ulus devlet olarak tanınmasını sağlamıştır.
+
+================================================================================
+BÖLÜM 2: MODERN TÜRKİYE: COĞRAFYA VE EKONOMİ
+================================================================================
+
+Türkiye, Asya ve Avrupa arasında jeopolitik konumda yer alan bir ülkedir. Anadolu (Asya
+Kıtası) ve Trakya (Avrupa Kıtası) olmak üzere iki kıta üzerinde bulunmaktadır. Türkiye'nin
+toplam alanı yaklaşık 783.562 kilometre karedir ve nüfusu 2024 yılında 87 milyonu aşmıştır.
+
+Türkiye'nin coğrafik konumu, tarih boyunca ekonomik ve siyasi açıdan önem kazandırmıştır.
+Karadeniz, Ege Denizi, Akdeniz ve Marmara Denizi tarafından çevrili olan Türkiye, önemli
+ticaret yollarına sahiptir. Boğazlar (Çanakkale Boğazı ve İstanbul Boğazı), Karadeniz ile
+Akdeniz arasındaki bağlantıyı sağlamakta ve uluslararası ticaretin ana arterleri olmuştur.
+
+Türkiye'nin iktisadi sektörleri tarım, imalat ve hizmetler olmak üzere üç ana kategoriye
+ayrılmaktadır. Hizmet sektörü (turizm, finans, eğitim) Türkiye'nin GSYİH'nın yaklaşık
+%60'ını oluştururken, imalat sektörü %25-30 arasında ve tarım sektörü %8'ini teşkil
+etmektedir.
+
+Türkiye'nin ana ihraç ürünleri tekstil, otomotiv, makine, kimya ve tarım ürünleridir.
+Tekstil endüstrisi, geleneksel olarak Türkiye'nin en güçlü sektörlerinden biri olmuş ve
+dünya pazarında önemli bir konuma sahiptir. Otomotiv sektörü ise, son iki dekadda hızlı
+gelişim göstermiş ve Avrupa'nın önemli otomotiv üretim merkezlerinden biri haline gelmiştir.
+
+Türkiye'de turizm endüstrisi, çok önemli gelir kaynağıdır. Ege ve Akdeniz kıyıları,
+Cappadocia, Pamukkale ve Antalya, yıllık milyonlarca turist çekmektedir. Arkeolojik
+siteler (Troia, Efes, Pergamon gibi) antik medeniyetlerin önemli tanıklarıdır. 2019 yılında
+Türkiye, yıllık 51 milyondan fazla uluslararası turist ağırlamıştır.
+
+Türkiye'nin enerji kaynakları, kömür, doğal gaz, petrol ve yenilenebilir enerjiyi içermektedir.
+Türkiye'nin elektrik üretiminin yaklaşık %30'u yenilenebilir kaynaktan (hidroelektrik, rüzgar,
+güneş, jeotermal) sağlanmaktadır. Son yıllarda güneş ve rüzgar enerjisine yapılan yatırımlar
+hızla artmıştır. Türkiye, jeotermal kaynaklar açısından da zengin olup, ısıtma ve elektrik
+üretiminde jeotermal enerjiden faydalanmaktadır.
+
+İstanbul, Türkiye'nin en büyük şehri ve ekonomik merkezidir. 2024 yılında nüfusu 16 milyonu
+aşmıştır. İstanbul, finans, ticaret, eğitim ve kültür merkezi olarak işlev görmektedir. Ankara,
+başkent olarak yönetimin merkezi, Izmir ise Ege bölgesinin en önemli limanı ve ticaret merkezidir.
+
+Türkiye'nin katılımcı demokrasi geleneği, Cumhuriyet'in kuruluşundan bu yana devam etmektedir.
+1923'ten beri, Türkiye çok partili seçim sistemiyle yönetilmektedir. 2023 yılında yapılan
+seçimlerde Recep Tayyip Erdoğan yeniden başkan seçilmiştir. Türkiye, NATO üyesi ve Avrupa
+Konseyine üye bir ülkedir.
+
+================================================================================
+BÖLÜM 3: BİYOTEKNOLOJİ VE GENETİK MÜHENDİSLİĞİ
+================================================================================
+
+Biyoteknoloji, canlı organizmalar ve bunların hücrelerini veya biyomolekülleri kullanan
+teknoloji ve uygulamalar toplamıdır. Modern biyoteknoloji, genetik mühendisliğini ve
+DNA teknolojisini içermektedir. İlk genetik mühendisliği çalışmaları 1970'lerin başında
+gerçekleştirilmiş ve plasmid DNA'sını değiştirme tekniklerini geliştirmiştir.
+
+Rekombinant DNA teknolojisi, farklı organizmalardan DNA parçalarının birleştirilmesini
+sağlamıştır. Bir bakteri plasmidine (dairesel DNA) insan insülin genini eklemek, insülin
+üretim yolunu bulmuş ve diyabetli hastalar için iyileştirme sağlamıştır. Bu başarı,
+biyoteknolojinin tıbbi uygulamalarının başlangıcı olmuştur.
+
+CRISPR-Cas9 teknolojisi, 2020 Nobel Kimya Ödülü'nü kazanmıştır. Bu teknoloji, DNA'nın
+belirli yerlerini keserek ve değiştirerek hücrelerde genetik düzenlemeler yapabilmektedir.
+CRISPR teknolojisi, hemofili, seroz hücre hastalığı ve bazı kanser türlerinin tedavisinde
+umut vaat etmektedir. Fakat etik ve toplumsal kaygılar, insan embriyoları üzerinde genetik
+değişiklik yapılmasının yasaklanmasına neden olmuştur.
+
+Genetik markerlar, hastalık için taşıyıcı olan bireyler tespit edilmesinde kullanılmaktadır.
+Genomik dizileme (DNA sekanslaması), bir insanın tam genetik kodunu okumayı sağlamıştır.
+İnsan Genom Projesi, 2003 yılında tamamlanmış ve insan DNA'sının 3 milyar baz çiftini
+mühendislikle tasnif etmiştir. Şimdiki genomik teknolojisi, bir insanın genomunu 1.000 dolar
+ve 48 saat içinde sıralayabilmektedir.
+
+Bioinformatik, biyoloji ve bilgisayar biliminin birleşimidir. Büyük genetik verilerini
+(big data) analiz etmek, hastalık öngörüsü yapmak ve kişiselleştirilmiş tıbbi tedaviler
+tasarlamak için bioinformatik gereklidir. Yapay zeka algoritmaları, protein yapısını
+tahmin etmek ve malignansı erken evrede saptamak için genetik verilerle eğitilmektedir.
+
+Tarım biyoteknolojisi, bitkilerin verimini artırmak, hastalıklara direnci güçlendirmek
+ve besin değerini iyileştirmek için genetik modifikasyonları uygulamaktadır. Genetik olarak
+değiştirilmiş (GDO) mahsüller, dünya tahıl üretiminin yaklaşık %40'ını oluşturmaktadır.
+Fakat GDO'lar, sağlık ve çevre konularında endişeleri beraberinde getirmektedir.
+
+Sentetik biyoloji, yapay DNA sekansları tasarlayarak yeni canlı sistemler oluşturmaya
+çalışmaktadır. Sentetik biyoloji, yeni ilaçlar, yakıtlar ve malzemeler üreterek endüstri
+dönüştürebilecektir. Fakat bu alanda etik ve biyogüvenlik sorunları vardır.
+
+================================================================================
+BÖLÜM 4: SANAT VE MİMARLIK TARİHİ
+================================================================================
+
+Anadolu'daki sanat ve mimarlık tarihi, Hittitler, Lidyalılar, Ionlar, Persler, Helenler
+ve Romalılar gibi birçok medeniyeti kapsamaktadır. Her medeniyetin kendine ait mimari
+tarzı, sanatsal değerleri ve estetik prensipleri olmuştur.
+
+Ephes (Efes), antik dünyanın en önemli şehirlerinden biri olmuş ve Artemis Tapınağı,
+dünyanın yedi harikasından biridir. Efes, Ionya kültürünün merkezi ve felsefecilerin
+şehri olmuştur. Ionya mimarisi, düz çizgiler, sütun sistemleri ve geometrik düzenin
+karakteristiği olmuştur.
+
+Troy (Troia), antik Anadolu'nun en ünlü arkeolojik yerleşim alanlarından biridir. Homer'in
+Iliad destanında anlatılan Troia Savaşı'nın tarihi varlığı, Heinrich Schliemann tarafından
+19. yüzyılda kazılara başlanmışıyla ispatlanmıştır. Troia, dokuz farklı kültür tabakalı
+olup, her tabaka farklı bir medeniyeti temsil etmektedir.
+
+İslami Anadolu'da Seljuk mimarisi, Selçuklu Sultanları'nın 12.-13. yüzyıllardaki yapılarında
+görülmektedir. Konya, Selçuklu kültür merkezi olup, Mevlânâ Türbesi, İnce Minare Medresesi
+ve Alaeddin Camii bu dönemin önemli yapılarıdır. Seljuk mimarisi, İslami tasarım ilkeleri
+ile Anadolu'nun geometrik motifleri birleştirmektedir.
+
+Osmanlı mimarisi, Seljuk mimarisi, Bizans ve İslami geleneklerin sentezinden oluşmuştur.
+Mimar Sinan (1489-1588), 16. yüzyıl en büyük mimar olup, 350 yapıdan fazlasını tasarlamıştır.
+Suleymaniye Camii, Selimiye Camii ve Kara Mustafa Paşa Sarayı gibi eserleri Mimar Sinan'ın
+başyapıtlarıdır. Osmanlı mimarisi, kubbe, kameriyeler (açık revak) ve sahanın büyüklüğü ile
+karakterize edilmektedir.
+
+Talavera Çini, Osmanlı sarayında ve camilerde kullanılan, rengarenk geometrik desenlerin
+ve yazı süslemelerinin olduğu Anadolu çini işleridir. İznik Çini, 16. yüzyılda en gelişmiş
+durumda olup, özgün kırmızı desenleri ile meşhurdur. İznik çini ustalar, Osmanlı kültürünün
+görsel tanıtıcılarıydı.
+
+Türk Sanat Dekupajı, Hint-Muktenesî ve İslamî motiflerin (geometrik desenleri, bitkisel
+motifler, yazılı süslemeler) çeşitli malzemelere (kâğıt, kumaş, mermer) uygulanmasıdır.
+Süsleme sanatı, Osmanlı'da insanları ve hayvanlara tasvir etmekten sakınmakla, bitkileri
+ve yazıları temel alarak gelişmiş sanatsal felsefesi vardır.
+
+Cumhuriyet dönemi mimarisi, 1923'ten sonra modern mimari ilkeleri Türk kültürü ile birleştirme
+çabasını temsil etmektedir. Vedat Tek, Sedad Hakkı Eldem ve Mimarlar Tasarım Enstitüsü,
+Batı'nın modern mimarisini Osmanlı-Türk geleneksel yapı ilkeleri ile harmoni sağlamaya
+çalışmışlardır.
+
+================================================================================
+BÖLÜM 5: ŞEHİR PLANLAMA VE İNSAN YERLEŞİMİ
+================================================================================
+
+Şehir planlama, insan yerleşimlerinin (şehirler, kasabalar) düzenli ve sürdürülebilir
+biçimde geliştirilmesi amaçlayan bir disiplindir. Modern şehir planlama 19. yüzyılda
+ortaya çıkmıştır ve Haussmann tarafından Paris'in planlanmasında uygulanmıştır.
+
+Osmanlı şehirleri, benzer bir şekilde organize olmuştur: Ortasında pazar meydanı (çarşı),
+çevresinde konut bölgeleri, şehir kenarında suq (meslek kollarına ayrılmış dükkan alanları)
+ve şehrin tepelerinde kaleler bulunmaktaydı. Su temini, Osmanlı şehirciliğinin temel
+unsurlarından biriydi ve aqueduclar şehirde suyu taşımaktaydı.
+
+İstanbul, 15 milyondan fazla nüfusu ile dünyanın en büyük şehirlerinden biridir. Tarih
+boyunca İstanbul'un planlaması, Boğazın coğrafyası tarafından belirlenmiş olup, Avrupa
+yakası ve Asya yakası şehrin iki merkezini oluşturmaktadır. Taksim, Beyoğlu, Eminönü,
+Fatih, Eyüp gibi tarihi mahalleler, İstanbul'un kültür ve turizm merkezi olmuştur.
+
+Ankara, cumhuriyetin başkenti olarak 1920'lerde kurulmuş ve planlı bir şehir olarak tasarlanmıştır.
+Lörcher ve Jansen tarafından hazırlanan plan, iki ayrı şehir çekirdeği (Ulus ve Çankırı)
+tanımlayıp, geniş bulvarlar, pazar alanları ve idari binalar için yer ayırmıştır. Bu plan,
+dönemin modern şehir planlama ilkeleri takip etmektedir.
+
+Türkiye'deki hızlı şehirleşme, 1950'ler sonrasında başlamıştır. Kırsal alanlardan şehirlere
+göç, gecekondu bölgelerinin oluşmasına neden olmuştur. 1980'lerde, hükümetler kentsel iyileştirme
+ve konut politikası yoluyla gecekondular ile yapı denetimli yapılaşma arasında bir denge aramıştır.
+
+İzmir, Ege bölgesinin en önemli liman şehri olup, gridian plan şemasında tasarlanmıştır.
+Alsancak, Karşıyaka ve Konak gibi mahalleler, ticari, yaşamsal ve tarihsel merkez olmuştur.
+İzmir'in coğrafik avantajı (Aegean'da korunaklı bir körfez), ticari önemini arttırmıştır.
+
+Şehir planlaması, sürdürülebilir gelişim, çevre koruması, ulaştırma ağları ve sosyal
+altyapı gibi modern sorunlar öngörmelidir. Akıllı Şehirler (Smart Cities) konsepti, bilişim
+teknolojisini şehir yönetimine entegre ederek enerji tasarrufu, trafik yönetimi ve çevre
+gözetimi sağlamaktadır.
+
+================================================================================
+BÖLÜM 6: DEMİRYOLU TARİHİ VE ULAŞTIRMA SİSTEMLERİ
+================================================================================
+
+Demiryolları, 19. yüzyılda keşfedilmişş ve endüstriyel devrimle beraber hızlı gelişim
+göstermiştir. İngiltere'de 1825'te açılan Stockton-Darlington demiryolası, ilk yolcu
+demiryolu olmuştur. Demiryolları, ticaretin, turizmin ve kargo taşımacılığının gelişmesine
+büyük katkı sağlamıştır.
+
+Osmanlı İmparatorluğu, 1856 yılında ilk demiryolunu İzmit-Nicomedia arasında açmıştır.
+Sonradan Osmanlı, Avrupa'dan yatırımcıların desteğiyle demiryolları genişletmişdir. Doğu
+Anadolu Demiryolu, Ankara-Samasat hattı, Anadolu Demiryolu gibi ana hatlar, Osmanlı'nın
+stratejik gücünü arttırmasında rol oynamıştır.
+
+Cumhuriyet döneminde, demiryolu genişletme önemli bir politika olmuş, Ankara-İstanbul,
+Ankara-Sivas, Çankırı-Zonguldak hatları kurulmuştur. Anadolu Demiryolu ve Bağdad Demiryolu
+gibi projeler, Cumhuriyet'in modernleşme hedeflerinin önemli parçalarıydı.
+
+Modern Türkiye'de, yüksek hızlı tren (YHT) hizmetleri 2003 yılında Ankara-Eskişehir-İstanbul
+arasında başlamıştır. YHT hatları, yaklaşık 320 km/saat hızla yolcu taşımaktadır. 2024'de
+Türkiye'nin 2.100 km'den fazla YHT ağı vardır ve geliştirilmeye devam etmektedir.
+
+Türkiye'nin deniz ulaştırması, Çanakkale Boğazı ve İstanbul Boğazı gibi stratejik suyollarının
+kontrolüne dayanmaktadır. İstanbul Liman, Ambarlı Liman (İzmir), Mersin Liman ve Erdek Liman
+gibi ana limanlar, milyon ton yükte sevkiyat yapmaktadır. Ege ve Akdeniz'deki liman şehirleri,
+uluslararası ticaretinin önemli noktalarıdır.
+
+Hava taşımacılığı, 1990'lar ve 2000'ler sonrasında hızla gelişmiş olup, İstanbul Havalimanı,
+Ankara Havalimanı, İzmir Havalimanı, Antalya Havalimanı ve Gaziantep Havalimanı başlıca
+uluslararası hava yolları merkezleridir. Turkish Airlines (THY), Türkiye'nin ulusal havayolu
+şirketi olup, dünyanın en büyük havayolu şirketlerinden biri haline gelmiştir.
+
+Şehirlerarası otobüs ağı, Türkiye'nin temel ulaştırma sistemlerinden biridir. Minibüsler,
+mikrobüsler, otobüsler ve otobüs istasyonları, Türkiye'deki her şehri ve kasabayı bağlamaktadır.
+Bu sistem, Türkiye'nin coğrafik geniş alanında ulaştırma erişimini sağlamıştır.
+
+Metro sistemleri, İstanbul, Ankara ve İzmir'de kurulmuş olup, şehir içi ulaştırmanın temel
+altyapısı haline gelmiştir. İstanbul Metro, 16 hat ile 226 km uzunluğunda olup, yıllık 1
+milyardan fazla yolcu taşımaktadır.
+
+================================================================================
+BÖLÜM 7: GIDA BİLİMİ VE BESLENME
+================================================================================
+
+Gıda bilimi, gıdaların kimyasal, fiziksel ve mikrobiyolojik özelliklerini incelemektedir.
+Modern gıda bilimi, 18. yüzyılda kimya ve biyolojinin gelişmesi ile başlamıştır. Gıda
+koruma, gıda kalitesi, gıda güvenliği ve beslenme özel alanlardır.
+
+Gıdanın kimyasal bileşimi, protein, karbohidrat, yağ, vitaminler ve mineraller içermektedir.
+Proteinler, vücut hücrelerinin yapısı ve fonksiyonu için gereklidir. Bitkisel proteinler (buğday,
+legüm), hayvansal proteinler (et, süt, yumurta) olmak üzere iki tür kaynağı vardır. Desiccation
+proteini, balık ve dağ keçisi gibi ürünlerin % 50-70'i protein içermektedir.
+
+Karbohidratlar, hücrelerin enerji kaynağıdır. Basit karbohidratlar (şeker) hızlı emilim sağlarken,
+kompleks karbohidratlar (tahıl, patates) yavaş emilim sağlamaktadır. Diyet lifler (fiber),
+karbohidrat olan fakat besin olmayan maddelerdir ve sindirim sisteminin sağlığı için önemlidir.
+
+Yağlar, düşük su solubilitesine sahip, yüksek enerji değeri olan ve vücut sıcaklığını düzenleyen
+maddelerdir. Doymuş yağlar (hayvansal gıdalar), kalp hastalığı riskini artırabilirken, doymamış
+yağlar (bitki yağları, balık) sağlıklı seçeneklerdir. Trans yağları, işlenmiş gıdalarda bulunan,
+sağlığa zararlı yağların türüdür.
+
+Vitaminler, vücudun kimyasal reaksiyonlarında katalizör görevini yapan, yüksek dozda toksik
+olmayan maddelerdir. A, B, C, D, E vitaminleri temel vitaminlerdir. B vitamini kompleksi,
+metabolizması için önemli olup, B12 eksikliği anemi nedenidir.
+
+Gıda katkı maddeleri (additives), gıdaların raf ömrünü uzatmak, rengini korumak ve tadını
+geliştirmek için kullanılmaktadır. Koruyucular (preservatives), antimikrobiyel maddeler
+(sodium benzoate, potassium sorbate) olup, gıdaların bozulmasını önlemektedir. Renklendiriciler,
+bitki veya sentetik kaynaklı olabilmektedir.
+
+Gıda güvenliği, hastalık yapan mikroorganizmalar (Salmonella, E. coli, Listeria) ve kimyasal
+zehirlerin gıdada bulunup riskli seviyelere ulaşmasını engelleme konusudur. Gıda sağlamlığı
+kontrol sistemi (HACCP), taşımacılığından depolama, hazırlamaya kadar her aşamada kontrol
+sağlamaktadır.
+
+Türk mutfağı, Osmanlı'nın tarihsel zenginliğinden gelmektedir. Meze, balık, dolma, kebap,
+çorbalar ve un ve balkabaklı tatlılar Türk yemeklerinin örnekleridir. Çiftliklerde yetişen
+sebzeler (domates, biber, patlıcan) lokale uyumlu gıdalarıdır.
+
+================================================================================
+BÖLÜM 8: JEOLOJİ VE DEPREM SİSMOLOJİSİ
+================================================================================
+
+Jeoloji, Dünya'nın yapısı, mineralleşme, magma hareket ve kayalarının kökenini inceleyen
+bilim dalıdır. Dünya, dış kabuğu (crust), manto (mantle) ve çekirdek (core) olmak üzere
+üç ana katmandan oluşmaktadır. Kabuk kalınlığı 30-40 km arasında değişmektedir.
+
+Levha tektonikleri (Plate Tectonics) teorisi, Dünya'nın dış kabuğunun birkaç tektonik
+levhaya ayrıldığını ve bu levhaların hareket ettiğini açıklamaktadır. Levhalar arasındaki
+hareket, deprem, volkan faaliyeti ve dağ oluşumuna neden olmaktadır. Uydu verilerine göre,
+tektoniğin sabit yüksekliği düşünülerek, levhalar yılda birkaç santimetre hareketler vardır.
+
+Türkiye, jeolojik açıdan çok aktif bir bölgede bulunmaktadır. Kuzey Anadolu Fay Hattı
+(North Anatolian Fault), Doğu Anadolu Fay Hattı ve Batı Anadolu sağ-kayma fayları, Türkiye'yi
+deprem riski altında bulundurmaktadır. 1999'da Izmit depreminin (7.6 magnitude) sonrasında,
+1999 Düzce depreminden (7.1 magnitude) büyük hasarlar meydana gelmiştir.
+
+2023 yılında, Türkiye'nin güneydoğu bölgesinde iki büyük deprem (7.8 ve 7.5 magnitude)
+meydana gelmiştir. Bu depremler, Kahramanmaraş Fay Sistemi üzerinde patlak girmiş olup,
+50 binden fazla can kaybı ile Türkiye'nin tarihindeki en ölümcül depremlerden biri olmuştur.
+
+Deprem ölçekleri, magnitüd (Richter ölçeği, moment magnitüd) ve şiddeti (Mercalli ölçeği)
+görmektedir. Richter ölçeği, depremde salınan enerjinin logaritmik ölçüsüdür. Moment magnitüd
+ise, kaya kaymaSı ve kırılma alanını öğrenmek için tercih edilen ölçektir.
+
+Sismometreler (seismometers), deprem dalgalarını ve titreşimleri ölçen enstrümanlar olup,
+Dünya'nın her bölgesinde ağlara kurulmuş bulunmaktadır. Deprem öncesinde ön sarsıntılar
+(foreshocks), deprem sonrasında ardıl sarsıntılar (aftershocks) gözlenebilmektedir.
+
+Deprem hazırlığı, yapı standartları, ayakta kalma eğitimi ve erken uyarı sistemi ile sağlanmaktadır.
+Deprem dirençli yapılar, düşük yükseklik, güçlü temel ve esneklik ilkelerine dayanmaktadır.
+Türkiye'de, 1999 Izmit depreminden sonra, bina yönetmeliğinde sismik kısıtlamalar sıkılaştırılmıştır.
+
+Magma, Dünya'nın mantosundan çıkan, yüksek sıcaklıklı sıvı kaya maddesesidir. Volkanlar,
+Dünya'nın magmasının çıktığı, Dünya'nın faaliyetini gösterir hava boşluklarıdır. Türkiye'de,
+Nemrut Dağı (Tatvan), Erciyes Dağı gibi stratovolkanlar, hareketsiz olsa da jeolojik riski
+barındırmaktadır.
+
+================================================================================
+BÖLÜM 9: ORGANİK TARIM VE TOPRAK SAĞLIĞI
+================================================================================
+
+Organik tarım, kimyasal gübreler, pestisitler ve genetik modifikasyon kullanmadan, doğal
+süreçleri destekleyerek tarım yapma yöntemidir. Organik tarımın başlangıçları, 1940'larda
+British tarım yazarı Albert Howard tarafından geliştirilmiştir. Modern organik tarım,
+1970'lerde hareketlenmiş ve giderek büyüyen bir sektör haline gelmiştir.
+
+Toprak, taşlar, organik madde, su ve mikroorganizmalar olmak üzere dört ana bileşenden
+oluşmaktadır. Organik madde (humus), topraktaki ölü bitkilerin ve hayvanların parçalanmasından
+oluşur. Humus, toprak yapısını geliştirmeye, su tutma kapasitesini artırmaya ve besin
+depolama kabiliyetini sağlamaktadır.
+
+Toprak erozyonu, rüzgar ve su tarafından taşınarak, toprak kaybına neden olan bir sorundur.
+Dağlık alanlarda ve tarım arazisinde erozyonun kontrolü, ağaçlandırma, teraslama ve bellek
+drenajı (mulching) yöntemiyle yapılmaktadır. Türkiye'de, erozyonun kontrolünde gıda ve
+orman bakanlığı önemli projeler başlatmıştır.
+
+Nitrogen döngüsü, havadaki azotu topraktaki nitrata dönüştüren, doğal ve endüstriyel
+süreçlerin bir serisidir. Baklagiller (fiğ, hayır, mercimek) gibi bitkiler, kökleri üzerindeki
+bakterilerle (rhizobia) simbyotik ilişki kurarak, havadaki nitrojeni kullanabilmektedir.
+Organik tarımda, baklagilleri döngüye sokarak, yapay azotlu gübre olmadan toprak azotunu
+sağlanmaktadır.
+
+Kompost, organik atıkların (yaprak, hayvan gübresi, sebze artıkları) ayrıştırması sonucunda
+elde edilen, humuslu, besin içeriği yüksek bir malzemedir. Kompost yapımı, kimyasal gübre
+kullanmadan toprak kalitesi iyileştirme yöntemidir. Kompostin hazırlanması, sıcaklık, nem
+ve hava dolanımı gibi faktörlere bağlı olup, 3-6 ay sürmektedir.
+
+Biyolojik kontrol, hastalık ve zararlı böcekleri öldürmek için tabii avcı böcekler ve
+parazit böcekler kullanma yöntemidir. Arı kovan, güçlü bir polinatör olup, bitkilerin
+çoğalması için gereklidir. Organik çiftliklerde, doğal polinasyon ve biyolojik kontrol,
+pestisit kullanımını azaltarak, gıda kalitesi iyileştirmektedir.
+
+Agroforestry (tarım-ormanlaştırma), tarım alanında ağaç yetiştirme ve tarım aktivitelerini
+bütünleştirme yöntemidir. Ağaçların gölgesi, toprakta nem koruması sağlar, ağaçların kökleri
+toprak bağlayıcısı görevini yapar. Tarım ve ormancılık alanında uygulanmakta, etkili bir
+kalite iyileştirme stratejisidir.
+
+Türkiye'de organik tarım, geleneksel metotları benimseyen küçük çiftçileri ile başlamış ve
+son yıllarda büyük çiftlik işletmeleri de organik üretime geçmişlerdir. 2024'de Türkiye'nin
+organik tarım alanı 1.4 milyon hektarı aşmıştır ve world üzerinde öncü konumdadır.
+
+================================================================================
+BÖLÜM 10: DİJİTAL EKONOMİ VE FİNANS TEKNOLOJİSİ
+================================================================================
+
+Dijital ekonomi, bilişim teknolojisinin, internet ve veri analitiğinin ekonomik faaliyetleri
+dönüştürdüğü ekonomik sistem olarak tanımlanmaktadır. E-ticaret, dijital pazarlama, bulut
+bilişim ve yapay zeka uygulamaları dijital ekonominin temel bileşenleridir.
+
+E-ticaret, internet üzerinde mal ve hizmet satışının yapıldığı ticaret türüdür. Dünya
+genelinde e-ticaret satışları 2023'de 5.8 trilyon doları aşmış olup, yıllık %10-15 hızında
+büyümektedir. Türkiye'de e-ticaret satışları, 2023'de 88 milyar doları geçmiş ve hızla
+büyümektedir.
+
+B2C (Business-to-Consumer) e-ticaret, şirketlerin bireysel müşterilere mal ve hizmet satması
+modelidir. Trendyol, Amazon Turkey, N11 ve Gittigidiyor gibi e-ticaret platformları, Türkiye'de
+dominant konumlardadır. B2B (Business-to-Business) e-ticaret, şirketler arası ticaret yapılmakta
+olup, daha geniş alanında uygulanmaktadır.
+
+Finans Teknolojisi (FinTech), finansal hizmetleri sunan, teknoloji şirketleridir. Para transferi,
+ödeme işlemleri, borçlanma, yatırım ve sigorta gibi hizmetler FinTech şirketleri tarafından
+sağlanmaktadır. Kripto para (Bitcoin, Ethereum) dijital varlıklarlar olup, blockchain teknolojisi
+kullanmaktadırlar.
+
+Blockchain, dağıtılmış bir kayıt tutma sistemi olup, her işlem kriptografik olarak güvenilme
+sağlanmaktadır. Blockchain, finansal işlemlerin şeffaf ve değişmezliğini garanti etmektedir.
+Kripto para birimleri ve akıllı sözleşmeler, blockchain teknolojisine dayanmaktadır.
+
+Yapay zeka, finans sektöründe, risk değerlendirmesi, müşteri segmentasyonu, sahte işlem
+tespiti (fraud detection) ve otomasyonda kullanılmaktadır. Makine öğrenmesi algoritmaları,
+geçmiş işlemleri analiz ederek, gelecek eğilimler tahmin etmektedir.
+
+Dijital ödeme sistemleri, kredi kartı, debit kartı, mobil cüzdan (Apple Pay, Google Pay)
+ve banka transferi gibi yöntemleri kapsamaktadır. Türkiye'de, Papara, Paysafe ve Mercadopago
+gibi ödeme çözüm sağlayıcıları hızla gelişmektedir.
+
+Siber güvenlik, dijital ekonominin temel bir bileşenidir. Siber saldırılar, kripto virüsler
+(ransomware), kimlik hırsızlığı ve veri gözeti (phishing) gibi tehditleri kapsamaktadır.
+Şirketler, güvenlik duvarları, şifreleme ve çok-faktörlü kimlik doğrulama yoluyla korunmaktadırlar.
+
+Veri analitik, büyük veri (big data) setlerinden değerli bilgi çıkarmaya, müşteri davranış
+analizi, pazarlama stratejisi optimize etme ve üretim süreci iyileştirmede kullanılmaktadır.
+Türkiye'de, veri analitik enerjisinde danışmanlık hizmetleri hızla büyümektedir.
+
+================================================================================
+DOCUMENT SONU
+================================================================================

@@ -51,7 +51,6 @@ class LlmEngine @Inject constructor(
 ) {
     companion object {
         const val MODEL_FILENAME = "gemma4-e4b-it-int4.litertlm"
-        private const val MAX_TOKENS = 3072
         private const val DEFAULT_TOP_K = 40
         private const val DEFAULT_TOP_P = 0.95
     }
@@ -83,8 +82,9 @@ class LlmEngine @Inject constructor(
      * @param modelPath  Real filesystem path (e.g. /storage/.../model.task) or
      *                   SAF content URI string (resolved internally).
      * @param temperature Sampling temperature (0.0–1.0). Default 0.3 for factual RAG.
+     * @param contextWindow Maximum context size in tokens. Defaults to 3072.
      */
-    suspend fun load(modelPath: String, temperature: Float = 0.3f) = withContext(Dispatchers.IO) {
+    suspend fun load(modelPath: String, temperature: Float = 0.3f, contextWindow: Int = 3072) = withContext(Dispatchers.IO) {
         unload()
 
         this@LlmEngine.temperature = temperature.toDouble()
@@ -130,7 +130,7 @@ class LlmEngine @Inject constructor(
             val gpuConfig = EngineConfig(
                 modelPath = actualPath,
                 backend = Backend.GPU(),
-                maxNumTokens = MAX_TOKENS
+                maxNumTokens = contextWindow
             )
             val gpuEngine = Engine(gpuConfig)
             gpuEngine.initialize()
@@ -145,7 +145,7 @@ class LlmEngine @Inject constructor(
         val cpuConfig = EngineConfig(
             modelPath = actualPath,
             backend = Backend.CPU(),
-            maxNumTokens = MAX_TOKENS
+            maxNumTokens = contextWindow
         )
         val cpuEngine = Engine(cpuConfig)
         cpuEngine.initialize()

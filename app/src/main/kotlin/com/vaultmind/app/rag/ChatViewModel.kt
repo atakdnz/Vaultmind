@@ -91,14 +91,14 @@ class ChatViewModel @Inject constructor(
                 _topK.value = settings.topK
                 _thinkingMode.value = settings.thinkingMode
                 if (settings.llmModelPath.isNotBlank() && settings.embeddingModelPath.isNotBlank()) {
-                    loadModels(settings.llmModelPath, settings.embeddingModelPath, settings.temperature)
+                    loadModels(settings.llmModelPath, settings.embeddingModelPath, settings.temperature, settings.contextWindow)
                 }
             }
         }
     }
 
     /** Load both models (LLM + embedding). Show loading state. */
-    fun loadModels(llmModelPath: String, embeddingModelPath: String, temperature: Float = 0.3f) {
+    fun loadModels(llmModelPath: String, embeddingModelPath: String, temperature: Float = 0.3f, contextWindow: Int = 3072) {
         if (_modelState.value == ModelLoadState.Loading) return
         _modelState.value = ModelLoadState.Loading
 
@@ -114,7 +114,7 @@ class ChatViewModel @Inject constructor(
 
             // Load LLM — log the full stack trace on failure
             try {
-                llmEngine.load(llmModelPath, temperature)
+                llmEngine.load(llmModelPath, temperature, contextWindow)
                 _modelState.value = ModelLoadState.Ready
             } catch (e: Throwable) {
                 Log.e("VaultMind", "LLM load failed", e)

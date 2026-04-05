@@ -1,0 +1,609 @@
+================================================================================
+RAG PIPELINE TESTING QUESTIONS
+Comprehensive Question Sets for Evaluating Retrieval-Augmented Generation Systems
+================================================================================
+
+TESTING GUIDELINES
+These questions are designed to test various aspects of RAG pipeline functionality:
+- Retrieval quality (does the system find relevant documents?)
+- Ranking accuracy (are the most relevant documents ranked highest?)
+- Completeness (does the system retrieve all necessary information?)
+- Specificity (can the system answer specific questions from context?)
+- Reasoning (can the system synthesize information across passages?)
+- Boundary cases (how does the system handle edge cases?)
+
+================================================================================
+CATEGORY 1: SIMPLE FACTUAL RETRIEVAL (Baseline Tests)
+================================================================================
+
+These questions test basic retrieval of single facts explicitly stated in the document.
+
+Q1.1: What is the greenhouse effect?
+Expected Answer: A natural process where atmospheric gases trap heat in the lower
+atmosphere, preventing it from escaping to space.
+
+Q1.2: When did the Industrial Revolution begin?
+Expected Answer: Around 1750 in Britain.
+
+Q1.3: Who was the first human in space?
+Expected Answer: Yuri Gagarin, aboard Vostok 1 on April 12, 1961.
+
+Q1.4: What does DNA stand for?
+Expected Answer: Deoxyribonucleic acid.
+
+Q1.5: Who invented the transistor and at which institution?
+Expected Answer: The transistor was invented at Bell Labs in 1947.
+
+Q1.6: How many exoplanets have been confirmed as of 2024?
+Expected Answer: Over 5,000 exoplanets have been confirmed.
+
+Q1.7: What is the speed of light in vacuum?
+Expected Answer: It is constant for all observers (no specific number given, but the
+document states it is constant).
+
+Q1.8: How many sonnets did Shakespeare write?
+Expected Answer: 154 sonnets.
+
+Q1.9: At what altitude does the ISS orbit?
+Expected Answer: Approximately 400 kilometers.
+
+Q1.10: What does AMOC stand for?
+Expected Answer: Atlantic Meridional Overturning Circulation.
+
+================================================================================
+CATEGORY 2: MULTI-SENTENCE RETRIEVAL (Moderate Difficulty)
+================================================================================
+
+These questions require retrieving and synthesizing information from multiple sentences
+within a section.
+
+Q2.1: What is the relationship between the ice-albedo feedback mechanism and Arctic 
+warming?
+Expected Answer: The Arctic region is warming about twice as fast as the global average
+due to the ice-albedo feedback mechanism. When white sea ice melts, it exposes darker
+ocean water that absorbs more solar radiation, causing further warming and more melting.
+
+Q2.2: Describe the key accomplishments of the Renaissance.
+Expected Answer: The Renaissance (14th-17th centuries) was a period of renewed interest
+in classical Greek and Roman knowledge. It originated in Italy and spread throughout
+Europe, with key figures like Leonardo da Vinci, Michelangelo, and Raphael exemplifying
+the ideal of the "universal man" combining artistic, scientific, and literary talents.
+
+Q2.3: What are the main differences between prokaryotic and eukaryotic cells?
+Expected Answer: Prokaryotic cells (bacteria and archaea) lack a nucleus and organelles,
+while eukaryotic cells (found in animals, plants, fungi, and protists) have a nucleus
+containing DNA and membrane-bound organelles.
+
+Q2.4: How do transformers use the attention mechanism?
+Expected Answer: Transformers use self-attention mechanisms to model dependencies between
+tokens regardless of distance. The attention mechanism computes weighted relationships
+between all pairs of positions in a sequence, allowing the model to focus on relevant context.
+Multi-head attention allows the model to attend to different representation subspaces simultaneously.
+
+Q2.5: What is the difference between the light-dependent and light-independent reactions
+of photosynthesis?
+Expected Answer: The light-dependent reactions occur in thylakoids and generate ATP and NADPH.
+The light-independent reactions (Calvin cycle) use this energy to fix CO2 into glucose.
+
+Q2.6: Explain how supply and demand determine market prices.
+Expected Answer: Supply and demand curves determine market equilibrium prices. When demand
+increases relative to supply, prices rise, and vice versa.
+
+Q2.7: What did the landing of Sputnik 1 represent and what was its impact?
+Expected Answer: Sputnik 1, launched by the Soviet Union on October 4, 1957, was the first
+artificial satellite. This achievement shocked American policymakers and prompted massive
+investments in space exploration and education.
+
+Q2.8: How does general relativity describe gravity differently from Newton's theory?
+Expected Answer: General relativity describes gravity not as a force but as curvature of
+spacetime caused by mass and energy. Massive objects like stars and planets warp spacetime,
+causing other objects to follow curved paths.
+
+Q2.9: What are the three main layers of the immune system?
+Expected Answer: The immune system has multiple layers: physical barriers like skin, chemical
+defenses in fluids, innate immunity with phagocytes and complement proteins, and adaptive
+immunity with B cells producing antibodies and T cells providing cell-mediated immunity.
+
+Q2.10: How does lithium-ion battery technology relate to renewable energy storage?
+Expected Answer: Lithium-ion battery technology has advanced dramatically with increased
+energy density and decreased costs (declined 89% from 2010 to 2020), enabling renewable
+integration by addressing intermittency.
+
+================================================================================
+CATEGORY 3: CROSS-SECTION SYNTHESIS (Advanced)
+================================================================================
+
+These questions require retrieving and combining information from multiple sections.
+
+Q3.1: How do transformers and deep learning relate to the broader history of computing,
+and why were they significant innovations?
+Expected Answer: Should connect transformers as modern deep learning innovations to the
+historical trajectory from mechanical calculators to transistors to Moore's Law enabling
+exponential computing power growth. Transformers revolutionized natural language processing
+as a modern application of increased computational capabilities.
+
+Q3.2: Connect the concept of photosynthesis to renewable energy. Why is understanding
+photosynthesis relevant to solar energy development?
+Expected Answer: Should explain that photosynthesis converts light energy into chemical energy,
+and solar energy (photovoltaic technology) similarly converts sunlight into electricity through
+the photovoltaic effect. Both represent ways to harness solar energy, with photosynthesis doing
+so biologically and PV cells doing so technologically.
+
+Q3.3: How do climate systems and renewable energy relate to addressing environmental challenges?
+Expected Answer: Should connect increased atmospheric CO2 concentrations and greenhouse effect
+from burning fossil fuels to the need for renewable energy sources (solar, wind, geothermal,
+hydroelectric) that don't produce emissions. Energy storage and smart grids are necessary
+to enable renewable integration.
+
+Q3.4: Explain how the principles of special and general relativity enable our understanding
+of gravitational waves and their detection by observatories.
+Expected Answer: Should explain that special relativity shows time and space are relative,
+while general relativity describes gravity as spacetime curvature. General relativity predicts
+gravitational waves, which represent ripples in spacetime itself. This prediction was later
+confirmed by observational evidence.
+
+Q3.5: How did historical events like the Scientific Revolution and Enlightenment influence
+modern scientific practice?
+Expected Answer: Should connect the Scientific Revolution's emphasis on empirical observation
+and mathematical reasoning over authority to the Enlightenment's emphasis on reason and science,
+noting how these foundational ideas shaped modern scientific methodology and values.
+
+Q3.6: Relate the discovery of exoplanets to the history of space exploration and future
+Mars exploration plans.
+Expected Answer: Should trace from early space achievements (Sputnik, Moon landings) to modern
+robotic Mars exploration (rovers) to future human Mars missions, connecting these to exoplanet
+discoveries that inform our understanding of potentially habitable worlds.
+
+Q3.7: How do different types of supervised machine learning relate to image recognition
+with CNNs and biological vision systems in humans?
+Expected Answer: Should connect supervised learning basics to CNNs' specialization for image
+processing by detecting local patterns, potentially comparing this to how neurons in human visual
+cortex detect features like edges and shapes.
+
+Q3.8: Explain how monetary policy (interest rates) and venture capital funding both influence
+innovation and economic growth.
+Expected Answer: Should explain that central banks' interest rate decisions affect borrowing costs
+for business investment, while venture capital provides specific funding for startups pursuing
+innovations. Low interest rates encourage entrepreneurship and startups (which drive innovation)
+while high rates discourage borrowing.
+
+Q3.9: Connect the themes of mortality and human meaning explored in ancient literature
+(Epic of Gilgamesh) to modern scientific understanding of aging and biological limits.
+Expected Answer: Should note that the Epic of Gilgamesh explores mortality and the human condition
+from 4,000 years ago, while modern biology studies aging mechanisms, cellular lifespan (telomeres),
+and DNA repair—representing different approaches to understanding human finitude.
+
+Q3.10: How do distributed renewable energy sources and smart grids represent technological
+solutions to problems identified by 18th-century economists regarding resource allocation?
+Expected Answer: Should connect Adam Smith's invisible hand and market coordination to how smart
+grids coordinate numerous distributed renewable generation resources through price signals and
+automated controls, optimizing resource allocation across the electricity system.
+
+================================================================================
+CATEGORY 4: DETAIL AND NUANCE (High Difficulty)
+================================================================================
+
+These questions test the system's ability to capture specific numerical details, nuances,
+and qualifications.
+
+Q4.1: What is the specific percentage increase in atmospheric CO2 from pre-industrial to 2024?
+Expected Answer: From approximately 280 ppm to over 420 ppm.
+
+Q4.2: How much has the Arctic warmed compared to global average warming?
+Expected Answer: The Arctic is warming approximately twice as fast as the global average.
+
+Q4.3: What is the specific capacity of modern utility-scale wind turbines and typical
+rotor diameter?
+Expected Answer: Capacities of 5-12 megawatts with rotor diameters of 100-220 meters.
+
+Q4.4: How much of terrestrial carbon is stored in tropical rainforests relative to their
+land area?
+Expected Answer: Approximately 40% of terrestrial carbon stocks despite occupying only 10%
+of global land area.
+
+Q4.5: What was the percentage decrease in battery costs from 2010 to 2020?
+Expected Answer: 89% decline from 2010 to 2020.
+
+Q4.6: How much can global sea levels rise from complete melting of the Greenland ice sheet?
+Expected Answer: Approximately 7 meters.
+
+Q4.7: What is the capacity factor range for offshore wind farms?
+Expected Answer: 40-50% due to higher average wind speeds (compared to 25-40% for onshore wind).
+
+Q4.8: At what rate are sea levels currently rising?
+Expected Answer: Approximately 3.3mm per year.
+
+Q4.9: What percentage of observed warming since 1950 is attributed to human activities?
+Expected Answer: Approximately 97%.
+
+Q4.10: What percentage of global electricity generation comes from hydroelectric power?
+Expected Answer: Approximately 16%.
+
+================================================================================
+CATEGORY 5: COMPARATIVE AND ANALYTICAL (Interpretation)
+================================================================================
+
+These questions require comparing different concepts or analyzing trade-offs and implications.
+
+Q5.1: Compare and contrast the approaches to addressing climate change through carbon
+sequestration in forests vs. technological solutions.
+Expected Answer: Should note that forests and other ecosystems provide natural carbon sinks
+through photosynthesis and soil carbon storage, while technological solutions like carbon
+capture exist. Natural solutions have benefits for biodiversity while technological solutions
+are scalable. Both may be needed simultaneously.
+
+Q5.2: What are the advantages and disadvantages of different renewable energy sources
+(solar, wind, hydro, geothermal)?
+Expected Answer: Should discuss cost trends (solar cheapest now), capacity factors (geothermal
+70-90% vs wind 25-50% vs solar lower), environmental impacts (hydro requires dams), and
+geographic constraints (geothermal needs specific geology).
+
+Q5.3: How do relational databases differ from NoSQL databases, and when is each appropriate?
+Expected Answer: Relational databases use tables and rows with ACID properties ensuring reliability,
+while NoSQL prioritizes scalability and flexibility. Relational is appropriate for applications
+requiring strict consistency, NoSQL for distributed systems handling massive volumes.
+
+Q5.4: Compare how classical physics, special relativity, and quantum mechanics apply to
+different scales and situations.
+Expected Answer: Classical physics describes macroscopic objects; special relativity applies
+when speeds approach light speed; quantum mechanics governs atomic and subatomic scales. At
+everyday speeds and scales, classical physics is accurate and sufficient.
+
+Q5.5: Contrast the role of markets (supply and demand) versus government intervention
+(monetary policy) in economies.
+Expected Answer: Markets coordinate behavior through price mechanisms without central planning,
+while monetary policy via central banks manages money supply and interest rates to achieve
+economic goals. Both play important roles; market failures justify government intervention.
+
+Q5.6: What were the revolutionary impacts of the Scientific Revolution compared to previous
+ways of understanding nature?
+Expected Answer: The Scientific Revolution emphasized empirical observation and mathematical
+reasoning over reliance on authority and dogma, fundamentally changing methodology for
+understanding nature.
+
+Q5.7: How do supervised learning and unsupervised learning approaches differ, and what
+problems is each suited for?
+Expected Answer: Supervised learning uses labeled data for classification/regression tasks;
+unsupervised learning discovers hidden patterns in unlabeled data through clustering or
+dimensionality reduction. Supervised excels for labeled datasets; unsupervised for pattern
+discovery.
+
+Q5.8: Compare DNA's role in heredity to how transformers use information in attention
+mechanisms.
+Expected Answer: DNA carries genetic instructions through base pair sequences; transformers
+carry semantic meaning through attention-weighted relationships between tokens. Both involve
+encoding and transmitting information.
+
+Q5.9: What is the difference between explaining human immunity through B cells/T cells
+versus broader immune system layers (barriers, chemicals)?
+Expected Answer: The broader description encompasses multiple defense strategies; specific
+mechanisms explain how adaptive immunity works. Both perspectives are needed for complete
+understanding.
+
+Q5.10: How do the themes of mortality in Shakespeare's sonnets compare to the challenges
+of mortality and aging explored by modern biology?
+Expected Answer: Shakespeare explores the emotional and philosophical significance of aging,
+while biology studies the mechanical causes. Both represent human attempts to understand
+and confront mortality.
+
+================================================================================
+CATEGORY 6: MISSING INFORMATION AND BOUNDARY CASES (Robustness Testing)
+================================================================================
+
+These questions test how the system handles information not in the document or
+requiring inference from gaps.
+
+Q6.1: What is the current global temperature increase and how does it relate to the
+1.5°C target mentioned in climate agreements?
+Expected Answer: Document states 1.1°C increase since pre-industrial times, but does not
+discuss the 1.5°C target. System should acknowledge what's in the document and note
+what's missing.
+
+Q6.2: What are specific policy recommendations for addressing climate change based on
+the document?
+Expected Answer: The document does not provide specific policy recommendations. System should
+note this while mentioning renewable energy possibilities discussed.
+
+Q6.3: What are the current prices of solar panels and wind turbines?
+Expected Answer: Document discusses cost trends (solar down 90% in past decade, battery down 89%
+2010-2020) but not current prices. System should distinguish between available relative cost
+information and missing absolute prices.
+
+Q6.4: How will artificial intelligence specifically be used to optimize renewable energy
+systems?
+Expected Answer: Document mentions smart grids using digital technology and forecasting, but
+does not specifically discuss AI applications. System should acknowledge the connection is
+implicit but not explicit.
+
+Q6.5: What is the biological mechanism by which Shakespeare's understanding of mortality
+influenced his sonnets?
+Expected Answer: This requires speculation beyond the document. System should note the document
+discusses thematic content but not psychological mechanisms.
+
+Q6.6: How do geothermal systems in Iceland compare to geothermal potential in Turkey
+(user's location)?
+Expected Answer: Document only discusses Iceland. System should acknowledge it provides no
+information about Turkey's geothermal resources.
+
+Q6.7: What are the specific implementation challenges for achieving the capacity factors
+mentioned for different renewable sources?
+Expected Answer: Document provides capacity factor numbers but not implementation challenges.
+System should distinguish between what is and isn't discussed.
+
+Q6.8: How have quantum computing applications been integrated into machine learning systems?
+Expected Answer: Document discusses quantum mechanics but not quantum computing specifically,
+and discusses machine learning separately. System should note these topics aren't connected
+in the document.
+
+Q6.9: What specific language features make Shakespeare's sonnets particularly difficult to
+translate?
+Expected Answer: Document discusses translation challenges generally but not Shakespeare specifically.
+System should note this specific application isn't addressed.
+
+Q6.10: How does the efficiency of photosynthesis compare to photovoltaic cell efficiency?
+Expected Answer: Document provides PV efficiency (20-22%) and lab results (40%) but no specific
+photosynthesis efficiency. System should note what's available and what's missing.
+
+================================================================================
+CATEGORY 7: NEGATION AND CONTRADICTION TESTING
+================================================================================
+
+These questions test handling of negation, absence, and potential contradictions.
+
+Q7.1: Is cryptocurrency mentioned in the document?
+Expected Answer: Yes, as an example of new vocabulary reflecting contemporary experience.
+
+Q7.2: Does the document claim that market mechanisms always lead to efficient outcomes?
+Expected Answer: No, it explicitly discusses market failures and scenarios where competitive
+markets fail to allocate resources efficiently.
+
+Q7.3: According to the document, did quantum mechanics completely replace classical physics
+for all applications?
+Expected Answer: No, the document implies classical physics remains valid and useful for
+macroscopic scales, with quantum mechanics applying to atomic/subatomic scales.
+
+Q7.4: Are digital devices mentioned as the primary cause of climate change according to
+the document?
+Expected Answer: No, the document attributes climate change to fossil fuel combustion,
+deforestation, and industrial processes—technology enables measurement and monitoring but
+is not presented as the cause.
+
+Q7.5: Does the document suggest that all startups are successful?
+Expected Answer: No, it explicitly states "most startups fail" and discusses venture capital
+as funding for promising startups.
+
+Q7.6: According to the document, can magnetic fields alone explain the structure of atoms?
+Expected Answer: The document doesn't discuss atomic structure comprehensively enough to
+answer this. System should acknowledge the limitation.
+
+Q7.7: Is it suggested that renewable energy can completely replace fossil fuels immediately?
+Expected Answer: The document doesn't suggest this. It discusses renewable technology potential
+but emphasizes cost competitiveness and integration challenges (smart grids, storage).
+
+Q7.8: Does the document claim that traditional literature has no relevance to modern
+understanding?
+Expected Answer: No, it presents literature as ongoing exploration of human meaning and
+experience, suggesting continued relevance.
+
+Q7.9: Is genetic engineering discussed as a method for enhancing photosynthesis in crops?
+Expected Answer: No, the document discusses photosynthesis and genetic code separately
+but does not address genetic engineering.
+
+Q7.10: Does the document suggest that machine learning has solved all problems in image
+recognition?
+Expected Answer: No, it discusses CNN architecture and capabilities but doesn't claim
+perfection or universality.
+
+================================================================================
+CATEGORY 8: TEMPORAL AND SEQUENTIAL REASONING
+================================================================================
+
+These questions test understanding of chronological order and cause-and-effect relationships.
+
+Q8.1: What was the chronological sequence of key space exploration milestones from the
+Soviet Sputnik to human Moon landings?
+Expected Answer: Sputnik 1 (October 1957) → Yuri Gagarin (April 1961) → Alan Shepard
+(May 1961) → Apollo 11 Moon landing (July 1969).
+
+Q8.2: How did the transistor (1947) enable Moore's Law and subsequent computing developments?
+Expected Answer: Transistors are small, reliable, low-power, and can be miniaturized extensively.
+Moore's Law observed that transistor counts doubled every ~2 years, enabling exponential computing
+power growth, which enabled the modern digital revolution.
+
+Q8.3: What was the sequence of major events in the Scientific Revolution that changed how
+humanity understands the natural world?
+Expected Answer: Should mention Copernicus (heliocentric model) → Galileo (observation and
+refinement) → Kepler (orbital mechanics) → Newton (laws of motion and gravity).
+
+Q8.4: How did Newton's laws lead to Einstein's theories of relativity?
+Expected Answer: Newton's laws worked perfectly for most applications; Einstein's theories
+explained phenomena that Newton's laws couldn't (constant light speed, gravity as spacetime
+curvature). Newton's laws remain valid as a special case at everyday scales.
+
+Q8.5: How did the Renaissance historically precede the Scientific Revolution?
+Expected Answer: The Renaissance (14th-17th centuries) renewed interest in classical knowledge
+and emphasized human achievement. This created intellectual conditions that enabled the
+Scientific Revolution (16th-17th centuries) with its focus on observation and mathematical
+reasoning.
+
+Q8.6: What developments in battery technology enabled renewable energy storage solutions?
+Expected Answer: Lithium-ion battery technology advanced with increased energy density and
+dramatic cost declines (89% from 2010-2020), enabling renewable integration by solving
+intermittency problems.
+
+Q8.7: How did the Industrial Revolution (18th century) relate causally to climate change
+(modern issue)?
+Expected Answer: The Industrial Revolution introduced mechanization and fossil fuel burning
+for energy. This pattern of resource extraction and fossil fuel use established patterns
+persisting today, causing increased atmospheric CO2 and the greenhouse effect.
+
+Q8.8: What historical sequence connects the internet's origins (ARPANET, 1969) to the
+World Wide Web (1989)?
+Expected Answer: ARPANET developed TCP/IP protocols for resilient communication and standardized
+data transmission. Later, the World Wide Web (1989) built on top of these protocols to provide
+user-friendly interface for accessing internet resources.
+
+Q8.9: How did Shakespeare's sonnets (late 16th/early 17th century) emerge from broader
+Renaissance and Enlightenment intellectual movements?
+Expected Answer: The Renaissance interest in classical forms and human experience, combined
+with the English language evolution (influenced by Norman Conquest French vocabulary),
+created conditions enabling Shakespeare's sophisticated exploration of love, time, and mortality.
+
+Q8.10: How do the stages of photosynthesis (light-dependent then light-independent reactions)
+represent a temporal sequence?
+Expected Answer: Light-dependent reactions must occur first to generate ATP and NADPH,
+which are then used in subsequent light-independent reactions to fix CO2 into glucose.
+
+================================================================================
+CATEGORY 9: NUMERICAL REASONING AND CALCULATIONS
+================================================================================
+
+These questions test the system's ability to work with numbers from the document.
+
+Q9.1: If the Greenland ice sheet contains enough ice to raise sea levels by 7 meters,
+and sea levels are currently rising at 3.3mm per year, approximately how many years
+would it take for Greenland ice to melt (assuming constant rate)?
+Expected Answer: ~2,121 years (7000mm ÷ 3.3mm/year). Note: this assumes only Greenland
+contributes and rate remains constant—simplifications not explicitly justified in document.
+
+Q9.2: If human activities are responsible for 97% of warming since 1950, what percentage
+would be from natural causes?
+Expected Answer: 3%.
+
+Q9.3: Given that tropical rainforests occupy 10% of global land area but contain 40% of
+terrestrial carbon, how many times more carbon-dense are rainforests than the global average?
+Expected Answer: 4 times more dense (40% ÷ 10% = 4).
+
+Q9.4: If atmospheric CO2 has increased from 280 ppm to 420 ppm, what is the percentage
+increase?
+Expected Answer: Approximately 50% increase ((420-280)/280 × 100 = 50%).
+
+Q9.5: If battery costs declined 89% from 2010 to 2020, and a battery cost $10,000 in 2010,
+approximately what would it cost in 2020?
+Expected Answer: Approximately $1,100 (10,000 × 0.11 = 1,100).
+
+Q9.6: If modern solar panel efficiency is 20-22% and lab results reach 40%, what is the
+approximate improvement potential?
+Expected Answer: Current average is ~21%, potential improvement is ~19 percentage points.
+
+Q9.7: How many astronauts and cosmonauts have visited the ISS if it has hosted "over 250"?
+Expected Answer: At least 250 (document specifies "over 250" so exact number is unclear).
+
+Q9.8: If AMOC has weakened by 15% over the past century, and assuming a baseline circulation
+rate, what would the new circulation rate be?
+Expected Answer: 85% of the original rate (100% - 15% = 85%).
+
+Q9.9: How long is the ISS orbital period if it orbits at 400km altitude and the document
+states it "orbits Earth every 90 minutes"?
+Expected Answer: 90 minutes (document directly states this).
+
+Q9.10: If the ISS has hosted "over 250" astronauts and cosmonauts, and assuming roughly
+equal contributions from the US, Russia, and international partners, approximately how
+many might each have contributed?
+Expected Answer: This requires inference beyond the document. The document doesn't provide
+this breakdown, though it could be estimated (~83-85 each if distributed roughly equally).
+
+================================================================================
+CATEGORY 10: INFERENCE AND IMPLICIT REASONING
+================================================================================
+
+These questions test the system's ability to make reasonable inferences from the document
+without explicit statements.
+
+Q10.1: Based on the document's discussion of the ice-albedo feedback mechanism, what does
+this suggest about the urgency of addressing Arctic climate change?
+Expected Answer: The feedback mechanism suggests Arctic warming is self-reinforcing—melting
+begets more melting—implying urgency and potentially irreversible tipping points.
+
+Q10.2: Given the document's discussion of market failures and externalities, what does this
+suggest about the need for environmental regulation?
+Expected Answer: The document suggests market mechanisms alone may not account for environmental
+costs borne by non-participants, implying regulation may be necessary for efficient allocation.
+
+Q10.3: Why might the document emphasize that transformers can attend to distant tokens despite
+distance?
+Expected Answer: To highlight the architectural advantage over RNNs/LSTMs that struggle with
+long-range dependencies due to sequential processing.
+
+Q10.4: What does the constant-light-speed principle in special relativity suggest about the
+nature of the universe?
+Expected Answer: It suggests something fundamental about the universe's structure that
+transcends observer perspective, implying universal physical laws.
+
+Q10.5: Why does the document note that neural networks have "billions" of neurons in the brain?
+Expected Answer: To convey the enormous complexity and parallel processing capability of
+biological intelligence that artificial systems attempt to approximate.
+
+Q10.6: What does the dramatic cost decline in batteries (89% from 2010-2020) suggest about
+the future viability of renewable energy?
+Expected Answer: That technical/cost barriers to adoption are rapidly diminishing, suggesting
+renewable energy will become increasingly competitive and feasible.
+
+Q10.7: Why does the document discuss both natural carbon sequestration (forests) and soil
+carbon storage?
+Expected Answer: To suggest that multiple natural mechanisms can contribute to addressing
+carbon, and that land management practices can enhance these natural processes.
+
+Q10.8: What does the emphasis on exoplanet discovery and JWST capabilities suggest about
+future astrobiology?
+Expected Answer: That we're entering an era where we may detect biological signatures on
+distant worlds, advancing our understanding of life's prevalence in the universe.
+
+Q10.9: Why does the document discuss translation difficulties and untranslatable concepts?
+Expected Answer: To suggest that language deeply shapes how we perceive and categorize reality,
+and perfect translation may be impossible, requiring cultural and linguistic understanding.
+
+Q10.10: What does the discussion of venture capital funding for startups suggest about
+innovation?
+Expected Answer: That innovation is driven by entrepreneurship and risk-taking, requires capital
+investment beyond self-funding, and benefits from institutional structures supporting new ventures.
+
+================================================================================
+EVALUATION METRICS
+================================================================================
+
+When testing your RAG system against these questions, consider evaluating:
+
+1. RETRIEVAL RECALL
+   - Did the system retrieve all relevant passages?
+   - What percentage of relevant documents were retrieved?
+
+2. RETRIEVAL PRECISION
+   - Were all retrieved documents actually relevant?
+   - How many irrelevant documents were retrieved?
+
+3. RANKING QUALITY
+   - Are the most relevant documents ranked highest?
+   - Is there a logical ranking by relevance?
+
+4. ANSWER CORRECTNESS
+   - Does the generated answer match the expected answer?
+   - Are there factual errors in the response?
+
+5. COMPLETENESS
+   - Does the answer address all parts of the question?
+   - Are important nuances included?
+
+6. SPECIFICITY
+   - Are numerical details correct?
+   - Are qualifications and context preserved?
+
+7. REASONING QUALITY
+   - Can the system synthesize information from multiple sources?
+   - Does it explain causal relationships?
+
+8. HANDLING OF UNCERTAINTY
+   - When information is missing, does the system acknowledge this?
+   - Does it avoid hallucinating missing information?
+
+9. EDGE CASE HANDLING
+   - How does the system handle negation and contradiction?
+   - Does it properly handle questions about absent information?
+
+10. EFFICIENCY
+    - How quickly does the system retrieve and rank documents?
+    - What is the latency of the full RAG pipeline?
+
+================================================================================
+END OF TESTING QUESTIONS
+================================================================================

@@ -57,6 +57,7 @@ class SettingsViewModel @Inject constructor(
     fun setTopK(v: Int) = viewModelScope.launch { prefs.setTopK(v) }
     fun setTemperature(v: Float) = viewModelScope.launch { prefs.setTemperature(v) }
     fun setThinkingMode(v: Boolean) = viewModelScope.launch { prefs.setThinkingMode(v) }
+    fun setContextWindow(v: Int) = viewModelScope.launch { prefs.setContextWindow(v) }
     fun setAutoLock(v: AutoLockDelay) = viewModelScope.launch { prefs.setAutoLock(v) }
     fun setLlmModelPath(path: String) = viewModelScope.launch {
         prefs.setLlmModelPath(path)
@@ -145,6 +146,22 @@ fun SettingsScreen(
                     description = "Enables step-by-step reasoning (slower, more accurate)",
                     checked = settings.thinkingMode,
                     onCheckedChange = viewModel::setThinkingMode
+                )
+
+                Spacer(Modifier.height(16.dp))
+
+                SettingsSliderRow(
+                    label = "Context Window",
+                    value = settings.contextWindow.toFloat(),
+                    range = 2048f..32768f,
+                    steps = 14,
+                    displayValue = "${settings.contextWindow / 1024}K tokens",
+                    onValueChange = { viewModel.setContextWindow(it.toInt()) }
+                )
+                Text(
+                    text = "Larger windows fit more retrieved notes but use more RAM.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 

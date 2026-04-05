@@ -25,6 +25,7 @@ data class AppSettings(
     val topK: Int = 5,
     val temperature: Float = 0.3f,
     val thinkingMode: Boolean = true,
+    val contextWindow: Int = 3072,
     val autoLock: AutoLockDelay = AutoLockDelay.THIRTY_SECONDS,
     val llmModelPath: String = "",
     val embeddingModelPath: String = ""
@@ -38,6 +39,7 @@ class AppPreferences @Inject constructor(
         val TOP_K = intPreferencesKey("top_k")
         val TEMPERATURE = floatPreferencesKey("temperature")
         val THINKING_MODE = booleanPreferencesKey("thinking_mode")
+        val CONTEXT_WINDOW = intPreferencesKey("context_window")
         val AUTO_LOCK = stringPreferencesKey("auto_lock")
         val LLM_MODEL_PATH = stringPreferencesKey("llm_model_path")
         val EMBEDDING_MODEL_PATH = stringPreferencesKey("embedding_model_path")
@@ -48,6 +50,7 @@ class AppPreferences @Inject constructor(
             topK = prefs[TOP_K] ?: 5,
             temperature = prefs[TEMPERATURE] ?: 0.3f,
             thinkingMode = prefs[THINKING_MODE] ?: true,
+            contextWindow = prefs[CONTEXT_WINDOW] ?: 3072,
             autoLock = AutoLockDelay.valueOf(prefs[AUTO_LOCK] ?: AutoLockDelay.THIRTY_SECONDS.name),
             llmModelPath = prefs[LLM_MODEL_PATH] ?: "",
             embeddingModelPath = prefs[EMBEDDING_MODEL_PATH] ?: ""
@@ -64,6 +67,10 @@ class AppPreferences @Inject constructor(
 
     suspend fun setThinkingMode(enabled: Boolean) {
         context.dataStore.edit { it[THINKING_MODE] = enabled }
+    }
+
+    suspend fun setContextWindow(value: Int) {
+        context.dataStore.edit { it[CONTEXT_WINDOW] = value.coerceIn(1024, 32768) }
     }
 
     suspend fun setAutoLock(delay: AutoLockDelay) {

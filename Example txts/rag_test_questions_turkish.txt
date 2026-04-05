@@ -1,0 +1,506 @@
+================================================================================
+RAG PIPELINE TEST SORULARI - TÜRKÇE VERSİYON
+RAG Sisteminin Türkçe Dilinde Kapsamlı Test Soruları
+================================================================================
+
+TEST BAŞLANGIÇ KURALLAR
+Bu sorular RAG pipeline sisteminin aşağıdaki yönlerini test etmek için tasarlanmıştır:
+- Retrieval Kalitesi (Sistem ilgili belgeleri bulabiliyor mu?)
+- Ranking Doğruluğu (En ilgili belgeler en üstte mi sıralanmıştır?)
+- Bütünlüklük (Sistem tüm gerekli bilgileri bulabiliyor mu?)
+- Özgüllük (Sistem bağlamdan spesifik soruları cevaplandırabiliyor mu?)
+- Akıl Yürütme (Sistem birden fazla pasajdan bilgi sentez edebiliyor mu?)
+- Sınır Durumları (Sistem kenar vakalarını nasıl işlemektedir?)
+
+================================================================================
+KATEGORİ 1: BASIT GERÇEKSEL RETRIEVAL (Temel Testler)
+================================================================================
+
+Bu sorular dokümanda açıkça belirtilen tek gerçeklerin temel retrieval testleridir.
+
+S1.1: Osmanlı İmparatorluğu hangi yılda kurulmuştur?
+Beklenen Cevap: 1299 yılında Osman Bey tarafından kurulmuştur.
+
+S1.2: İstanbul'un fethi hangi yılda gerçekleşmiştir?
+Beklenen Cevap: 1453'te İstanbul fethedilmiştir.
+
+S1.3: Mimar Sinan kaç adet yapı tasarlamıştır?
+Beklenen Cevap: 350 yapıdan fazlasını tasarlamıştır.
+
+S1.4: Türkiye'nin toplam alanı kaç kilometre karedir?
+Beklenen Cevap: Yaklaşık 783.562 kilometre karedir.
+
+S1.5: Efes'teki hangi tapınak dünyanın yedi harikasından biridir?
+Beklenen Cevap: Artemis Tapınağı.
+
+S1.6: Troia'yı kazımaya başlayan arkeolog kimdir?
+Beklenen Cevap: Heinrich Schliemann.
+
+S1.7: Yüksek hızlı tren (YHT) hangi yılda hizmet vermeye başlamıştır?
+Beklenen Cevap: 2003 yılında.
+
+S1.8: 2023'te Türkiye'nin depremini hangi fay hattında meydana gelmiştir?
+Beklenen Cevap: Kahramanmaraş Fay Sistemi.
+
+S1.9: Organik tarımın danışmanı olarak kabul edilen yazar kimdir?
+Beklenen Cevap: Albert Howard.
+
+S1.10: CRISPR teknolojisi hangi yılda Nobel Kimya Ödülü'nü kazanmıştır?
+Beklenen Cevap: 2020 yılında.
+
+================================================================================
+KATEGORİ 2: ÇOK-CÜMLELİ RETRIEVAL (Orta Zorluk)
+================================================================================
+
+Bu sorular, bir bölüm içindeki birden fazla cümleden bilgi alınmasını gerektirir.
+
+S2.1: Osmanlı İmparatorluğu'nda devshirme sistemi nedir ve hangi amaçla kullanılmıştır?
+Beklenen Cevap: Devshirme sistemi, gayrimüslim halktan seçilen gençlerin asker ve
+yöneticiye dönüştürüldüğü bir mekanizmadır. Bu sistem imparatorluğun idari ve asker
+kadrolarını sağlamıştır. Yeniçeriler bu sistem aracılığıyla eğitilen Osmanlı ordusunun
+en seçkin birliği olmuştur.
+
+S2.2: Kanuni Sultan Süleyman'ın döneminde Osmanlı'da neler başarılmıştır?
+Beklenen Cevap: Kanuni Sultan Süleyman döneminde Osmanlı İmparatorluğu siyasi, askeri
+ve kültürel anlamda zirvesine ulaşmıştır. 13 büyük askeri kampanyanı yönetmiş ve
+Osmanlı devletinin en geniş sınırlarını belirlemiştir. Sanat, mimar, edebiyat ve ilim
+çok gelişmiş ve Topkapı Sarayı'nda zengin bir saray kültürü oluşturulmuştur.
+
+S2.3: Türkiye'nin ekonomisinin ana sektörleri nelerdir ve oranları nasıldır?
+Beklenen Cevap: Hizmet sektörü yaklaşık %60, imalat sektörü %25-30 ve tarım sektörü
+%8 oranında yer tutmaktadır. Hizmet sektörü turizm, finans ve eğitimi kapsamaktadır.
+
+S2.4: CRISPR teknolojisi nedir ve tıpta nasıl kullanılmaktadır?
+Beklenen Cevap: CRISPR-Cas9 teknolojisi DNA'nın belirli yerlerini keserek ve değiştirerek
+hücrelerde genetik düzenlemeler yapabilmektedir. Bu teknoloji hemofili, seroz hücre
+hastalığı ve bazı kanser türlerinin tedavisinde umut vaat etmektedir.
+
+S2.5: Seljuk mimarisi özellikleri nelerdir?
+Beklenen Cevap: Seljuk mimarisi, İslami tasarım ilkeleri ile Anadolu'nun geometrik
+motifleri birleştirmektedir. Konya, Selçuklu kültür merkezi olup Mevlânâ Türbesi ve
+İnce Minare Medresesi dönemin önemli yapılarıdır.
+
+S2.6: Şehir planlama Osmanlı şehirlerinde nasıl organize edilmiştir?
+Beklenen Cevap: Osmanlı şehirleri benzer bir şekilde organize olmuştur: Ortasında pazar
+meydanı, çevresinde konut bölgeleri, şehir kenarında suq ve şehrin tepelerinde kaleler
+bulunmaktaydı. Su temini temel unsurlarından biriydi.
+
+S2.7: Toprak ve humus ilişkisi nedir?
+Beklenen Cevap: Organik madde (humus), topraktaki ölü bitkilerin ve hayvanların
+parçalanmasından oluşur. Humus, toprak yapısını geliştirmeye, su tutma kapasitesini
+artırmaya ve besin depolama kabiliyetini sağlamaktadır.
+
+S2.8: Levha tektonikleri nedir ve Türkiye'de nasıl görülmektedir?
+Beklenen Cevap: Levha tektonikleri, Dünya'nın dış kabuğunun tektonik levhalara ayrıldığını
+ve hareket ettiğini açıklar. Türkiye, Kuzey Anadolu Fay Hattı, Doğu Anadolu Fay Hattı
+ve Batı Anadolu fayları nedeniyle deprem riski altındadır.
+
+S2.9: E-ticaret ve B2C modeli nedir?
+Beklenen Cevap: E-ticaret, internet üzerinde mal ve hizmet satışını yapan ticaret türüdür.
+B2C modeli, şirketlerin bireysel müşterilere mal ve hizmet satması anlamındadır. Trendyol,
+Amazon Turkey gibi platformlar B2C e-ticaret örnekleridir.
+
+S2.10: Demiryolu Türkiye'de nasıl gelişmiştir?
+Beklenen Cevap: Osmanlı 1856'da ilk demiryolunu açmış, Cumhuriyet döneminde genişletme
+önemli politika olmuş, Ankara-İstanbul, Ankara-Sivas hatları kurulmuştur. Günümüzde
+YHT hizmetleri 320 km/saat hızla çalışmaktadır.
+
+================================================================================
+KATEGORİ 3: BÖLÜMLERİ ARASI SİNTEZ (İleri)
+================================================================================
+
+Bu sorular birden fazla bölümden bilgi alınmasını ve birleştirilmesini gerektirir.
+
+S3.1: Osmanlı İmparatorluğu'ndan Cumhuriyet dönemine geçişin tarihsel ve mimari
+etkileri neler olmuştur?
+Beklenen Cevap: Cevap Osmanlı'nın siyasi ve kültürel gücünden, sonra Cumhuriyet'in
+modernleşme hedeflerine geçişin mimarlıkta nasıl yansıdığını açıklamalıdır. Osmanlı
+tarzından Batı modern mimarisine geçiş gösterilmelidir.
+
+S3.2: Türkiye'nin coğrafik ve jeolojik koşullarının ekonomisine nasıl etki yaptığını
+bağlantılandırın.
+Beklenen Cevap: Türkiye'nin Asya-Avrupa arasında konumu ticaret yollarını önemli
+hale getirmiş, boğazlar uluslararası ticareti kontrol etmiştir. Jeolojik aktiflik
+deprem riskini beraberinde getirmiş, inşaat standartlarını etkilemiştir.
+
+S3.3: Tarımsal yöntemler ekonomik gelişimi nasıl etkilemektedir?
+Beklenen Cevap: Geleneksel tarım yöntemlerinden organik tarıma geçiş, gıda kalitesini
+iyileştirmiş ve dünya pazarına erişim sağlamıştır. Türkiye'nin organik ürünleri
+ihracı ekonomik değer yaratmıştır.
+
+S3.4: İstanbul'un tarihinden modern planlamasına kadar gelişimi nedir?
+Beklenen Cevap: İstanbul 1453'te fethiyle Osmanlı başkenti olmuş, Osmanlı döneminde
+Boğaz tarafından organize edilmiş, modern dönemde metro sistemi kurulmuş ve ulaştırma
+merkezi haline gelmiştir.
+
+S3.5: Teknoloji gelişiminin Türkiye'nin ekonomisine katkısını bağlantılandırın.
+Beklenen Cevap: Demiryolu teknolojisinden YHT'ye, demiryolu ulaştırması ekonomik
+entegrasyon sağlamıştır. Dijital ekonomi ve fintech, modern Türkiye ekonomisini
+dönüştürmektedir.
+
+S3.6: Deprem ve inşaat standartları arasındaki ilişki nedir?
+Beklenen Cevap: 1999 Izmit depreminden sonra bina yönetmeliği sismik kısıtlamalar
+açısından sıkılaştırılmıştır. Deprem riski altındaki Türkiye'de yapı tasarımı jeolojik
+faktörler tarafından belirlenmiştir.
+
+S3.7: Sanat gelişimi ile toplumsal gelişme nasıl bağlantılıdır?
+Beklenen Cevap: Osmanlı'nın zengin sanat ve mimarisi, imparatorluğun gücünü, kültürel
+derinliğini yansıtmıştır. Cumhuriyet döneminin basit mimari tasarımı, yeni ideolojisini
+göstermiştir.
+
+S3.8: Gıda güvenliği ve dijital teknolojinin kullanılması nasıl bağlantılıdır?
+Beklenen Cevap: Gıda zincirinin izlenmesi, blockchian teknolojisiyle sağlanabilir.
+Fintech çözümleri gıda e-ticaret platformlarında ödeme işlemlerini güvenli hale
+getirmektedir.
+
+S3.9: Bilim ve tarih kesişmesinde Troia ve arkeoloji nedir?
+Beklenen Cevap: Homer'in Iliad destanında anlatılan Troia Savaşı tarihsel olduğunu
+19. yüzyılda arkeoloji ispatlamıştır. Arkeoloji bilimi, tarihi belgeleri fiziksel
+kanıtlarla doğrulamaktadır.
+
+S3.10: Türkiye'nin jeolojik, coğrafik ve ekonomik koşullarının yapılı çevre (kentleşme)
+tasarımına etkisi nedir?
+Beklenen Cevap: Jeolojik aktiflik deprem dayanıklı yapı tasarımını zorunlu kılmış,
+coğrafik konumu şehir planlamasında boğazları kontrol etmeyi önemli hale getirmiş,
+ekonomik gelişim hızlı kentleşmeye yol açmıştır.
+
+================================================================================
+KATEGORİ 4: AYRINTILAR VE İNCELİKLER (Yüksek Zorluk)
+================================================================================
+
+Bu sorular belirli sayısal detayları, nüanslari ve sınırlamaları yakalama yeteneğini test eder.
+
+S4.1: Osmanlı İmparatorluğu ne kadar sürmüştür?
+Beklenen Cevap: Yaklaşık 600 yıl sürmüştür (1299-1923).
+
+S4.2: Türkiye'nin 2024 nüfusu nedir?
+Beklenen Cevap: 87 milyonu aşmıştır.
+
+S4.3: Türkiye'nin hizmet sektörü GSYİH'ının ne kadarını oluşturmaktadır?
+Beklenen Cevap: Yaklaşık %60'ını.
+
+S4.4: YHT hızı kaç km/saattir?
+Beklenen Cevap: Yaklaşık 320 km/saat.
+
+S4.5: İstanbul Metro kaç hat ve kaç km uzunluğundadır?
+Beklenen Cevap: 16 hat ile 226 km uzunluğundadır.
+
+S4.6: Türkiye'nin organik tarım alanı ne kadar hektardır?
+Beklenen Cevap: 1.4 milyon hektarı aşmıştır.
+
+S4.7: 2023'te Türkiye'de meydana gelen depremler kaç magnitude'da olmuştur?
+Beklenen Cevap: 7.8 ve 7.5 magnitude.
+
+S4.8: 2023'te Türkiye'de kaç can kaybı meydana gelmiştir?
+Beklenen Cevap: 50 binden fazla.
+
+S4.9: Mimar Sinan kaç yüzyılda yaşamıştır?
+Beklenen Cevap: 16. yüzyılda (1489-1588).
+
+S4.10: 2019'da Türkiye kaç uluslararası turist ağırlamıştır?
+Beklenen Cevap: 51 milyondan fazla.
+
+================================================================================
+KATEGORİ 5: KARŞILAŞTIRMALI VE ANALİTİK (Yorum)
+================================================================================
+
+Bu sorular farklı kavramları karşılaştırma veya ticari ve çıkarımlar analiz etmeyi gerektirir.
+
+S5.1: Osmanlı ve Cumhuriyet döneminin mimarisi arasında farklar nelerdir?
+Beklenen Cevap: Osmanlı mimarisi İslami, Bizans ve Türk geleneklerinin sentezi olup,
+kubbe ve sahanın büyüklüğü ile karakterize edilmektedir. Cumhuriyet döneminin basit
+modern mimarisi, yeni devletin ideolojisini yansıtmıştır.
+
+S5.2: Konvansiyonel tarım ve organik tarım arasında farklar nelerdir?
+Beklenen Cevap: Konvansiyonel tarım kimyasal gübre ve pestisitler kullanmakta,
+organik tarım doğal süreçleri desteklemektedir. Organik tarım toprak sağlığını ve
+çevre koruma ile ilgilenmektedir.
+
+S5.3: Blockchain ve geleneksel finans sistemi arasında farklar nelerdir?
+Beklenen Cevap: Blockchain dağıtılmış bir kayıt sistemi olup şeffaflık ve değişmezlik
+sağlarken, geleneksel finans merkezi bir otorite tarafından kontrol edilmektedir.
+
+S5.4: İstanbul Boğazı'nın tarihsel ve ekonomik önemi nedir?
+Beklenen Cevap: İstanbul Boğazı Karadeniz ile Akdeniz arasında bağlantı sağlamakta,
+uluslararası ticaretin ana arteri ve jeopolitik kontrolün merkezi konumdadır.
+
+S5.5: Epiblast analitik teknolojisinin avantajları ve dezavantajları nelerdir?
+Beklenen Cevap: Avantajları erken teşhis, dezavantajları etik kaygılar ve toplumsal
+tartışmalarıdır.
+
+S5.6: Türkiye'nin tarımsal ve sanayi kesimlerinin ekonomiye katkıları karşılaştırın.
+Beklenen Cevap: Hizmet sektörü %60 ile en büyük kontribütör olup, imalat %25-30 ve
+tarım %8 ile daha az katılımdadır.
+
+S5.7: Şehir merkezleşmesi ve coğrafik belirlenimcilik ilişkisi nedir?
+Beklenen Cevap: Boğazlar ve limanlar şehir merkezlerinin konumunu belirlemiş,
+jeolojik faktörler yapı tasarımını etkilemiştir.
+
+S5.8: Dijital ekonomi geleneksel ekonomi ile nasıl farklıdır?
+Beklenen Cevap: Dijital ekonomi veri-tabanında, internet-tabanlı ve teknoloji-
+merkezlidir. Geleneksel ekonomi fiziksel mallar ve hizmetler üzerine inşa edilmiştir.
+
+S5.9: Türkiye'nin enerji kaynakları karşılaştırması (kömür, doğal gaz, yenilenebilir)
+Beklenen Cevap: Elektrik üretiminin %30'u yenilenebilir kaynaklardan gelmektedir.
+Son yıllarda güneş ve rüzgar enerjisine yatırımlar artmıştır.
+
+S5.10: Levha tektonikleri ve deprem hazırlığı arasında ilişki nedir?
+Beklenen Cevap: Levha hareketleri deprem oluşturur, Türkiye'de bina yönetmelikleri
+deprem riskine göre düzenlenmiştir.
+
+================================================================================
+KATEGORİ 6: EKSIK BİLGİ VE SINIRLAMA DURUMLARI (Dayanıklılık Testi)
+================================================================================
+
+Bu sorular sistemin belgede olmayan veya boşluklardan çıkarım gerektiren soruları
+nasıl işlediğini test eder.
+
+S6.1: Türkiye'nin yenilenebilir enerji hedefleri 2030 yılında nedir?
+Beklenen Cevap: Belge, %30 mevcut yenilenebilir enerji oranını vermektedir fakat
+2030 hedefini vermemektedir. Sistem bunu belirtmelidir.
+
+S6.2: 2023'te depremden sonra Türkiye'nin ekonomik kayıpları ne kadarıdır?
+Beklenen Cevap: Belge can kaybını verir fakat ekonomik hasarı vermemektedir.
+Sistem bu farkı belirtmelidir.
+
+S6.3: Hangi spesifik politikalar iklim değişikliğini çözmektedir?
+Beklenen Cevap: Belge genel çevre konularını ancak spesifik politikaları vermemektedir.
+
+S6.4: Troia'nın bulunduğu Çanakkale'nin turizm potansiyeli nedir?
+Beklenen Cevap: Belge Troia hakkında verir ancak Çanakkale turizmine değinmez.
+
+S6.5: Mimar Sinan'ın yaşadığı dönem sosyal koşulları nedir?
+Beklenen Cevap: Belge Sinan'ın yapılarını tanıtır ancak sosyal bağlamı vermemektedir.
+
+S6.6: Organik tarımcılık için Türkiye'deki yazılı düzenlemeler nedir?
+Beklenen Cevap: Belge organik tarımın başarısını verir ancak yasal çerçeveyi vermemektedir.
+
+S6.7: Blockchain teknolojisi Türkiye'de nasıl düzenlenmiştir?
+Beklenen Cevap: Belge blockchain teknolojisini açıklar ancak Türkiye-spesifik
+düzenlemesini vermemektedir.
+
+S6.8: Deprem sonrası insan psikolojik travması nasıl tedavi edilmektedir?
+Beklenen Cevap: Belge deprem tekniğini verir ancak psikolojik yardımı vermemektedir.
+
+S6.9: Osmanlı'nın Avrupa'da nasıl algılandığı nedir?
+Beklenen Cevap: Belge Osmanlı yönetimini verir ancak batı algısını vermemektedir.
+
+S6.10: Türkiye'nin AB üyelik müzakereleri durumu nedir?
+Beklenen Cevap: Belge NATO ve AK üyeliğini belirtir ancak AB konusu açıkça verilmez.
+
+================================================================================
+KATEGORİ 7: NEGASİYON VE ÇELIŞKILILIK TESTI
+================================================================================
+
+Bu sorular negasyon, yokluk ve potansiyel çelişkileri işleme yeteneğini test eder.
+
+S7.1: Belge Türkiye'nin hangi boğazlarından bahsetmektedir?
+Beklenen Cevap: Çanakkale Boğazı ve İstanbul Boğazı.
+
+S7.2: Devshirme sistemi tüm nüfustan mı uygulanmıştır?
+Beklenen Cevap: Hayır, yalnızca gayrimüslim halktan seçilen gençlerde uygulanmıştır.
+
+S7.3: Organik tarım hiç pestisit kullanmıyor mu?
+Beklenen Cevap: Evet, belge kimyasal pestisitler kullanmadığını belirtir.
+
+S7.4: 2023 depremi Türkiye'nin en büyük depremi miydi?
+Beklenen Cevap: Belge "tarihin en ölümcül" olduğunu belirtir ancak "en büyük"
+olduğunu değil.
+
+S7.5: Tüm e-ticaret platformları B2C modelini mi kullanmaktadır?
+Beklenen Cevap: Hayır, B2B e-ticareti de mevcuttur.
+
+S7.6: Yapay zeka finans sektörüne hiç çıkış sağlamıyor mu?
+Beklenen Cevap: Hayır, risk değerlendirmesi, sahte işlem tespiti gibi uygulamalarda
+kullanılmaktadır.
+
+S7.7: Osmanlı mimarisi tamamen İslami mimariye mi dayanmaktadır?
+Beklenen Cevap: Hayır, Bizans ve Anadolu gelenekleri de sentezin parçasıdır.
+
+S7.8: Tüm Türkiye bölgeleri deprem riski altında mıdır?
+Beklenen Cevap: Hayır, ancak belge ana fay hatlarını belirtir (Güneydoğu deprem riski yüksek).
+
+S7.9: YHT Türkiye'nin tüm şehirlerine gidiyor mu?
+Beklenen Cevap: Hayır, belge belirli hatları (Ankara-İstanbul) belirtir.
+
+S7.10: Blockchain mutlak güvenli bir teknoloji midir?
+Beklenen Cevap: Hayır, siber güvenlik tehditleri vardır. Sistem bu sınırlamayı belirtmelidir.
+
+================================================================================
+KATEGORİ 8: ZAMANSAL VE SIRASAL AKIL YÜRÜTME
+================================================================================
+
+Bu sorular kronolojik sırayı ve neden-sonuç ilişkilerini anlamayı test eder.
+
+S8.1: Osmanlı'nın kurulușundan 1453 fetihine kadarki tarihsel sırası nedir?
+Beklenen Cevap: 1299 kuruluş, yaklaşık 150 yıl başkent olmayan Anadolu beyliği,
+sonra 1453 İstanbul fethi ile çıkış.
+
+S8.2: Seljuk mimarisinden Osmanlı mimarisine geçişin tarihsel süreci nedir?
+Beklenen Cevap: Selçuklular 12.-13. yüzyıl, Osmanlılar 14.-16. yüzyıl, mimarisi
+gelenekten mirasa dönüşmüş.
+
+S8.3: Tanzimat Reformlarından Lozan Anlaşması'na kadar ne olmuştur?
+Beklenen Cevap: 1839 Tanzimat Başlangıcı, 1920 Sevr (olumsuz), 1923 Lozan (pozitif
+sonuç).
+
+S8.4: Cumhuriyet'in kurulmasindan YHT açılışına kadarki ulaştırma gelişimi nedir?
+Beklenen Cevap: 1923 geleneksel demiryolları, sonra modernizasyon, 2003 YHT hizmetleri.
+
+S8.5: Bilim ve teknolojedeki gelişmeler deprem hazırlığına nasıl katkı sağlamıştır?
+Beklenen Cevap: Sismometreler, levha tektonikleri anlaşılması, 1999'dan sonra
+bina yönetmeleikleri iyileştirilmesi.
+
+S8.6: Genetik mühendisliğinin başından CRISPR'a kadarki gelişimi nedir?
+Beklenen Cevap: 1970'ler rekombinat DNA, son yıllarda CRISPR, Nobel 2020.
+
+S8.7: Demiryolundan dijital ekonomiye tarih nedir?
+Beklenen Cevap: 1856 ilk demiryolu, 2003 YHT, şimdi e-ticaret ve blockchain.
+
+S8.8: Organik tarımcılığın tarihsel gelişimi nedir?
+Beklenen Cevap: 1940'lar Albert Howard, 1970'ler hareket, günümüzde Türkiye'de
+1.4 milyon hektar.
+
+S8.9: Osmanlı'nın İstanbul fethinden Kanuni dönemine kadar olan gelişimi nedir?
+Beklenen Cevap: 1453 fetih, sanat kültürü gelişimi, Kanuni'de zirve.
+
+S8.10: Turist taşımacılığının gelişimi tarihsel olarak nedir?
+Beklenen Cevap: Demiryolu, daha sonra havacılık (Turkish Airlines), günümüzde
+51 milyon turist.
+
+================================================================================
+KATEGORİ 9: SAYıSAL AKIL YÜRÜTME VE HESAPLAMA
+================================================================================
+
+Bu sorular belgedeki sayıları kullanarak hesaplama yeteneğini test eder.
+
+S9.1: Osmanlı İmparatorluğu'nun kurulușundan 1923'e kadarki hükümdarlık süresi kaç
+yıldır?
+Beklenen Cevap: 624 yıl (1299-1923).
+
+S9.2: Türkiye'nin hizmet sektörü %60 ise ve imalat %25-30 ise, tarım yaklaşık
+kaç % kaldı?
+Beklenen Cevap: Yaklaşık %10-15 kalır (100-60-25-30 = -15 ile 100-60-25 = 15).
+
+S9.3: İstanbul Metro 16 hat ile 226 km ise, ortalama hat başına kaç km düşer?
+Beklenen Cevap: Yaklaşık 14.1 km (226 ÷ 16 = 14.125).
+
+S9.4: Mimar Sinan'ın tasarladığı 350 yapısı 50 yıl içinde yapıldıysa, ortalama
+yılda kaç yapı tasarlamıştır?
+Beklenen Cevap: Ortalama 7 yapı/yıl (350 ÷ 50 = 7).
+
+S9.5: Türkiye'nin alanı 783.562 km² ise ve Anadolu (Asya) kısmı 3/4'ü ise, Trakya
+yaklaşık kaç km² dir?
+Beklenen Cevap: Yaklaşık 195.000 km² (783.562 ÷ 4 ≈ 195.891).
+
+S9.6: 2019'da 51 milyon turist gelmiş, 2024'de hâlâ o sayıda ise, deprem ne kadar
+turist kaybına yol açmış olabilir?
+Beklenen Cevap: Belge bunu hesaplamak için yeterli veri sağlamaz (2023-2024 sayıları yok).
+
+S9.7: Cumhuriyet 1923'te kuruldu, YHT 2003'te açıldı, arası kaç yıldır?
+Beklenen Cevap: 80 yıl.
+
+S9.8: Türkiye'nin 2024 nüfusu 87 milyon, 2019'da 82 milyon idiyse (varsayım),
+5 yılda kaç milyon arttı?
+Beklenen Cevap: 5 milyon (87-82 = 5), yıllık ortalama 1 milyon.
+
+S9.9: Organik tarım alanı 1.4 milyon hektar ise ve Türkiye'nin toplam tarım alanı
+20 milyon hektar idiyse (varsayım), % kaçı organik?
+Beklenen Cevap: %7 (1.4 ÷ 20 = 0.07 = 7%).
+
+S9.10: 2023'te 50.000+ ölüm varsa ve nüfus 87 milyon ise, ölüm oranı kaç %?
+Beklenen Cevap: 0.057% (50.000 ÷ 87.000.000 = 0.000575 = 0.0575%).
+
+================================================================================
+KATEGORİ 10: ÇIKARIM VE KAYNAKLI AKIL YÜRÜTME
+================================================================================
+
+Bu sorular belgedeki örtük ifadeleri okumak ve mantıklı çıkarımlara varmayı test eder.
+
+S10.1: Osmanlı'nın 600 yıl sürmüş olması tarihsel stabilitesi hakkında ne söyler?
+Beklenen Cevap: Uzun süren bir medeniyetin güçlü yönetim, kültür ve ordu sistemine
+sahip olduğunu gösterir.
+
+S10.2: 2023'te "en ölümcül deprem" neden oldu, bunun coğrafik ve sosyal sonuçları
+ne olabilir?
+Beklenen Cevap: Çıkarım: Güneydoğu bölgesi en riskli, yapı standardları sıkı olmalı,
+sosyal destek gerekli.
+
+S10.3: Organik tarımcılığa Türkiye'nin (1.4 milyon hektar) neden geçtiğini neler
+açıklar?
+Beklenen Cevap: Çıkarım: Sağlık bilinci, dünya pazarının talebi, çevre koruması.
+
+S10.4: YHT'nin kurulması Türkiye'nin modernleşme hedefini gösterir mi?
+Beklenen Cevap: Evet, teknoloji alımı, altyapı yatırımı ve ulaştırma integrasyonu
+gösterir.
+
+S10.5: CRISPR teknolojisinin hastalıkları tedavide kullanılması nedir?
+Beklenen Cevap: Tıbbi ilerlemeler, iyileştirilmiş yaşam kalitesi, etik tartışmalar.
+
+S10.6: Dijital ekonominin Türkiye'deki hızlı büyümesi ne açıklar?
+Beklenen Cevap: Genç nüfus, internet yayılımı, e-ticaret altyapısı ve fintech ilgisi.
+
+S10.7: İstanbul'un 16 milyon nüfusu neden vardır?
+Beklenen Cevap: Tarihsel merkez, ekonomik şans, iş imkanları, göç.
+
+S10.8: Mimar Sinan'ın 350 yapısı imparatorluğun gücünü gösterir mi?
+Beklenen Cevap: Evet, kültürel çıktı, tasarım yeteneği, dostluk sürü.
+
+S10.9: Blokchain ve kripto paranın ABD'de neden yasaklanmadığını açıklayan nedir?
+Beklenen Cevap: Belge spesifik olarak açıklaması vermez, ancak fintech inovasyonu
+vurgular.
+
+S10.10: Tanzimat Reformları neden başarısız oldu? Levha tektonikleri Türkiye'de
+deprem oluşturmaya devam ediyor, bunun ülkemize maliyeti nedir?
+Beklenen Cevap: Reformlar kültürel dirençle karşılaştı. Deprem maliyeti can kaybı,
+ekonomik zarar ve sosyal travma içerir. Sistem çok katmanlı çıkarmalar yapmalıdır.
+
+================================================================================
+DEĞERLENDİRME METRİKLERİ
+================================================================================
+
+RAG sisteminizi bu sorularla test ederken şunları değerlendirin:
+
+1. RETRIEVAL RECALL (GERİ ÇAĞIRMA)
+   - Sistem tüm ilgili belgeleri buldu mu?
+   - İlgili belgelerin kaç % si alındı?
+
+2. RETRIEVAL PRECISION (İKİLİK)
+   - Alınan tüm belgeler gerçekten ilgili mi?
+   - Kaç irrelevant belge alındı?
+
+3. RANKING KALİTESİ
+   - En ilgili belgeler en üstte mi sıralanmış?
+   - İlgililik sıraması mantıklı mı?
+
+4. CEVAP DOĞRULUĞU
+   - Üretilen cevap beklenen cevapla eşleşiyor mu?
+   - Cevaptaki gerçeksel hatalar var mı?
+
+5. TAM KAPSAM
+   - Cevap sorunun tüm kısımlarını ele alıyor mu?
+   - Önemli nüanslar dahil ediliyor mu?
+
+6. ÖZGÜLLÜK
+   - Sayısal detaylar doğru mu?
+   - Nitelikler ve sınırlamalar korunmuş mu?
+
+7. AKIL YÜRÜTME KALİTESİ
+   - Sistem birden fazla kaynaktan bilgi sentez edebiliyor mu?
+   - Nedensel ilişkileri açıklıyor mu?
+
+8. BELİRSİZLİK İDARESİ
+   - Eksik bilgilerde sistem bunu kabul ediyor mu?
+   - Hallüsinasyon yapıyor mu?
+
+9. SINIR DURUM İDARESİ
+   - Sistem negasyon ve çelişkileri işlemiyor mu?
+   - Absent bilgileri nasıl işlemektedir?
+
+10. VERİMLİLİK
+    - Belgeler ne kadar hızlı alınıyor?
+    - Tüm RAG pipeline'ının latency'si nedir?
+
+================================================================================
+TEST SORULARI SONU
+================================================================================
