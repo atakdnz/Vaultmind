@@ -10,7 +10,7 @@ Usage:
 
     # With custom parameters:
     python vault_builder.py --input notes.txt --output my_vault.rvault \\
-        --password mypassword --chunk-size 256 --chunk-overlap 40 --embedding-dim 768
+        --password mypassword --chunk-size 128 --chunk-overlap 20 --embedding-dim 768
 
 Transfer the .rvault file to your phone via USB, Nearby Share, or ADB push,
 then import it in VaultMind using "Import from PC".
@@ -80,7 +80,7 @@ def split_recursive(text: str, max_chars: int, separators: list[str]) -> list[st
     return result
 
 
-def chunk_text(text: str, target_tokens: int = 256, overlap_tokens: int = 40) -> list[dict]:
+def chunk_text(text: str, target_tokens: int = 128, overlap_tokens: int = 20) -> list[dict]:
     """
     Split text into overlapping chunks.
     Returns list of dicts: {index, content, token_count}.
@@ -200,8 +200,8 @@ def build_vault(
     input_path: str,
     output_path: str,
     password: str,
-    chunk_size: int = 256,
-    chunk_overlap: int = 40,
+    chunk_size: int = 128,
+    chunk_overlap: int = 20,
     embedding_dim: int = 768
 ) -> None:
     print(f"\nVaultMind Vault Builder")
@@ -267,8 +267,8 @@ def main():
     parser.add_argument("--input", "-i", required=True, help="Input .txt file path")
     parser.add_argument("--output", "-o", required=True, help="Output .rvault file path")
     parser.add_argument("--password", "-p", required=True, help="Encryption password")
-    parser.add_argument("--chunk-size", type=int, default=256, help="Tokens per chunk (default: 256)")
-    parser.add_argument("--chunk-overlap", type=int, default=40, help="Overlap tokens (default: 40)")
+    parser.add_argument("--chunk-size", type=int, default=128, help="Tokens per chunk (default: 128)")
+    parser.add_argument("--chunk-overlap", type=int, default=20, help="Overlap tokens (default: 20)")
     parser.add_argument(
         "--embedding-dim", type=int, default=768, choices=[256, 768],
         help="Embedding dimension: 768 (full) or 256 (fast) (default: 768)"

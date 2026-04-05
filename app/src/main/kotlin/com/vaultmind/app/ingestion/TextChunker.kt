@@ -4,8 +4,8 @@ package com.vaultmind.app.ingestion
  * Recursive text splitter that respects paragraph and sentence boundaries.
  *
  * Chunking strategy (matching the plan):
- *  - Target chunk size: 256 tokens (~1024 characters for Turkish/multilingual text)
- *  - Overlap: 40 tokens (~160 characters)
+ *  - Target chunk size: 128 tokens (~512 characters for Turkish/multilingual text)
+ *  - Overlap: 20 tokens (~80 characters)
  *  - Priority: split on double-newline (paragraphs) → newline → ". " → " "
  *
  * Token count approximation: 1 token ≈ 4 characters for Turkish text.
@@ -13,8 +13,8 @@ package com.vaultmind.app.ingestion
  * bundled with EmbeddingGemma (see: plan § Notes for Coding Agent, point 3).
  */
 class TextChunker(
-    private val targetTokens: Int = 256,
-    private val overlapTokens: Int = 40
+    private val targetTokens: Int = 128,
+    private val overlapTokens: Int = 20
 ) {
     companion object {
         // 1 token ≈ 4 characters (conservative estimate for Turkish/multilingual)

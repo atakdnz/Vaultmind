@@ -6,6 +6,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -30,6 +32,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,6 +42,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+
+/** Clean overlap values per chunk size. */
+private fun overlapFor(size: Int) = when (size) {
+    64 -> 10; 128 -> 20; 256 -> 40; 512 -> 80; else -> size / 6
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -53,13 +61,14 @@ fun ImportScreen(
     var pendingTxtUri by remember { mutableStateOf<Uri?>(null) }
     var pendingRvaultUri by remember { mutableStateOf<Uri?>(null) }
     var rvaultPassword by remember { mutableStateOf("") }
+    var chunkSize by remember { mutableIntStateOf(128) }
 
     val txtPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument()
     ) { uri ->
         if (uri != null) {
             pendingTxtUri = uri
-            viewModel.importTxt(uri, vaultId)
+            viewModel.importTxt(uri, vaultId, chunkSize = chunkSize, chunkOverlap = overlapFor(chunkSize))
         }
     }
 
@@ -98,6 +107,8 @@ fun ImportScreen(
             when (val s = state) {
                 ImportUiState.Idle -> {
                     ImportIdleContent(
+                        chunkSize = chunkSize,
+                        onChunkSizeChange = { chunkSize = it },
                         onPickTxt = { txtPicker.launch(arrayOf("text/plain")) },
                         onPickRvault = { rvaultPicker.launch(arrayOf("*/*")) },
                         pendingRvaultUri = pendingRvaultUri,
@@ -141,6 +152,8 @@ fun ImportScreen(
 
 @Composable
 private fun ImportIdleContent(
+    chunkSize: Int,
+    onChunkSizeChange: (Int) -> Unit,
     onPickTxt: () -> Unit,
     onPickRvault: () -> Unit,
     pendingRvaultUri: Uri?,
@@ -154,10 +167,34 @@ private fun ImportIdleContent(
         fontWeight = FontWeight.SemiBold
     )
     Text(
-        text = "Pick a .txt file — it will be chunked and embedded entirely on this device. The original file is never copied into app storage.",
+        text = "Pick a .txt file \u2014 it will be chunked and embedded entirely on this device. The original file is never copied into app storage.",
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.onSurfaceVariant
     )
+
+    // Chunk size selector
+    Text(
+        text = "Chunk size",
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        listOf(64, 128, 256, 512).forEach { size ->
+            FilterChip(
+                selected = chunkSize == size,
+                onClick = { onChunkSizeChange(size) },
+                label = { Text("$size") }
+            )
+        }
+    }
+    Text(
+        text = "${chunkSize} tokens per chunk, ${overlapFor(chunkSize)} token overlap. Smaller chunks give more precise retrieval.",
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+
     Button(
         onClick = onPickTxt,
         modifier = Modifier.fillMaxWidth()

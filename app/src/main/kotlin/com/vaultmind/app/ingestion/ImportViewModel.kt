@@ -30,11 +30,15 @@ class ImportViewModel @Inject constructor(
     private val _state = MutableStateFlow<ImportUiState>(ImportUiState.Idle)
     val state: StateFlow<ImportUiState> = _state.asStateFlow()
 
-    fun importTxt(fileUri: Uri, vaultId: String) {
+    fun importTxt(fileUri: Uri, vaultId: String, chunkSize: Int = 128, chunkOverlap: Int = 20) {
         if (_state.value is ImportUiState.InProgress) return
         viewModelScope.launch {
             if (!ensureEmbeddingModelLoaded()) return@launch
-            val result = onDeviceIngestion.ingest(fileUri, vaultId) { progress ->
+            val result = onDeviceIngestion.ingest(
+                fileUri, vaultId,
+                chunkSize = chunkSize,
+                chunkOverlap = chunkOverlap
+            ) { progress ->
                 _state.value = ImportUiState.InProgress(progress)
             }
             _state.value = when (result) {

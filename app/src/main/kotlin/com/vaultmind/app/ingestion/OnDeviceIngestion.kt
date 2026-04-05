@@ -44,13 +44,17 @@ class OnDeviceIngestion @Inject constructor(
     /**
      * Ingest the text file at [fileUri] into [vaultId].
      *
-     * @param fileUri    SAF content URI of the .txt file.
-     * @param vaultId    Target vault UUID.
-     * @param onProgress Callback invoked after each chunk is embedded.
+     * @param fileUri       SAF content URI of the .txt file.
+     * @param vaultId       Target vault UUID.
+     * @param chunkSize     Target tokens per chunk (default: 128).
+     * @param chunkOverlap  Overlap tokens between adjacent chunks (default: 20).
+     * @param onProgress    Callback invoked after each chunk is embedded.
      */
     suspend fun ingest(
         fileUri: Uri,
         vaultId: String,
+        chunkSize: Int = 128,
+        chunkOverlap: Int = 20,
         onProgress: (IngestionProgress) -> Unit = {}
     ): IngestionResult = withContext(Dispatchers.IO) {
         // Step 1: Read file via SAF — do NOT copy, read stream directly
@@ -68,9 +72,10 @@ class OnDeviceIngestion @Inject constructor(
 
         onProgress(IngestionProgress(0, 0, "Chunking text…"))
 
-        // Step 2: Chunk the text
+        // Step 2: Chunk the text with user-specified parameters
+        val localChunker = TextChunker(targetTokens = chunkSize, overlapTokens = chunkOverlap)
         val chunks = try {
-            chunker.chunk(text)
+            localChunker.chunk(text)
         } catch (e: Exception) {
             return@withContext IngestionResult.Error("Chunking failed: ${e.message}")
         }
