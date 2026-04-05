@@ -65,7 +65,7 @@
     <!-- Model setup -->
     <string name="model_setup_title">Model Setup Required</string>
     <string name="model_setup_desc">Place the following files in your Downloads folder, then tap the button below:</string>
-    <string name="model_setup_llm">Gemma 4 E4B model (.task or .bin, ~4-5 GB)</string>
+    <string name="model_setup_llm">Gemma 4 E4B model (.litertlm, ~4-5 GB)</string>
     <string name="model_setup_embedding">EmbeddingGemma 300M (.tflite, ~150-200 MB)</string>
     <string name="model_setup_locate">Locate Models</string>
 
