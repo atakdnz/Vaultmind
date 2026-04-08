@@ -1,5 +1,7 @@
 package com.vaultmind.app.rag
 
+import android.os.SystemClock
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaultmind.app.ingestion.EmbeddingEngine
@@ -7,13 +9,13 @@ import com.vaultmind.app.settings.AppPreferences
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import android.util.Log
 import javax.inject.Inject
 
 /** A single source retrieved from the local vault. */
@@ -39,6 +41,10 @@ class ChatViewModel @Inject constructor(
     private val appPreferences: AppPreferences,
     private val modelSessionManager: ModelSessionManager
 ) : ViewModel() {
+    companion object {
+        // Flushing tokens in short batches reduces UI churn without losing the streaming feel.
+        private const val STREAM_UI_UPDATE_INTERVAL_MS = 40L
+    }
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
     val messages: StateFlow<List<ChatMessage>> = _messages.asStateFlow()
@@ -69,6 +75,8 @@ class ChatViewModel @Inject constructor(
 
     private var activeVaultId: String? = null
     private var generationJob: Job? = null
+    private var activeStreamingMessageId: Long? = null
+    private var activeResponseBuilder: StringBuilder? = null
 
     init {
         // When the vault is locked (vaults list becomes empty after being non-empty),
@@ -83,6 +91,7 @@ class ChatViewModel @Inject constructor(
                         activeVaultId = null
                         _vaultChunkCount.value = null
                         _userInstructions.value = ""
+                        resetStreamingState()
                         _isGenerating.value = false
                     }
                 }
@@ -96,6 +105,7 @@ class ChatViewModel @Inject constructor(
             clearChat()
             _vaultChunkCount.value = null
             _userInstructions.value = ""
+            resetStreamingState()
         }
         activeVaultId = vaultId
         refreshVaultState()
@@ -134,6 +144,8 @@ class ChatViewModel @Inject constructor(
         val userMsg = ChatMessage(isUser = true, text = userText.trim())
         val streamingMsg = ChatMessage(isUser = false, text = "", isStreaming = true, statusHint = "Processing…")
 
+        activeStreamingMessageId = streamingMsg.id
+        activeResponseBuilder = StringBuilder()
         _messages.value = _messages.value + userMsg + streamingMsg
         _isGenerating.value = true
 
@@ -169,18 +181,19 @@ class ChatViewModel @Inject constructor(
                 updateStreamingHint("Preparing response…")
 
                 // Step 4: Stream response
-                val responseBuilder = StringBuilder()
+                val responseBuilder = activeResponseBuilder ?: StringBuilder().also {
+                    activeResponseBuilder = it
+                }
+                var lastUiFlushMs = SystemClock.elapsedRealtime()
                 llmEngine.generateStream(prompt).collect { token ->
                     responseBuilder.append(token)
-                    // Update the streaming message in-place
-                    val current = _messages.value.toMutableList()
-                    val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
-                    if (streamIdx >= 0) {
-                        current[streamIdx] = current[streamIdx].copy(
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastUiFlushMs >= STREAM_UI_UPDATE_INTERVAL_MS) {
+                        updateStreamingMessage(
                             text = responseBuilder.toString(),
                             statusHint = null
                         )
-                        _messages.value = current
+                        lastUiFlushMs = now
                     }
                 }
 
@@ -194,25 +207,22 @@ class ChatViewModel @Inject constructor(
                     )
                 }
 
-                val current = _messages.value.toMutableList()
-                val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
-                if (streamIdx >= 0) {
-                    current[streamIdx] = current[streamIdx].copy(
-                        text = finalResponse,
-                        sources = sourceExcerpts,
-                        isStreaming = false
-                    )
-                    _messages.value = current
-                }
+                finishStreamingMessage(
+                    text = finalResponse,
+                    sources = sourceExcerpts
+                )
 
                 // Step 6: Update history (ephemeral — not persisted to disk)
                 historyTurns.add(PromptBuilder.Turn(userText, finalResponse))
                 if (historyTurns.size > maxHistoryTurns) {
                     historyTurns.removeAt(0)
                 }
+            } catch (_: CancellationException) {
+                // Manual stop finalizes the visible partial text separately.
             } catch (e: Exception) {
                 appendError("Error: ${e.message}")
             } finally {
+                resetStreamingState()
                 _isGenerating.value = false
             }
         }
@@ -234,8 +244,7 @@ class ChatViewModel @Inject constructor(
 
     private fun appendError(message: String) {
         val current = _messages.value.toMutableList()
-        // Replace streaming placeholder if it exists
-        val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
+        val streamIdx = findStreamingMessageIndex(current)
         if (streamIdx >= 0) {
             current[streamIdx] = current[streamIdx].copy(text = message, isStreaming = false)
         } else {
@@ -243,6 +252,7 @@ class ChatViewModel @Inject constructor(
         }
         _messages.value = current
         _isGenerating.value = false
+        resetStreamingState()
     }
 
     /** Save user instructions for this vault. */
@@ -263,6 +273,7 @@ class ChatViewModel @Inject constructor(
     fun clearChat() {
         _messages.value = emptyList()
         historyTurns.clear()
+        resetStreamingState()
     }
 
     fun setTopK(k: Int) { _topK.value = k.coerceIn(1, 15) }
@@ -270,38 +281,83 @@ class ChatViewModel @Inject constructor(
 
     /** Stop the current generation. Cancels the coroutine which triggers conversation.cancelProcess(). */
     fun stopGeneration() {
+        val partial = activeResponseBuilder?.toString()?.let(::cleanResponse).orEmpty()
         generationJob?.cancel()
         generationJob = null
-        // Finalize the streaming message with whatever text we have so far
-        val current = _messages.value.toMutableList()
-        val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
-        if (streamIdx >= 0) {
-            val partial = current[streamIdx].text.let { cleanResponse(it) }
-            if (partial.isBlank()) {
-                current.removeAt(streamIdx)
-            } else {
-                current[streamIdx] = current[streamIdx].copy(
-                    text = partial + "\n\n[Stopped]",
-                    isStreaming = false,
-                    statusHint = null
-                )
-            }
-            _messages.value = current
+        if (partial.isBlank()) {
+            removeStreamingMessage()
+        } else {
+            finishStreamingMessage(text = partial + "\n\n[Stopped]")
         }
         _isGenerating.value = false
+        resetStreamingState()
     }
 
     private fun updateStreamingHint(hint: String) {
+        updateStreamingMessage(
+            text = activeResponseBuilder?.toString().orEmpty(),
+            statusHint = hint
+        )
+    }
+
+    private fun updateStreamingMessage(
+        text: String,
+        statusHint: String?
+    ) {
         val current = _messages.value.toMutableList()
-        val streamIdx = current.indexOfLast { !it.isUser && it.isStreaming }
+        val streamIdx = findStreamingMessageIndex(current)
         if (streamIdx >= 0) {
-            current[streamIdx] = current[streamIdx].copy(statusHint = hint)
+            current[streamIdx] = current[streamIdx].copy(
+                text = text,
+                statusHint = statusHint
+            )
             _messages.value = current
         }
+    }
+
+    private fun finishStreamingMessage(
+        text: String,
+        sources: List<RAGSource> = emptyList()
+    ) {
+        val current = _messages.value.toMutableList()
+        val streamIdx = findStreamingMessageIndex(current)
+        if (streamIdx >= 0) {
+            current[streamIdx] = current[streamIdx].copy(
+                text = text,
+                sources = sources,
+                isStreaming = false,
+                statusHint = null
+            )
+            _messages.value = current
+        }
+    }
+
+    private fun removeStreamingMessage() {
+        val current = _messages.value.toMutableList()
+        val streamIdx = findStreamingMessageIndex(current)
+        if (streamIdx >= 0) {
+            current.removeAt(streamIdx)
+            _messages.value = current
+        }
+    }
+
+    private fun findStreamingMessageIndex(messages: List<ChatMessage>): Int {
+        val streamId = activeStreamingMessageId
+        return if (streamId != null) {
+            messages.indexOfFirst { it.id == streamId }
+        } else {
+            messages.indexOfLast { !it.isUser && it.isStreaming }
+        }
+    }
+
+    private fun resetStreamingState() {
+        activeStreamingMessageId = null
+        activeResponseBuilder = null
     }
 
     override fun onCleared() {
         super.onCleared()
         generationJob?.cancel()
+        resetStreamingState()
     }
 }
