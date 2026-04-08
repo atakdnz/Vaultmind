@@ -37,6 +37,7 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -52,6 +53,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -66,7 +68,10 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -87,8 +92,20 @@ fun ChatScreen(
     val modelState by viewModel.modelState.collectAsStateWithLifecycle()
     val isGenerating by viewModel.isGenerating.collectAsStateWithLifecycle()
     val userInstructions by viewModel.userInstructions.collectAsStateWithLifecycle()
+    val vaultChunkCount by viewModel.vaultChunkCount.collectAsStateWithLifecycle()
     var showInstructionsDialog by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner, vaultId) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME) {
+                viewModel.refreshVaultState()
+            }
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
 
     // Auto-scroll to bottom on new messages
     LaunchedEffect(messages.size) {
@@ -101,7 +118,13 @@ fun ChatScreen(
                 title = {
                     Column {
                         Text(vaultName, fontWeight = FontWeight.Bold)
-                        if (modelState != ModelLoadState.Ready) {
+                        if (vaultChunkCount == 0) {
+                            Text(
+                                text = "No sources imported yet",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        } else if (modelState != ModelLoadState.Ready) {
                             Text(
                                 text = when (modelState) {
                                     ModelLoadState.Loading -> "Loading model…"
@@ -152,7 +175,10 @@ fun ChatScreen(
             ) {
                 if (messages.isEmpty()) {
                     item {
-                        EmptyStateHint(vaultName = vaultName)
+                        when (vaultChunkCount) {
+                            0 -> EmptyVaultHint(vaultName = vaultName, onImport = onImport)
+                            else -> EmptyStateHint(vaultName = vaultName)
+                        }
                     }
                 }
                 items(messages, key = { it.id }) { message ->
@@ -162,8 +188,13 @@ fun ChatScreen(
 
             // Input bar
             ChatInputBar(
-                enabled = modelState == ModelLoadState.Ready && !isGenerating,
+                enabled = (vaultChunkCount ?: 0) > 0 && modelState == ModelLoadState.Ready && !isGenerating,
                 isGenerating = isGenerating,
+                placeholder = if ((vaultChunkCount ?: 0) > 0) {
+                    "Ask about your notes…"
+                } else {
+                    "Import content to start chatting"
+                },
                 onSend = viewModel::sendMessage,
                 onStop = viewModel::stopGeneration,
                 modifier = Modifier
@@ -230,6 +261,38 @@ private fun EmptyStateHint(vaultName: String) {
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+    }
+}
+
+@Composable
+private fun EmptyVaultHint(
+    vaultName: String,
+    onImport: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 48.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = "\"$vaultName\" is empty.",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+            Text(
+                text = "Import a .txt or .rvault file first. VaultMind will wait to load the chat model until this vault has sources.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Button(onClick = onImport) {
+                Text("Import Data")
+            }
+        }
     }
 }
 
@@ -451,6 +514,7 @@ private fun SimilarityDot(similarity: Float) {
 private fun ChatInputBar(
     enabled: Boolean,
     isGenerating: Boolean,
+    placeholder: String,
     onSend: (String) -> Unit,
     onStop: () -> Unit,
     modifier: Modifier = Modifier
@@ -470,7 +534,7 @@ private fun ChatInputBar(
             OutlinedTextField(
                 value = text,
                 onValueChange = { text = it },
-                placeholder = { Text("Ask about your notes…") },
+                placeholder = { Text(placeholder) },
                 modifier = Modifier.weight(1f),
                 enabled = enabled,
                 maxLines = 4,

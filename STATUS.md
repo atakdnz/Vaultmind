@@ -7,7 +7,7 @@
 
 ## Current State: Core Pipeline Working
 
-The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM) runs on-device. The app is functional, builds successfully, and the main remaining work is around model-loading UX and a few missing chat refinements.
+The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM) runs on-device. The app is functional, builds successfully, and now keeps the model loaded across vault navigation for the whole unlocked app session.
 
 ---
 
@@ -48,6 +48,9 @@ The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM)
 - **SAF workaround:** model is copied to `context.filesDir` on first load (scoped storage blocks native code from accessing SAF paths); subsequent loads use cached copy
 - GPU backend (`Backend.GPU()`)
 - Temperature configurable (default 0.3 for factual RAG)
+- Shared model session manager keeps LLM + embedding runtime in memory while the app remains open and unlocked
+- Home screen supports manual `Load Model` and `Unload` actions
+- Opening a non-empty vault auto-loads the model if needed
 
 ### Settings
 - Top-K retrieval (1–15, default 5)
@@ -60,6 +63,8 @@ The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM)
 - Auto-redirect to Auth screen when vault is locked
 - Chat history cleared on lock
 - Progress bar during ingestion with phase labels
+- Empty vaults show an import-first chat state instead of triggering model load
+- Leaving a vault no longer unloads the model
 - Source citations expandable under each AI response
 - Stop generation button during streaming
 - Copy response action for completed assistant messages
@@ -71,12 +76,6 @@ The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM)
 
 ### LLM First-Load Time
 The first time the LLM model path is set in Settings, the 4–5 GB model is copied to internal storage. This takes approximately 30–60 seconds and shows "Loading model…" during that time. Subsequent launches load from the cached copy immediately (~10–15 seconds for Engine.initialize()).
-
-### Eager Model Loading For Empty Vaults
-Opening a vault currently attempts to load the configured models even if the vault has no imported sources yet. This is unnecessary for brand-new or still-empty vaults and adds avoidable wait time before import.
-
-### Model Warm-State Is Per Chat Screen, Not Per Unlocked Session
-The app unloads the LLM when the chat view model is cleared, so leaving and re-entering a vault can trigger another model load. Keeping the model warm for the whole unlocked session is not implemented yet.
 
 ### No Chat Screen Vault Stats
 The chat screen still does not show how many chunks are in the active vault. The vault list screen does show this (e.g. "32 chunks · 200 KB").
@@ -156,7 +155,8 @@ app/src/main/kotlin/com/vaultmind/app/
 │   └── ImportViewModel.kt      ensureEmbeddingModelLoaded() before import
 ├── rag/
 │   ├── LlmEngine.kt            copies model to filesDir on first SAF load
-│   ├── ChatViewModel.kt        separate embedding/LLM error handling
+│   ├── ModelSessionManager.kt  shared model lifetime across the unlocked session
+│   ├── ChatViewModel.kt        vault chat state; no longer owns model lifetime
 │   ├── PromptBuilder.kt        Gemma 4 template, thinking mode
 │   └── VectorSearch.kt         returns 0f on dimension mismatch
 └── settings/
@@ -196,8 +196,6 @@ Current repository state: `:app:assembleDebug` succeeds in the checked-in projec
 
 | Priority | Item |
 |---|---|
-| High | Avoid loading the LLM for empty vaults |
-| High | Keep the LLM warm across vault navigation while the app remains unlocked |
 | Medium | Show chunk count in chat screen |
 | Medium | Add loading indicator for LLM model copy progress |
 | Medium | Add optional non-RAG chatbot mode |

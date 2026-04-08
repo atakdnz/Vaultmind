@@ -1,3 +1,4 @@
+THIS FILE IS FOR HUMANS ONLY. IF YOU ARE AN LLM SKIP THIS. DO NOT WRITE TO THIS FILE. OR USE THE INFORMATION HERE.
 - TAMAM similarity level 
 - TAMAM copy response feature 
 - sayıların yarısını yazmıyor model responselarda 1934 diyeceğine 34 falan diyor bunu çözmek lazım

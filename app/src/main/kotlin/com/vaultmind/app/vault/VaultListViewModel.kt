@@ -2,6 +2,8 @@ package com.vaultmind.app.vault
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.vaultmind.app.rag.ModelLoadState
+import com.vaultmind.app.rag.ModelSessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,7 +21,8 @@ sealed class VaultListUiState {
 
 @HiltViewModel
 class VaultListViewModel @Inject constructor(
-    private val vaultRepository: VaultRepository
+    private val vaultRepository: VaultRepository,
+    private val modelSessionManager: ModelSessionManager
 ) : ViewModel() {
 
     val vaults: StateFlow<List<Vault>> = vaultRepository.vaults
@@ -33,6 +36,8 @@ class VaultListViewModel @Inject constructor(
 
     private val _deleteTarget = MutableStateFlow<Vault?>(null)
     val deleteTarget: StateFlow<Vault?> = _deleteTarget.asStateFlow()
+
+    val modelState: StateFlow<ModelLoadState> = modelSessionManager.state
 
     init {
         refresh()
@@ -81,6 +86,18 @@ class VaultListViewModel @Inject constructor(
     fun renameVault(vaultId: String, newName: String) {
         viewModelScope.launch {
             vaultRepository.renameVault(vaultId, newName.trim())
+        }
+    }
+
+    fun loadModels() {
+        viewModelScope.launch {
+            modelSessionManager.loadFromSettings()
+        }
+    }
+
+    fun unloadModels() {
+        viewModelScope.launch {
+            modelSessionManager.unload()
         }
     }
 }

@@ -7,12 +7,12 @@ import com.vaultmind.app.settings.AppPreferences
 import com.vaultmind.app.vault.VaultRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.drop
 import android.util.Log
 import javax.inject.Inject
 
@@ -29,13 +29,6 @@ data class ChatMessage(
     val statusHint: String? = null  // "Processing…", "Thinking…", or null
 )
 
-sealed class ModelLoadState {
-    data object NotLoaded : ModelLoadState()
-    data object Loading : ModelLoadState()
-    data object Ready : ModelLoadState()
-    data class Error(val message: String) : ModelLoadState()
-}
-
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val llmEngine: LlmEngine,
@@ -43,17 +36,20 @@ class ChatViewModel @Inject constructor(
     private val vectorSearch: VectorSearch,
     private val promptBuilder: PromptBuilder,
     private val vaultRepository: VaultRepository,
-    private val appPreferences: AppPreferences
+    private val appPreferences: AppPreferences,
+    private val modelSessionManager: ModelSessionManager
 ) : ViewModel() {
 
     private val _messages = MutableStateFlow<List<ChatMessage>>(emptyList())
     val messages: StateFlow<List<ChatMessage>> = _messages.asStateFlow()
 
-    private val _modelState = MutableStateFlow<ModelLoadState>(ModelLoadState.NotLoaded)
-    val modelState: StateFlow<ModelLoadState> = _modelState.asStateFlow()
+    val modelState: StateFlow<ModelLoadState> = modelSessionManager.state
 
     private val _isGenerating = MutableStateFlow(false)
     val isGenerating: StateFlow<Boolean> = _isGenerating.asStateFlow()
+
+    private val _vaultChunkCount = MutableStateFlow<Int?>(null)
+    val vaultChunkCount: StateFlow<Int?> = _vaultChunkCount.asStateFlow()
 
     // Settings (adjustable per session)
     private val _topK = MutableStateFlow(5)
@@ -85,7 +81,8 @@ class ChatViewModel @Inject constructor(
                         _messages.value = emptyList()
                         historyTurns.clear()
                         activeVaultId = null
-                        _modelState.value = ModelLoadState.NotLoaded
+                        _vaultChunkCount.value = null
+                        _userInstructions.value = ""
                         _isGenerating.value = false
                     }
                 }
@@ -93,48 +90,37 @@ class ChatViewModel @Inject constructor(
     }
 
     fun setVault(vaultId: String) {
+        if (activeVaultId != null && activeVaultId != vaultId) {
+            generationJob?.cancel()
+            generationJob = null
+            clearChat()
+            _vaultChunkCount.value = null
+            _userInstructions.value = ""
+        }
         activeVaultId = vaultId
-        // Load user instructions from vault DB
+        refreshVaultState()
+    }
+
+    fun refreshVaultState() {
+        val vaultId = activeVaultId ?: return
         viewModelScope.launch {
             try {
-                val vaultDb = vaultRepository.openVaultDb(vaultId)
-                _userInstructions.value = vaultDb.getVaultInfo("user_instructions") ?: ""
-            } catch (_: Exception) { /* vault not ready yet */ }
-        }
-        if (!llmEngine.isLoaded() && _modelState.value == ModelLoadState.NotLoaded) {
-            viewModelScope.launch {
                 val settings = appPreferences.settings.first()
                 _topK.value = settings.topK
                 _thinkingMode.value = settings.thinkingMode
-                if (settings.llmModelPath.isNotBlank() && settings.embeddingModelPath.isNotBlank()) {
-                    loadModels(settings.llmModelPath, settings.embeddingModelPath, settings.temperature, settings.contextWindow)
+
+                val vaultDb = vaultRepository.openVaultDb(vaultId)
+                _userInstructions.value = vaultDb.getVaultInfo("user_instructions") ?: ""
+                val chunkCount = vaultDb.getChunkCount()
+                _vaultChunkCount.value = chunkCount
+
+                if (chunkCount <= 0) {
+                    return@launch
                 }
-            }
-        }
-    }
 
-    /** Load both models (LLM + embedding). Show loading state. */
-    fun loadModels(llmModelPath: String, embeddingModelPath: String, temperature: Float = 0.3f, contextWindow: Int = 3072) {
-        if (_modelState.value == ModelLoadState.Loading) return
-        _modelState.value = ModelLoadState.Loading
-
-        viewModelScope.launch {
-            // Load embedding first — it works independently of the LLM
-            try {
-                embeddingEngine.load(embeddingModelPath)
-            } catch (e: Throwable) {
-                Log.e("VaultMind", "Embedding load failed", e)
-                _modelState.value = ModelLoadState.Error("Embedding model error: ${e.message}")
-                return@launch
-            }
-
-            // Load LLM — log the full stack trace on failure
-            try {
-                llmEngine.load(llmModelPath, temperature, contextWindow)
-                _modelState.value = ModelLoadState.Ready
-            } catch (e: Throwable) {
-                Log.e("VaultMind", "LLM load failed", e)
-                _modelState.value = ModelLoadState.Error("LLM error: ${e.message}")
+                modelSessionManager.ensureLoaded()
+            } catch (_: Exception) {
+                _vaultChunkCount.value = null
             }
         }
     }
@@ -142,6 +128,7 @@ class ChatViewModel @Inject constructor(
     /** Send a user message, run RAG, stream the response. */
     fun sendMessage(userText: String) {
         val vaultId = activeVaultId ?: return
+        if ((_vaultChunkCount.value ?: 0) <= 0) return
         if (userText.isBlank() || _isGenerating.value) return
 
         val userMsg = ChatMessage(isUser = true, text = userText.trim())
@@ -316,6 +303,5 @@ class ChatViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         generationJob?.cancel()
-        llmEngine.unload()
     }
 }

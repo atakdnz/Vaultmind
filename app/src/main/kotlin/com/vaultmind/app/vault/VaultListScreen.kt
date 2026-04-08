@@ -23,13 +23,16 @@ import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -47,6 +50,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.vaultmind.app.rag.ModelLoadState
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -62,6 +66,7 @@ fun VaultListScreen(
     val vaults by viewModel.vaults.collectAsStateWithLifecycle()
     val showCreateDialog by viewModel.showCreateDialog.collectAsStateWithLifecycle()
     val deleteTarget by viewModel.deleteTarget.collectAsStateWithLifecycle()
+    val modelState by viewModel.modelState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
@@ -88,38 +93,50 @@ fun VaultListScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            if (vaults.isEmpty()) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.FolderOpen,
-                        contentDescription = null,
-                        modifier = Modifier.size(64.dp),
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "No vaults yet.\nTap + to create one.",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            } else {
-                LazyColumn(
-                    contentPadding = PaddingValues(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(vaults, key = { it.id }) { vault ->
-                        VaultCard(
-                            vault = vault,
-                            onClick = { onOpenVault(vault) },
-                            onDelete = { viewModel.requestDelete(vault) },
-                            onRename = { newName -> viewModel.renameVault(vault.id, newName) }
+            Column(modifier = Modifier.fillMaxSize()) {
+                ModelControlsCard(
+                    modelState = modelState,
+                    onLoad = viewModel::loadModels,
+                    onUnload = viewModel::unloadModels,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+
+                if (vaults.isEmpty()) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.FolderOpen,
+                            contentDescription = null,
+                            modifier = Modifier.size(64.dp),
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "No vaults yet.\nTap + to create one.",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.weight(1f),
+                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp),
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(vaults, key = { it.id }) { vault ->
+                            VaultCard(
+                                vault = vault,
+                                onClick = { onOpenVault(vault) },
+                                onDelete = { viewModel.requestDelete(vault) },
+                                onRename = { newName -> viewModel.renameVault(vault.id, newName) }
+                            )
+                        }
                     }
                 }
             }
@@ -154,6 +171,61 @@ fun VaultListScreen(
                 TextButton(onClick = viewModel::cancelDelete) { Text("Cancel") }
             }
         )
+    }
+}
+
+@Composable
+private fun ModelControlsCard(
+    modelState: ModelLoadState,
+    onLoad: () -> Unit,
+    onUnload: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Model Session",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = when (modelState) {
+                    ModelLoadState.Ready -> "Model is loaded and will stay in memory while the app remains open and unlocked."
+                    ModelLoadState.Loading -> "Loading model into memory…"
+                    ModelLoadState.NotLoaded -> "Model is not loaded. Opening a non-empty vault will load it automatically, or you can load it here."
+                    is ModelLoadState.Error -> modelState.message
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = if (modelState is ModelLoadState.Error) {
+                    MaterialTheme.colorScheme.error
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                }
+            )
+            if (modelState == ModelLoadState.Loading) {
+                Spacer(modifier = Modifier.height(12.dp))
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Button(
+                    onClick = onLoad,
+                    enabled = modelState != ModelLoadState.Loading && modelState != ModelLoadState.Ready
+                ) {
+                    Text("Load Model")
+                }
+                OutlinedButton(
+                    onClick = onUnload,
+                    enabled = modelState == ModelLoadState.Ready
+                ) {
+                    Text("Unload")
+                }
+            }
+        }
     }
 }
 

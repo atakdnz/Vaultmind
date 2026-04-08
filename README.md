@@ -15,6 +15,9 @@ VaultMind is a fully offline, encrypted Android application that acts as a priva
 *   **PC Import Support:** Need to ingest massive amounts of text? Use the provided Python script (`scripts/vault_builder.py`) to process documents on your PC, generating an AES-256-GCM encrypted `.rvault` package that you can import into the Android app.
 *   **Biometric Authentication:** Gate access to the app using robust Biometric Prompt functionality (Fingerprint/Face Unlock + PIN fallback).
 *   **Instant Auto-Lock:** Background the app and it locks automatically, dropping encryption keys and unloading LLMs from RAM to prevent unauthorized access.
+*   **Empty-Vault Aware Chat:** Opening a brand-new or empty vault does not load the LLM anymore. VaultMind waits until the vault actually has imported sources.
+*   **Session-Wide Model Lifetime:** Once loaded, the LLM stays in memory while the app remains open and unlocked, even if you leave a vault and return to the home screen.
+*   **Manual Model Controls:** The home screen includes `Load Model` and `Unload` controls so you can warm the runtime before opening a vault or free memory manually.
 *   **Vault-Specific Instructions:** Each vault can store its own prompt-style instructions so the assistant has extra context about the corpus and response style.
 *   **Streaming Chat UX:** Responses stream token-by-token, can be stopped mid-generation, include expandable source citations, and can be copied from the chat UI.
 *   **GPU Acceleration:** Utilizes your device's GPU (via OpenCL) for blazing-fast token generation on supported hardware (with automatic fallback to CPU).
@@ -91,8 +94,7 @@ Transfer `my_knowledge.rvault` to your Android device and use the "Import .rvaul
 
 ## Known Limitations
 *   Due to the massive size of LLMs, older devices or devices with low RAM (<8GB) may experience extreme lag or silently crash due to Android's Low Memory Killer (LMK).
-*   Entering a vault currently attempts to load the configured models even if the vault has no imported sources yet.
-*   The app does not currently keep the LLM loaded across vault-to-vault navigation for the whole unlocked session, so reopening chat can still incur model load time.
+*   The model is not loaded automatically on app launch or on the home screen by default. It loads when you open a non-empty vault or when you trigger `Load Model` manually from the home screen.
 
 ## License
 *Private / Internal Project.*
