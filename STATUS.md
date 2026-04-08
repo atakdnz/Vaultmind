@@ -1,13 +1,13 @@
 # VaultMind — Development Status
 
-**Last updated:** 2026-04-05
+**Last updated:** 2026-04-08
 **Device tested:** Samsung Galaxy S23 Ultra (Snapdragon 8 Gen 2, 12 GB RAM, Android 15)
 
 ---
 
 ## Current State: Core Pipeline Working
 
-The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM) runs on-device. The app is functional but has a known UI bug in the chat screen (see Known Issues).
+The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM) runs on-device. The app is functional, builds successfully, and the main remaining work is around model-loading UX and a few missing chat refinements.
 
 ---
 
@@ -29,7 +29,8 @@ The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM)
 
 ### Ingestion — On-Device
 - .txt file import via SAF file picker (file never copied unencrypted)
-- Text chunker: 256-token target, 40-token overlap, paragraph-aware
+- Configurable text chunker from the import screen: 64 / 128 / 256 / 512 token targets with matched overlap
+- Current default on-device import setting: 128-token target, 20-token overlap
 - **SentencePiece tokenizer** (pure-Kotlin, parses `tokenizer.model` from assets — no native libs)
 - EmbeddingGemma 300M inference via LiteRT (`org.tensorflow.lite.Interpreter`)
 - Embedding model loaded via memory-mapped file (no OOM on 183 MB model)
@@ -60,19 +61,25 @@ The full RAG pipeline (auth → ingest → embed → store → retrieve → LLM)
 - Chat history cleared on lock
 - Progress bar during ingestion with phase labels
 - Source citations expandable under each AI response
+- Stop generation button during streaming
+- Copy response action for completed assistant messages
+- Per-vault instructions editor stored in `vault_info`
 
 ---
 
 ## Known Issues
 
-### Chat Input Crash
-The app crashes when tapping the chat input box (keyboard fails to open). Root cause not yet diagnosed. Workaround: none currently.
-
 ### LLM First-Load Time
 The first time the LLM model path is set in Settings, the 4–5 GB model is copied to internal storage. This takes approximately 30–60 seconds and shows "Loading model…" during that time. Subsequent launches load from the cached copy immediately (~10–15 seconds for Engine.initialize()).
 
-### No Chat Screen Import Indicator
-The chat screen does not show how many chunks are in the active vault. The vault list screen does show this (e.g. "32 chunks · 200 KB").
+### Eager Model Loading For Empty Vaults
+Opening a vault currently attempts to load the configured models even if the vault has no imported sources yet. This is unnecessary for brand-new or still-empty vaults and adds avoidable wait time before import.
+
+### Model Warm-State Is Per Chat Screen, Not Per Unlocked Session
+The app unloads the LLM when the chat view model is cleared, so leaving and re-entering a vault can trigger another model load. Keeping the model warm for the whole unlocked session is not implemented yet.
+
+### No Chat Screen Vault Stats
+The chat screen still does not show how many chunks are in the active vault. The vault list screen does show this (e.g. "32 chunks · 200 KB").
 
 ---
 
@@ -111,7 +118,7 @@ VaultDatabase (SQLCipher):  chunks + embeddings + vault_info
 
 Ingestion:
   SAF .txt URI
-    → TextChunker (256 tok, 40 overlap)
+    → TextChunker (configurable, default import setting 128 tok / 20 overlap)
     → SentencePieceTokenizer → EmbeddingEngine (LiteRT)
     → 768-dim L2-normalised vector
     → SQLCipher BLOB
@@ -167,7 +174,7 @@ app/src/main/assets/
 2. Download `gemma-4-E4B-it.litertlm` from `huggingface.co/litert-community/gemma-4-E4B-it-litert-lm`
 3. Place both in the phone's Downloads folder
 4. Open VaultMind → Settings → locate each file
-5. On first vault open after setting LLM path: wait 30–60s for model copy to internal storage
+5. On first LLM load from the SAF-selected path: wait 30–60s for model copy to internal storage
 6. Subsequent opens load from cache (~10–15 s)
 
 ---
@@ -181,15 +188,19 @@ JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home \
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
+Current repository state: `:app:assembleDebug` succeeds in the checked-in project.
+
 ---
 
 ## Remaining Work
 
 | Priority | Item |
 |---|---|
-| High | Fix chat input box crash (keyboard focus issue) |
+| High | Avoid loading the LLM for empty vaults |
+| High | Keep the LLM warm across vault navigation while the app remains unlocked |
 | Medium | Show chunk count in chat screen |
 | Medium | Add loading indicator for LLM model copy progress |
+| Medium | Add optional non-RAG chatbot mode |
 | Low | Root detection warning |
 | Low | Memory wipe audit |
 | Low | Phase 4 stretch goals (timeline mode, summary mode, vault backup) |

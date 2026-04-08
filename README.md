@@ -11,10 +11,12 @@ VaultMind is a fully offline, encrypted Android application that acts as a priva
 *   **Fully Offline Inference:** Runs Google's Gemma 4 (E4B) Large Language Model and EmbeddingGemma 300M directly on your Android device using LiteRT.
 *   **Hardware-Backed Security:** Protects your vaults using Android Keystore (StrongBox TEE). Data is encrypted at rest using SQLCipher (AES-256-GCM). Keys are wiped from memory immediately upon locking the vault.
 *   **Multi-Vault Architecture:** Create distinct, isolated workspaces (e.g., "Personal Notes", "Work Docs"). Each vault is encrypted with a unique derived key.
-*   **On-Device Ingestion:** Import `.txt` files directly into a vault. The app chunks the text, computes 768-dimensional embeddings using a pure-Kotlin SentencePiece tokenizer and the local embedding model, and stores the vectors securely.
-*   **PC Import Support:** Need to ingest massive amounts of text? Use the provided Python script (`scripts/vault_builder.py`) to process documents on your PC, generating an AES-256-GCM encrypted `.rvault` package that you can import seamlessly into the Android app.
+*   **On-Device Ingestion:** Import `.txt` files directly into a vault. Chunk size is configurable at import time (`64 / 128 / 256 / 512` tokens, with matched overlap). The app computes embeddings with a pure-Kotlin SentencePiece tokenizer plus the local embedding model and stores the vectors securely.
+*   **PC Import Support:** Need to ingest massive amounts of text? Use the provided Python script (`scripts/vault_builder.py`) to process documents on your PC, generating an AES-256-GCM encrypted `.rvault` package that you can import into the Android app.
 *   **Biometric Authentication:** Gate access to the app using robust Biometric Prompt functionality (Fingerprint/Face Unlock + PIN fallback).
 *   **Instant Auto-Lock:** Background the app and it locks automatically, dropping encryption keys and unloading LLMs from RAM to prevent unauthorized access.
+*   **Vault-Specific Instructions:** Each vault can store its own prompt-style instructions so the assistant has extra context about the corpus and response style.
+*   **Streaming Chat UX:** Responses stream token-by-token, can be stopped mid-generation, include expandable source citations, and can be copied from the chat UI.
 *   **GPU Acceleration:** Utilizes your device's GPU (via OpenCL) for blazing-fast token generation on supported hardware (with automatic fallback to CPU).
 
 ---
@@ -25,7 +27,7 @@ VaultMind relies on a pipeline designed specifically for privacy and mobile capa
 
 1.  **Auth Layer:** Validates identity via Biometrics. Unwraps the Master Secret securely stored in Android Keystore.
 2.  **Storage Layer:** Each Vault operates its own independent SQLCipher database. The Master Secret leverages HKDF-SHA256 to derive specific, per-vault keys.
-3.  **Ingestion:** Text is chunked (256-token target, 40-token overlap). A custom Kotlin implementation of the SentencePiece tokenizer parses the text. `EmbeddingGemma` (via memory-mapped LiteRT) calculates vectors.
+3.  **Ingestion:** Text is chunked with a configurable target size and overlap (default on-device import: `128` tokens with `20` token overlap). A custom Kotlin implementation of the SentencePiece tokenizer parses the text. `EmbeddingGemma` (via memory-mapped LiteRT) calculates vectors.
 4.  **Retrieval Engine:** Performs lightning-fast brute-force cosine similarity searches across the vault's embedded chunks to find contextually relevant information.
 5.  **Generation:** Retrieves top-K chunks, formats the Gemma 4 prompt template (with optional `<|think|>` reasoning steps), and streams the generated response token-by-token directly to the Compose UI.
 
@@ -51,7 +53,7 @@ Because VaultMind runs powerful LLMs locally, you must provide the model files y
     *   Open VaultMind.
     *   Navigate to **Settings**.
     *   Select the respective files for the Embedding Model and the LLM Model.
-5.  **Initial Load:** The *first* time you open a vault after setting the LLM path, VaultMind will securely copy the large `.litertlm` model to its isolated internal storage (this bypasses Scoped Storage limitations for native C++ code). This takes 30-60 seconds. *Subsequent loads take ~10-15 seconds.*
+5.  **Initial Load:** The first time VaultMind loads the LLM from a SAF-selected path, it securely copies the large `.litertlm` model to isolated internal storage (this bypasses Scoped Storage limitations for native code). This takes 30-60 seconds. Subsequent model loads reuse the cached internal copy, though engine initialization still takes time.
 
 ---
 
@@ -89,7 +91,8 @@ Transfer `my_knowledge.rvault` to your Android device and use the "Import .rvaul
 
 ## Known Limitations
 *   Due to the massive size of LLMs, older devices or devices with low RAM (<8GB) may experience extreme lag or silently crash due to Android's Low Memory Killer (LMK).
-*   Currently, the chat screen does not properly reset Keyboard focus in some scenarios (Investigating).
+*   Entering a vault currently attempts to load the configured models even if the vault has no imported sources yet.
+*   The app does not currently keep the LLM loaded across vault-to-vault navigation for the whole unlocked session, so reopening chat can still incur model load time.
 
 ## License
 *Private / Internal Project.*

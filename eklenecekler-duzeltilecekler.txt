@@ -1,7 +1,7 @@
 - TAMAM similarity level 
 - TAMAM copy response feature 
 - sayıların yarısını yazmıyor model responselarda 1934 diyeceğine 34 falan diyor bunu çözmek lazım
-- vaultlara özel system prompt / user instructions yazma yeri olsa güzel olur. genel konsept hakkında fikri olur ona göre chunkları değerlendirir.
+- TAMAM vaultlara özel system prompt / user instructions yazma yeri olsa güzel olur. genel konsept hakkında fikri olur ona göre chunkları değerlendirir.
 - TAMAM(varmış zaten)birden fazla text ekleyip chunkarlı biriktirmek sanırım var ama yoksa ekleriz
 - keeping the model in memory while the app is open. waiting every time after entering a vault is not ideal.
 - the app tries to load the llm even if the vault is new and has no sources. this makes the app laggy while trying to import a txt.
@@ -9,7 +9,9 @@
 - TAMAM need to tune chunk size and overlap, it is not good right now. 256 token is too much at least for my use case. we can add an option to change the chunk size when importing. that way we can make the top k higher without increasing the prompt processing time too much.
 - TAMAM make the prompt processing and thinking have a different indicator so we can distinguish them.
 - retrieval after an interrupt does not work obviously. we can concat with the latest message before embedding and soing similarity search. i dont know if its a good approach. it would work for continue messages but it can be abd for real questions after an interrupt.
+- we can add a just chatbot option without retrieval. this way i can just use this app to use gemma models. i wouldnt need edge gallery and duplicate gemma models anymore.
 
 bug:
 - similarity is always %30-41.
 - chunk expanding has a weird animation. it looks weird when it expands all of a sudden. we should make it smoother.
+- her şeye bilgi yoktur diyor normal olduğunu sanmıyorum embedding modeli bir garip çalışıyor
