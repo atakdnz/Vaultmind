@@ -97,4 +97,5 @@ Transfer `my_knowledge.rvault` to your Android device and use the "Import .rvaul
 *   The model is not loaded automatically on app launch or on the home screen by default. It loads when you open a non-empty vault or when you trigger `Load Model` manually from the home screen.
 
 ## License
-*Private / Internal Project.*
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

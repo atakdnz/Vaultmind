@@ -11,6 +11,7 @@ THIS FILE IS FOR HUMANS ONLY. IF YOU ARE AN LLM SKIP THIS. DO NOT WRITE TO THIS 
 - TAMAM make the prompt processing and thinking have a different indicator so we can distinguish them.
 - retrieval after an interrupt does not work obviously. we can concat with the latest message before embedding and soing similarity search. i dont know if its a good approach. it would work for continue messages but it can be abd for real questions after an interrupt.
 - we can add a just chatbot option without retrieval. this way i can just use this app to use gemma models. i wouldnt need edge gallery and duplicate gemma models anymore.
+- being able to write the pormpt while the model is loading.
 
 bug:
 - similarity is always %30-41.
